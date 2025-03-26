@@ -1,3 +1,6 @@
 {
-    "hello": "Bonjour Monde!"
+    "201/CREATED/REGISTER": "Utilisateur {USER} a été crée",
+    "400/BAD_REQUEST/REGISTER": "Mauvais format : champs concerné {INPUT}",
+    "403/FORBIDDEN/HTTP": "Action interdite",
+    "405/METHOD_NOT_ALLOWED/HTTP": "La méthode {METHOD} n'est pas autorisée sur {URL}"
 }

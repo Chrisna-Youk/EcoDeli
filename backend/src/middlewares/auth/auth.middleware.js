@@ -15,6 +15,7 @@ function authMiddleware() {
       accessToken,
       process.env.ACCESS_TOKEN_KEY,
       (err, validatedAccessToken) => {
+        console.log("AccessToken :", validatedAccessToken)
         if (err) {
           const { refreshToken } = req.cookies;
           verify(
@@ -24,17 +25,19 @@ function authMiddleware() {
               if (err) {
                 return res.status(403).json({ error: "Invalid token" });
               } else {
+                console.log("RefreshToken :", refreshedAccessToken)
                 req.user = refreshedAccessToken;
+                next();
               }
             }
           );
           return res.status(403).json({ error: "Invalid token" });
         } else {
           req.user = validatedAccessToken;
+          next();
         }
       }
     );
-    next();
   };
 }
 
