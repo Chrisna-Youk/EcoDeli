@@ -30,7 +30,7 @@ const User = db.define(
       unique: true,
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
     verified: {
@@ -43,20 +43,20 @@ const User = db.define(
       allowNull: true,
     },
     otp: {
-      type: DataTypes.STRING(6),
+      type: DataTypes.STRING(12),
       allowNull: true,
     },
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
     },
     customer: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
-    deliverer: {
+    delivrer: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,

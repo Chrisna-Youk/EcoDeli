@@ -2,13 +2,16 @@ import { Router } from "express";
 import route from "./route.js";
 
 // middlewares
-// import authMiddleware from "../middlewares/auth/auth.middleware.js";
+import authMiddleware from "../middlewares/auth/auth.middleware.js";
 
 // controllers/auth
 import registerController from "../controllers/auth/register/register.controller.js";
+import confirmationController from "../controllers/auth/confirmation/confirmation.controller.js";
+import loginController from "../controllers/auth/login/login.controller.js";
+import accessController from "../controllers/auth/access/access.controller.js";
 
 // controllers
-// import myController from "../controllers/myController.controller.js";
+import myController from "../controllers/myController.controller.js";
 
 const router = Router({ mergeParams: true });
 
@@ -22,8 +25,11 @@ const router = Router({ mergeParams: true });
 const routes = [
   // controllers/auth
   route(router, "/register", registerController, ["post"]),
+  route(router, "/confirmation/:verifyToken", confirmationController, ["get"]),
+  route(router, "/login", loginController, ["post"]),
+  route(router, "/access", accessController, ["post"]),
   // controllers
-  // route(router, "/", myController, ["get"])
+  route(router, "/", myController, ["get"], authMiddleware())
 ];
 
 export default routes;

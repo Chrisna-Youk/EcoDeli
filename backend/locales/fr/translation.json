@@ -1,6 +1,11 @@
 {
+    "200/OK/CONFIRMATION": "Le compte {USER} a été confirmé",
+    "400/BAD_REQUEST/CONFIRMATION": "Confirmation rejetée",
+
     "201/CREATED/REGISTER": "Utilisateur {USER} a été crée",
     "400/BAD_REQUEST/REGISTER": "Mauvais format : champs concerné {INPUT}",
+
     "403/FORBIDDEN/HTTP": "Action interdite",
-    "405/METHOD_NOT_ALLOWED/HTTP": "La méthode {METHOD} n'est pas autorisée sur {URL}"
+    "405/METHOD_NOT_ALLOWED/HTTP": "La méthode {METHOD} n'est pas autorisée sur {URL}",
+    "500/INTERNAL_SERVER_ERROR/HTTP": "Erreur interne"
 }

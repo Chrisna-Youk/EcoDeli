@@ -1,6 +1,17 @@
 {
+    "200/OK/CONFIRMATION": "Account {USER} has been confirmed",
+    "400/BAD_REQUEST/CONFIRMATION": "Confirmation rejected",
+
     "201/CREATED/REGISTER": "User {USER} has been created",
     "400/BAD_REQUEST/REGISTER": "Bad format : concerned input {INPUT}",
+
+    "200/OK/LOGIN": "Login successfully",
+    "400/BAD_REQUEST/LOGIN": "Login failed",
+
+    "200/OK/ACCESS": "Access token provided",
+    "400/BAD_REQUEST/ACCESS": "User not found",
+
     "403/FORBIDDEN/HTTP": "Forbidden action",
-    "405/METHOD_NOT_ALLOWED/HTTP": "The method {METHOD} is not authorized on {URL}"
+    "405/METHOD_NOT_ALLOWED/HTTP": "The method {METHOD} is not authorized on {URL}",
+    "500/INTERNAL_SERVER_ERROR/HTTP": "Internal error"
 }

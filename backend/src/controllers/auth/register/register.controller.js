@@ -2,7 +2,9 @@ import {
   validateEmail,
   validatePassword,
 } from "../../../utilities/format.utilities.js";
-import { validateName } from "./register.utilities.js";
+import { verifyTokenGenerator } from "../../../utilities/generator.utilities.js";
+import { validateName, passwordHashGenerator } from "./register.utilities.js";
+import { sendEmail } from "../../../emails/transporter.js";
 import User from "../../../models/user.model.js";
 
 async function registerController(req, res) {
@@ -40,21 +42,34 @@ async function registerController(req, res) {
     return res.status(400).json({ message: response });
   }
 
-  const [user, created] = await User.findOrCreate({
-    where: { email: email },
-    default: {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    },
-  });
-
-  if (created) {
-    const response = req.t("201/CREATED/REGISTER").replace("{USER}", email);
-    return res.status(201).json({ message: response });
-  } else if (user) {
-    return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+  try {
+    const [user, created] = await User.findOrCreate({
+      where: { email: email },
+      defaults: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: passwordHashGenerator(password),
+        verifyToken: verifyTokenGenerator(),
+      },
+    });
+    
+    if (created) {
+      const response = req.t("201/CREATED/REGISTER").replace("{USER}", email);
+      sendEmail(
+        `EcoDeli ${process.env.SMTP_EMAIL}`,
+        email,
+        "EcoDeli Verification Email",
+        `${process.env.URL}:${process.env.PORT}/api/v1/auth/confirmation/${user.verifyToken}`
+      );
+      return res.status(201).json({ message: response });
+    } else if (user) {
+      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+    }
+  } catch (error) {
+    return res
+      .status(403)
+      .json({ message: req.t("500/INTERNAL_SERVER_ERROR/HTTP") });
   }
 }
 
