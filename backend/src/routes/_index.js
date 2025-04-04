@@ -3,6 +3,7 @@ import route from "./route.js";
 
 // middlewares
 import authMiddleware from "../middlewares/auth/auth.middleware.js";
+import permissionMiddleware from "../middlewares/permissions/permission.middleware.js";
 
 // controllers/auth
 import registerController from "../controllers/auth/register/register.controller.js";
@@ -10,8 +11,16 @@ import confirmationController from "../controllers/auth/confirmation/confirmatio
 import loginController from "../controllers/auth/login/login.controller.js";
 import accessController from "../controllers/auth/access/access.controller.js";
 
+// controllers/user
+import createUserController from "../controllers/user/create/create.controller.js";
+import readUserController from "../controllers/user/read/read.controller.js";
+import readByIdUserController from "../controllers/user/read/readById.controller.js";
+import updateUserController from "../controllers/user/update/update.controller.js";
+import deleteUserController from "../controllers/user/delete/delete.controller.js";
+
 // controllers
 import myController from "../controllers/myController.controller.js";
+
 
 const router = Router({ mergeParams: true });
 
@@ -24,12 +33,19 @@ const router = Router({ mergeParams: true });
 
 const routes = [
   // controllers/auth
-  route(router, "/register", registerController, ["post"]),
-  route(router, "/confirmation/:verifyToken", confirmationController, ["get"]),
-  route(router, "/login", loginController, ["post"]),
-  route(router, "/access", accessController, ["post"]),
+  route(router, "/auth/register", registerController, ["post"]),
+  route(router, "/auth/confirmation/:verifyToken", confirmationController, ["get"]),
+  route(router, "/auth/login", loginController, ["post"]),
+  route(router, "/auth/access", accessController, ["post"]),
+  // contorllers/user
+  route(router, "/user/create", createUserController, ["post"], authMiddleware()),
+  route(router, "/user/read", readUserController, ["get"], authMiddleware()),
+  route(router, "/user/read/:userId", readByIdUserController, ["get"], authMiddleware()),
+  route(router, "/user/update", updateUserController, ["put"], authMiddleware()),
+  route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
+
   // controllers
-  route(router, "/", myController, ["get"], authMiddleware())
+  route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("merchant"))
 ];
 
 export default routes;

@@ -10,12 +10,12 @@ const User = db.define(
       autoIncrement: true,
     },
     firstName: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },
     lastName: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },

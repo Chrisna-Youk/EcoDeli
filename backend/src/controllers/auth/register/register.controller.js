@@ -3,7 +3,7 @@ import {
   validatePassword,
 } from "../../../utilities/format.utilities.js";
 import { verifyTokenGenerator } from "../../../utilities/generator.utilities.js";
-import { validateName, passwordHashGenerator } from "./register.utilities.js";
+import { validateName, passwordHashGenerator } from "../auth.utilities.js";
 import { sendEmail } from "../../../emails/transporter.js";
 import User from "../../../models/user.model.js";
 
@@ -49,6 +49,7 @@ async function registerController(req, res) {
         firstName: firstName,
         lastName: lastName,
         email: email,
+        customer: true,
         password: passwordHashGenerator(password),
         verifyToken: verifyTokenGenerator(),
       },

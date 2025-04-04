@@ -26,6 +26,7 @@ async function accessController(req, res) {
         customer: user.customer,
         delivrer: user.delivrer,
         merchant: user.merchant,
+        admin: user.admin
       };
 
       const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_KEY, {
