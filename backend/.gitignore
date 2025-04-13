@@ -1,4 +1,4 @@
 node_modules
-.dev.env
-.prod.env
-.env
+.env*
+Dockerfile
+docker-compose.yml

@@ -43,9 +43,9 @@ const routes = [
   route(router, "/user/read/:userId", readByIdUserController, ["get"], authMiddleware()),
   route(router, "/user/update", updateUserController, ["put"], authMiddleware()),
   route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
-
   // controllers
-  route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("merchant"))
+  route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("merchant")),
+  route(router, "/hello", myController, ["get"])
 ];
 
 export default routes;

@@ -2,7 +2,7 @@
 
 ## Créer un fichier .env
 
-A la racine du projet créer un .env ou un .dev.env
+A la racine du projet créer un .env ou un .env.development
 
 C'est vos variables d'environnements
 

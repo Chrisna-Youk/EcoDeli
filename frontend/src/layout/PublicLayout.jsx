@@ -5,7 +5,7 @@ const PublicLayout = () => {
   return (
     <div>
       <header></header>
-      <ThemeContext.Provider>
+      <ThemeContext.Provider value="dark">
         <main>
           <Outlet/>
         </main>

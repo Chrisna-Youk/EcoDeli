@@ -7,9 +7,9 @@
   "exports": "./src/app",
   "type": "module",
   "scripts": {
-    "dock": "node --env-file=.dev.env ./src/app.js",
-    "prod": "node --env-file=.prod.env src/app.js",
-    "dev": "nodemon --env-file=.dev.env src/app.js",
+    "dock": "node --env-file=.env.development ./src/app.js",
+    "prod": "node --env-file=.env.production src/app.js",
+    "dev": "nodemon --env-file=.env.development src/app.js",
     "help": "nodemon --help"
   },
   "dependencies": {

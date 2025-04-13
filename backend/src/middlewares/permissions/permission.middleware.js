@@ -4,6 +4,7 @@ const { verify, decode } = jwt;
 function permissionMiddleware(role) {
   return (req, res, next) => {
     if (typeof role !== "string") {
+      role = "customer"
       throw new TypeError('Expected "role" to be a string');
     }
 
