@@ -1,11 +1,14 @@
 import User from "../../../models/user.model.js";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import {
   validateEmail,
   validatePassword,
 } from "../../../utilities/format.utilities.js";
 import { sendEmail } from "../../../emails/transporter.js";
-import { otpGenerator, verifyTokenGenerator } from "../../../utilities/generator.utilities.js";
+import {
+  otpGenerator,
+  verifyTokenGenerator,
+} from "../../../utilities/generator.utilities.js";
 
 async function loginController(req, res) {
   const { email, password } = req.body;
@@ -23,19 +26,20 @@ async function loginController(req, res) {
     if (user || user.active == true) {
       compare(password, user.password, (err, result) => {
         if (result) {
-          user.update({ verifyToken: verifyTokenGenerator(), otp: otpGenerator() });
+          user.update({
+            verifyToken: verifyTokenGenerator(),
+            otp: otpGenerator(),
+          });
           sendEmail(
             `EcoDeli ${process.env.SMTP_EMAIL}`,
             user.email,
             "EcoDeli Code Verification",
             `Hello there is the code ${user.otp}`
           );
-          return res
-            .status(200)
-            .json({
-              message: req.t("200/OK/LOGIN"),
-              verifyToken: user.verifyToken,
-            });
+          return res.status(200).json({
+            message: req.t("200/OK/LOGIN"),
+            verifyToken: user.verifyToken,
+          });
         }
         return res
           .status(400)

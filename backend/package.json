@@ -8,14 +8,15 @@
   "type": "module",
   "scripts": {
     "dock": "node --env-file=.env.development ./src/app.js",
-    "prod": "node --env-file=.env.production src/app.js",
+    "prod": "node --env-file=.env.production ./src/app.js",
     "dev": "nodemon --env-file=.env.development src/app.js",
     "help": "nodemon --help"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
     "i18next": "^24.2.3",

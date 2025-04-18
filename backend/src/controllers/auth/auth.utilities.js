@@ -1,4 +1,4 @@
-import { hashSync } from "bcrypt";
+import { hashSync } from "bcryptjs";
 
 export function validateName(name) {
   const regex = /^[A-Za-z\s]{1,128}$/;

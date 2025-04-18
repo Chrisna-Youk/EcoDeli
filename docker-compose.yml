@@ -1,0 +1,42 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: backend_container
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - mysql
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: frontend_container
+    ports:
+      - "5173:5173"
+    working_dir: /app
+    command: ["pnpm", "run", "dev"]
+    depends_on:
+      - backend
+
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.database
+    container_name: mysql_container
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=pPuzFdn4xsw6xj0rYZ4G
+      - MYSQL_DATABASE=ecodeli
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  database:
