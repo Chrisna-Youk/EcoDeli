@@ -4,12 +4,13 @@
   "license": "ISC",
   "description": "EcoDeli is a company offering a crowdshipping solution",
   "version": "1.0.0",
-  "exports": "./src/app",
+  "exports": "./src/main",
   "type": "module",
   "scripts": {
-    "dock": "node --env-file=.env.development ./src/app.js",
+    "dock": "node ./src/main.js",
     "prod": "node --env-file=.env.production ./src/app.js",
     "dev": "nodemon --env-file=.env.development src/app.js",
+    "test": "nodemon src/main.js",
     "help": "nodemon --help"
   },
   "dependencies": {

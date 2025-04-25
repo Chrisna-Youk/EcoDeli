@@ -1,12 +1,12 @@
 import express from "express";
 const app = express();
 
-import { dbConnection } from "./database/db.js";
 import migrate from "./database/migration.js";
-dbConnection();
+import { dbConnection } from "./database/db.js";
 if (process.env.MIGRATE == 1) {
-  migrate();
+  await migrate();
 }
+await dbConnection();
 
 import middlewares from "./middlewares/_index.js";
 middlewares.forEach((middleware) => {

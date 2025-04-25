@@ -17,7 +17,7 @@ export async function dbConnection() {
     console.log("Connection has been established successfully.");
     // force: create models from scratch
     // alter: allow alter the db
-    await db.sync({ force: false, alter: false });
+    await db.sync({ force: true, alter: true });
     console.log("Database synchronized.");
   } catch (error) {
     console.log(error)
