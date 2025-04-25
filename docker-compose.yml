@@ -1,42 +1,31 @@
 services:
-  backend:
+  ecodeli-backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
-    container_name: backend_container
+      context: ./backend
+    container_name: ecodeli-backend
+    env_file:
+      - .env.development
+    depends_on:
+      - ecodeli-mysql
     ports:
       - "3000:3000"
     volumes:
       - ./backend:/app
-    working_dir: /app
-    command: ["npm", "run", "dev"]
-    depends_on:
-      - mysql
-
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    container_name: frontend_container
-    ports:
-      - "5173:5173"
-    working_dir: /app
-    command: ["pnpm", "run", "dev"]
-    depends_on:
-      - backend
-
-  mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile.database
-    container_name: mysql_container
+  ecodeli-mysql:
+    image: mysql:8.0
+    container_name: ecodeli-db
+    env_file:
+      - .env.development
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3307:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=pPuzFdn4xsw6xj0rYZ4G
-      - MYSQL_DATABASE=ecodeli
     volumes:
-      - database:/var/lib/mysql
+      - ecodeli-mysql:/var/lib/mysql
 
 volumes:
-  database:
+  ecodeli-mysql:

@@ -70,7 +70,7 @@ async function registerController(req, res) {
   } catch (error) {
     return res
       .status(403)
-      .json({ message: req.t("500/INTERNAL_SERVER_ERROR/HTTP") });
+      .json({ message: req.t("500/INTERNAL_SERVER_ERROR/HTTP")});
   }
 }
 
