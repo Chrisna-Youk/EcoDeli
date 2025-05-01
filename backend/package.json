@@ -9,7 +9,7 @@
   "scripts": {
     "dock": "node ./src/main.js",
     "prod": "node --env-file=.env.production ./src/app.js",
-    "dev": "nodemon --env-file=.env.development src/app.js",
+    "dev": "nodemon src/main.js",
     "test": "nodemon src/main.js",
     "help": "nodemon --help"
   },

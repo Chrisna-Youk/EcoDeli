@@ -1,40 +1,65 @@
 import { db } from "../database/db.js";
 import { DataTypes } from "sequelize";
 
-const Subscription = db.define(
-  "subscription",
+const Announcement = db.define(
+  "announcement",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },
-    type: {
+    photo: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },
-    insurance: {
-      type: DataTypes.STRING(128),
+    description: {
+      type: DataTypes.TEXT(),
       allowNull: true,
       unique: false,
     },
-    soldDelivery: {
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
+    size: {
+      type: DataTypes.STRING(3),
+      allowNull: true,
+      unique: false,
+    },
+    weight: {
       type: DataTypes.FLOAT,
       allowNull: true,
       unique: false,
     },
-    soldPrice: {
+    addressDeparture: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    addressDestination: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    length: {
       type: DataTypes.FLOAT,
       allowNull: true,
       unique: false,
     },
-    priority: {
+    width: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      unique: false,
+    },
+    depth: {
       type: DataTypes.FLOAT,
       allowNull: true,
       unique: false,
@@ -52,4 +77,4 @@ const Subscription = db.define(
   }
 );
 
-export default Subscription;
+export default Announcement;
