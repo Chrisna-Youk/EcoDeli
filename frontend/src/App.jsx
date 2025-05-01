@@ -10,12 +10,16 @@ import PublicLayout from "./layout/PublicLayout";
 import Home from "./pages/Home";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Users from "./pages/Users";
 
 // Language
 // eslint-disable-next-line no-unused-vars
 import i18n from "./i18n/i18n";
 import { useTranslation } from "react-i18next";
 import { LanguageContext } from "./context/Context";
+import ForgotPassword from "./pages/Forgot-Password";
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -30,10 +34,14 @@ const App = () => {
           <Route path="/" element={<PublicLayout />}>
             <Route path="service" element={<Service />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
           </Route>
           <Route path="/dashboard" element={<PrivateLayout />}>
             <Route index element={<Home />} />
             <Route path="/dashboard/service" element={<Service />} />
+            <Route path="/dashboard/users" element={<Users />} />
           </Route>
         </Routes>
       </LanguageContext.Provider>
