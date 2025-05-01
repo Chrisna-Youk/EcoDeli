@@ -7,9 +7,7 @@ import axios from "axios";
 // };
 
 const useAuth = () => {
-  axios.interceptors.request.use(
-    
-  );
+  axios.interceptors.request.use();
 };
 
 export default useAuth;
