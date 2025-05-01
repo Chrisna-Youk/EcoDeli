@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 
 const ForgotPassword = () => {
   return (
     <div className="bg-white w-screen h-[calc(100vh-80px)] flex items-center justify-center">
       <div className="p-6 bg-gray-50 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-xl font-semibold text-center mb-4 text-gray-800">Mot de passe oublié</h2>
+        <h2 className="text-xl font-semibold text-center mb-4 text-gray-800">
+          Mot de passe oublié
+        </h2>
 
         <form action="#" method="POST">
-          <label for="email" className="block text-sm text-gray-700 mb-1">Email</label>
+          <label htmlFor="email" className="block text-sm text-gray-700 mb-1">
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -25,12 +29,17 @@ const ForgotPassword = () => {
           </button>
 
           <div className="mt-4 text-center">
-            <a href="/login" className="text-sm text-yellow-500 hover:text-yellow-700">Retour</a>
+            <a
+              href="/login"
+              className="text-sm text-yellow-500 hover:text-yellow-700"
+            >
+              Retour
+            </a>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;
