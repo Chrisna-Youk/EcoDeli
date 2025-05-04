@@ -15,6 +15,9 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
+import ResetPassword from "./pages/Reset-Password";
+import PasswordChangedSuccess from "./pages/Password-Changed-Success";
+
 
 // Language context
 // eslint-disable-next-line no-unused-vars
@@ -42,6 +45,8 @@ const App = () => {
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route path="reset-password" element={<ResetPassword />} />
+              <Route path="password-changed-success" element={<PasswordChangedSuccess />} />
             </Route>
 
             {/* Private Layout and its nested routes */}
