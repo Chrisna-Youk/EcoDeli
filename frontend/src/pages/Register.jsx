@@ -2,7 +2,7 @@ import React from "react";
 
 const Register = () => {
   return (
-    <div className="bg-white w-screen h-[calc(100vh-80px)] flex flex-col items-center justify-center">
+    <div className="bg-white w-screen h-[calc(100vh-80px)] flex flex-col items-center justify-center bg-[url(bg-blur-truck.jpg)] bg-cover">
       <div className="p-10 bg-gray-50 rounded-lg shadow-xl">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           S'inscrire
