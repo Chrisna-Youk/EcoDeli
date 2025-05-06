@@ -1,27 +1,34 @@
 // React
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 // Auth & Theme context
 import { AuthContext, ThemeContext } from "../context/Context";
 
 // Third
-// import axios from "axios";
-import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 const PrivateLayout = () => {
-  const { i18n } = useTranslation();
-
-  useEffect(() => {
-    // "en" needs to be replaced by a dynamic variable that is toggled by user interaction, reload page when clicked
-    i18n.changeLanguage("it");
-  }, [i18n]);
   // // useState and useEffect with API axios call
 
+  // const [auth, setAuth] = useState("");
+
+  // useEffect(() => {
+  //   setAuth(() => {
+  //     axios
+  //       .post("http://localhost:3000/api/v1/login", {
+  //         email: "jeanalbalouh@gmail.com",
+  //         password: "Admin123?WowBro",
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data.verifyToken);
+  //       });
+  //   });
+  // }, []);
 
   return (
     <div className="flex flex-row bg-zinc-900">
-      <aside className="h-screen md:w-60 max-sm:hidden bg-zinc-800 text-white flex flex-col px-4 py-6 font-medium text-md">
+      <aside className="h-screen md:w-60 max-sm:hidden bg-zinc-800 text-white flex flex-col px-8 py-6 font-medium text-md fixed">
 
         <div className="flex justify-center mb-6">
         <img src="/ecodeli-logo.png" alt="ecodeli-logo" className="h-13"/>
@@ -80,11 +87,11 @@ const PrivateLayout = () => {
 
 
       {/* <AuthContext.Provider value={auth}> */}
-      <ThemeContext.Provider value={null}>
-        <main>
-          <Outlet />
-        </main>
-      </ThemeContext.Provider>
+        <ThemeContext.Provider value={null}>
+          <main>
+            <Outlet/>
+          </main>
+        </ThemeContext.Provider>
       {/* </AuthContext.Provider> */}
     </div>
   );
