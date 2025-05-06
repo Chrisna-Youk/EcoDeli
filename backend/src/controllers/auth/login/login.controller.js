@@ -23,7 +23,7 @@ async function loginController(req, res) {
 
   try {
     const user = await User.findOne({ where: { email: email } });
-    if (user || user.active == true) {
+    if (user && user.active == true && user.verified == true) {
       compare(password, user.password, (err, result) => {
         if (result) {
           user.update({

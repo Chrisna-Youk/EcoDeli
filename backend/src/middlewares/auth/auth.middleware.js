@@ -1,14 +1,13 @@
 import jwt from "jsonwebtoken";
-const { verify, decode } = jwt;
+const { verify } = jwt;
 
 function authMiddleware() {
   return (req, res, next) => {
-    const authType = req.header("Authorization")?.split(" ")[0];
-    const accessToken = req.header("Authorization")?.split(" ")[1];
+    const accessToken = req.cookies.accessToken;
+    const refreshToken = req.cookies.refreshToken;
 
-    // Verification du type de token (JWT) et de sa validité
-    if (!accessToken || authType !== "Bearer") {
-      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+    if (!accessToken && !refreshToken) {
+      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "world" });
     }
 
     verify(
@@ -20,34 +19,33 @@ function authMiddleware() {
           return next();
         }
 
-        const { refreshToken } = req.cookies;
-
-        if (!refreshToken) {
-          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
-        }
-
         verify(
           refreshToken,
           process.env.REFRESH_TOKEN_KEY,
-          (err, validatedRefreshedAccessToken) => {
-            // Deux scenarios possible soit on rejette le token (erreur de hash ou d'expiration) ou l'on accepte
-            if (err) {
+          (err, validatedRefreshToken) => {
+            if (err || !validatedRefreshToken) {
               return res
                 .status(403)
-                .json({ message: req.t("403/FORBIDDEN/HTTP") });
+                .json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello" });
             }
 
-            const { iat, exp, ...payload } = decode(refreshToken);
+            const { iat, exp, ...payload } = validatedRefreshToken;
 
-            const refreshedAccessToken = jwt.sign(
+            const newAccessToken = jwt.sign(
               payload,
               process.env.ACCESS_TOKEN_KEY,
-              {
-                expiresIn: "15m",
-              }
+              { expiresIn: "15m" }
             );
 
-            req.user = refreshedAccessToken;
+            req.user = payload;
+
+            res.cookie("accessToken", newAccessToken, {
+              httpOnly: true,
+              secure: true,
+              sameSite: "Strict",
+              maxAge: 15 * 60 * 1000, // 15 min
+            });
+
             return next();
           }
         );
