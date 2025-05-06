@@ -6,7 +6,7 @@
     "400/BAD_REQUEST/REGISTER": "Bad format : concerned input {INPUT}",
 
     "200/OK/LOGIN": "Login successfully",
-    "400/BAD_REQUEST/LOGIN": "Login failed",
+    "400/BAD_REQUEST/LOGIN": "Email or password is wrong",
 
     "200/OK/ACCESS": "Access token provided",
     "400/BAD_REQUEST/ACCESS": "User not found",
