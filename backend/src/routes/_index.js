@@ -44,7 +44,7 @@ const routes = [
   route(router, "/user/update", updateUserController, ["put"], authMiddleware()),
   route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
   // controllers
-  route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("merchant")),
+  route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("customer")),
   route(router, "/hello", myController, ["get"])
 ];
 
