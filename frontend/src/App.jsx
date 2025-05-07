@@ -17,9 +17,9 @@ import Register from "./pages/Register";
 import Users from "./pages/Users";
 import ResetPassword from "./pages/Reset-Password";
 import PasswordChangedSuccess from "./pages/Password-Changed-Success";
-import Forum from "./pages/template-ads";
-import CreerAnnonce from "./pages/CreateAds";
-import MonCompteLivreur from "./pages/MyDeliveryAccount";
+import TemplateAd from "./pages/template-ads";
+import CreateAd from "./pages/CreateAd";
+import MyDeliverAccount from "./pages/MyDeliveryAccount";
 
 
 // Language context
