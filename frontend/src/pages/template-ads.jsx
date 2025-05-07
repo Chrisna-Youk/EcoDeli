@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TemplateAnnonces = () => {
+const TemplateAd = () => {
   return (
     <div className="bg-white w-screen flex flex-col items-center min-h-screen">
       <h1 className="text-3xl font-bold mt-10 mb-6">Mes annonces</h1>
@@ -53,5 +53,5 @@ const TemplateAnnonces = () => {
   );
 };
 
-export default TemplateAnnonces;
+export default TemplateAd;
 

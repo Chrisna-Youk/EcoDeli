@@ -17,9 +17,9 @@ import Register from "./pages/Register";
 import Users from "./pages/Users";
 import ResetPassword from "./pages/Reset-Password";
 import PasswordChangedSuccess from "./pages/Password-Changed-Success";
-import Forum from "./pages/template-annonces";
-import CreerAnnonce from "./pages/CreateAnnonce";
-import MonCompteLivreur from "./pages/MonCompteLivreur";
+import Forum from "./pages/template-ads";
+import CreerAnnonce from "./pages/CreateAds";
+import MonCompteLivreur from "./pages/MyDeliveryAccount";
 
 
 // Language context
@@ -57,9 +57,9 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path="service" element={<Service />} />
               <Route path="users" element={<Users />} />
-              <Route path="template-annonces" element={<TemplateAnnonces />} />
-              <Route path="create-annonce" element={<CreerAnnonce />} />
-              <Route path="compte-livreur" element={<MonCompteLivreur />} />
+              <Route path="template-ads" element={<TemplateAd />} />
+              <Route path="create-ad" element={<CreateAd />} />
+              <Route path="delivery-account" element={<MyDeliverAccount />} />
             </Route>
 
           </Routes>

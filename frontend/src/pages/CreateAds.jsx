@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreerAnnonce = () => {
+const CreateAd = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center">
       <h1 className="text-3xl font-bold mb-2">Créer une annonce</h1>
@@ -82,4 +82,4 @@ const CreerAnnonce = () => {
   );
 };
 
-export default CreerAnnonce;
+export default CreateAd;
