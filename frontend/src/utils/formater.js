@@ -8,3 +8,8 @@ export function validatePassword(password) {
   const regex = /^(?=.*\d)(?=.*[\W_]).{12,}$/;
   return regex.test(password);
 }
+
+export function validateName(name) {
+  const regex = /^[A-Za-z\s]{1,128}$/;
+  return regex.test(name);
+}

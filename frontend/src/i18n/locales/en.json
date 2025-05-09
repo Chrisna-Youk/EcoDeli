@@ -1,3 +1,11 @@
 {
-    "welcome": "Welcome to React and react-i18next"
+    "welcome": "Welcome to React and react-i18next",
+    "LOGIN/ERROR/EMAIL": "Invalid email format",
+    "LOGIN/ERROR/PASSWORD": "Password field empty",
+    "REGISTER/ERROR/EMAIL": "Invalid email format",
+    "REGISTER/ERROR/FIRSTNAME": "Firstname not accepted",
+    "REGISTER/ERROR/LASTNAME": "Lastname not accepted",
+    "REGISTER/ERROR/PASSWORD": "Invalid password format",
+    "REGISTER/ERROR/PASSWORD2": "Passwords doesn't match",
+    "REGISTER/ERROR/GENERAL": "Credentials not accepted"
 }

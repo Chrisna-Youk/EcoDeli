@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useMutate } from "../../hooks/useMutate";
+import { validateEmail } from "../../utils/formater";
+import { useTranslation } from "react-i18next";
 
 // Au fait c'est une 2fa donc faut rediriger vers un
 
@@ -9,20 +11,36 @@ import { useMutate } from "../../hooks/useMutate";
 // body : email, password
 
 const Login = () => {
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const loginMutation = useMutate("/auth/login");
 
   const loginHandler = (e) => {
     e.preventDefault();
+
+    setError("");
+    setEmailError("");
+    setPasswordError("");
+
+    if (!validateEmail(e.target.email.value)) {
+      setEmailError(t("LOGIN/ERROR/EMAIL"));
+      return;
+    }
+
+    if (!e.target.password.value) {
+      setPasswordError(t("LOGIN/ERROR/PASSWORD"));
+      return;
+    }
 
     const data = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    setError("");
     const body = JSON.stringify(data);
 
     loginMutation.mutate(body, {
@@ -56,6 +74,11 @@ const Login = () => {
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
               placeholder="Votre email"
             />
+            {emailError && (
+              <div className="mb-4 text-red-600 text-sm font-medium">
+                {emailError}
+              </div>
+            )}
           </div>
 
           <div className="mb-6">
@@ -72,6 +95,11 @@ const Login = () => {
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
               placeholder="Votre mot de passe"
             />
+            {passwordError && (
+              <div className="mb-4 text-red-600 text-sm font-medium">
+                {passwordError}
+              </div>
+            )}
           </div>
           {error && (
             <div className="mb-4 text-red-600 text-sm font-medium">{error}</div>

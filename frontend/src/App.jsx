@@ -5,26 +5,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Layouts
-import PrivateLayout from "./layout/PrivateLayout";
-import PublicLayout from "./layout/PublicLayout";
+import AdminLayout from "./layout/AdminLayout";
+import CustomerLayout from "./layout/CustomerLayout";
+import DelivrerLayout from "./layout/DelivrerLayout";
+import MerchantLayout from "./layout/MerchantLayout";
+import ProviderLayout from "./layout/ProviderLayout";
 
 // Pages
 import Home from "./pages/Home";
-import Service from "./pages/Service";
-import Contact from "./pages/Contact";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Users from "./pages/Users";
 
-// Language context
+// Customer Pages
+import Login from "./pages/auth/Login";
+import Access from "./pages/auth/Access";
+import Register from "./pages/auth/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+
+// Admin Pages
+
+// Language Context
 // eslint-disable-next-line no-unused-vars
 import i18n from "./i18n/i18n";
 import { LanguageContext } from "./context/Context";
-import ForgotPassword from "./pages/Forgot-Password";
 
-// ReactQuery context
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-const queryClient = new QueryClient();
+// ReactQuery Context
+import { QueryClientProvider } from "@tanstack/react-query";
+import queryClient from "./utils/reactQuery";
 
 const App = () => {
   return (
@@ -33,30 +39,24 @@ const App = () => {
         <ReactQueryDevtools initialIsOpen={false} />
         <LanguageContext.Provider value={navigator.language}>
           <Routes>
-
-            {/* Public Layout and its nested routes */}
-            <Route path="/" element={<PublicLayout />}>
-              <Route index element={<Home />} /> {/* Or another default route */}
-              <Route path="service" element={<Service />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="forgot-password" element={<ForgotPassword />} />
-            </Route>
-
-            {/* Private Layout and its nested routes */}
-            <Route path="/dashboard" element={<PrivateLayout />}>
+            {/* Admin Layout */}
+            <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Home />} />
-              <Route path="service" element={<Service />} />
               <Route path="users" element={<Users />} />
             </Route>
-
+            {/* Customer Layout */}
+            <Route path="/" element={<CustomerLayout />}>
+              <Route index element={<Home />} />
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="access/:verifyToken" element={<Access />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+            </Route>
           </Routes>
         </LanguageContext.Provider>
-        </QueryClientProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   );
 };
-
 
 export default App;

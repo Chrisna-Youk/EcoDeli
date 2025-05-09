@@ -1,10 +1,9 @@
 # custom
 node_modules
-.env.production
-.env.prod
-.env.local
-.env.loc
+.env
+.env*
 docker-compose.yml
+legacy
 
 # Logs
 logs

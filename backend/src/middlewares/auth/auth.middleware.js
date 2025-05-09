@@ -7,7 +7,7 @@ function authMiddleware() {
     const refreshToken = req.cookies.refreshToken;
 
     if (!accessToken && !refreshToken) {
-      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "world" });
+      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
     }
 
     verify(
@@ -26,7 +26,7 @@ function authMiddleware() {
             if (err || !validatedRefreshToken) {
               return res
                 .status(403)
-                .json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello" });
+                .json({ message: req.t("403/FORBIDDEN/HTTP") });
             }
 
             const { iat, exp, ...payload } = validatedRefreshToken;
