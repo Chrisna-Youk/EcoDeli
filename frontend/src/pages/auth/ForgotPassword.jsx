@@ -2,7 +2,7 @@ import React from "react";
 
 const ForgotPassword = () => {
   return (
-    <div className="bg-white w-screen h-[calc(100vh-80px)] flex items-center justify-center">
+    <div className="bg-white w-screen h-[calc(100vh-80px)] flex items-center justify-center bg-[url(bg-blur-truck.jpg)] bg-cover">
       <div className="p-6 bg-gray-50 rounded-lg shadow-md w-full max-w-sm">
         <h2 className="text-xl font-semibold text-center mb-4 text-gray-800">
           Mot de passe oublié

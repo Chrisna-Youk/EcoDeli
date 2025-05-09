@@ -14,6 +14,12 @@ import ProviderLayout from "./layout/ProviderLayout";
 // Pages
 import Home from "./pages/Home";
 import Users from "./pages/Users";
+import ResetPassword from "./pages/Reset-Password";
+import PasswordChangedSuccess from "./pages/Password-Changed-Success";
+import TemplateAd from "./pages/template-ads";
+import CreateAd from "./pages/CreateAd";
+import MyDeliverAccount from "./pages/MyDeliveryAccount";
+
 
 // Customer Pages
 import Login from "./pages/auth/Login";
@@ -43,6 +49,9 @@ const App = () => {
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Home />} />
               <Route path="users" element={<Users />} />
+              <Route path="template-ads" element={<TemplateAd />} />
+              <Route path="create-ad" element={<CreateAd />} />
+              <Route path="delivery-account" element={<MyDeliverAccount />} />
             </Route>
             {/* Customer Layout */}
             <Route path="/" element={<CustomerLayout />}>
