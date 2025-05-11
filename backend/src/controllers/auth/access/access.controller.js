@@ -21,7 +21,8 @@ async function accessController(req, res) {
       user.otp != "" ||
       (user.verifyToken != "" && diffInMinutes < 10)
     ) {
-      const payload = {
+      const jwtPayload = {
+        id: user.id,
         email: user.email,
         customer: user.customer,
         delivrer: user.delivrer,
@@ -29,29 +30,22 @@ async function accessController(req, res) {
         admin: user.admin,
       };
 
-      const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_KEY, {
+      const accessToken = jwt.sign(jwtPayload, process.env.ACCESS_TOKEN_KEY, {
         expiresIn: "15m",
       });
 
-      const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_KEY, {
+      const refreshToken = jwt.sign(jwtPayload, process.env.REFRESH_TOKEN_KEY, {
         expiresIn: "7d",
-      });
-
-      res.cookie("accessToken", accessToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "Strict",
-        maxAge: 15 * 60 * 1000, // 15 minutes
       });
 
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
-        secure: true,
-        sameSite: "Strict",
+        secure: false,
+        sameSite: "Lax",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
-      return res.status(200).json({ message: req.t("200/OK/ACCESS") });
+      return res.status(200).json({ message: req.t("200/OK/ACCESS"), accessToken: accessToken });
     }
     return res.status(400).json({ message: req.t("400/BAD_REQUEST/ACCESS") });
   } catch (error) {

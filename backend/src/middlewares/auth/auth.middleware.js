@@ -1,13 +1,16 @@
+// PATH src/middlewares/auth
+
 import jwt from "jsonwebtoken";
-const { verify } = jwt;
+const { verify, decode } = jwt;
 
 function authMiddleware() {
   return (req, res, next) => {
-    const accessToken = req.cookies.accessToken;
-    const refreshToken = req.cookies.refreshToken;
+    const authType = req.header("Authorization")?.split(" ")[0];
+    const accessToken = req.header("Authorization")?.split(" ")[1];
 
-    if (!accessToken && !refreshToken) {
-      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+    // Verification du type de token (JWT) et de sa validité
+    if (!accessToken || authType !== "Bearer") {
+      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP")});
     }
 
     verify(
@@ -19,34 +22,41 @@ function authMiddleware() {
           return next();
         }
 
+        if (err) {
+          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+        }
+
+        const { refreshToken } = req.cookies;
+
+        if (!refreshToken) {
+          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+        }
+
         verify(
           refreshToken,
           process.env.REFRESH_TOKEN_KEY,
-          (err, validatedRefreshToken) => {
-            if (err || !validatedRefreshToken) {
+          (err, validatedRefreshedAccessToken) => {
+            // Deux scenarios possible soit on rejette le token (erreur de hash ou d'expiration) ou l'on accepte
+            if (err) {
               return res
                 .status(403)
                 .json({ message: req.t("403/FORBIDDEN/HTTP") });
             }
 
-            const { iat, exp, ...payload } = validatedRefreshToken;
+            if (validatedRefreshedAccessToken) {
+              const { iat, exp, ...payload } = decode(refreshToken);
 
-            const newAccessToken = jwt.sign(
-              payload,
-              process.env.ACCESS_TOKEN_KEY,
-              { expiresIn: "15m" }
-            );
+              const refreshedAccessToken = jwt.sign(
+                payload,
+                process.env.ACCESS_TOKEN_KEY,
+                {
+                  expiresIn: "15m",
+                }
+              );
 
-            req.user = payload;
-
-            res.cookie("accessToken", newAccessToken, {
-              httpOnly: true,
-              secure: true,
-              sameSite: "Strict",
-              maxAge: 15 * 60 * 1000, // 15 min
-            });
-
-            return next();
+              req.user = decode(refreshedAccessToken);
+              return next();
+            }
           }
         );
       }

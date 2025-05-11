@@ -54,7 +54,7 @@ async function registerController(req, res) {
         verifyToken: verifyTokenGenerator(),
       },
     });
-    
+
     if (created) {
       const response = req.t("201/CREATED/REGISTER").replace("{USER}", email);
       sendEmail(
@@ -69,8 +69,8 @@ async function registerController(req, res) {
     }
   } catch (error) {
     return res
-      .status(403)
-      .json({ message: req.t("500/INTERNAL_SERVER_ERROR/HTTP")});
+      .status(500)
+      .json({ message: req.t("500/INTERNAL_SERVER_ERROR/HTTP") });
   }
 }
 

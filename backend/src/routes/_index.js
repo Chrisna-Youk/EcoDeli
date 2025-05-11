@@ -10,6 +10,8 @@ import registerController from "../controllers/auth/register/register.controller
 import confirmationController from "../controllers/auth/confirmation/confirmation.controller.js";
 import loginController from "../controllers/auth/login/login.controller.js";
 import accessController from "../controllers/auth/access/access.controller.js";
+import refreshController from "../controllers/auth/refresh/refresh.controller.js";
+import roleController from "../controllers/auth/role/role.controller.js";
 
 // controllers/user
 import createUserController from "../controllers/user/create/create.controller.js";
@@ -20,7 +22,6 @@ import deleteUserController from "../controllers/user/delete/delete.controller.j
 
 // controllers
 import myController from "../controllers/myController.controller.js";
-
 
 const router = Router({ mergeParams: true });
 
@@ -37,6 +38,8 @@ const routes = [
   route(router, "/auth/confirmation/:verifyToken", confirmationController, ["get"]),
   route(router, "/auth/login", loginController, ["post"]),
   route(router, "/auth/access", accessController, ["post"]),
+  route(router, "/auth/refresh", refreshController, ["get"]),
+  route(router, "/auth/role", roleController, ["get"], authMiddleware()),
   // contorllers/user
   route(router, "/user/create", createUserController, ["post"], authMiddleware()),
   route(router, "/user/read", readUserController, ["get"], authMiddleware()),
@@ -45,7 +48,7 @@ const routes = [
   route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
   // controllers
   route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("customer")),
-  route(router, "/hello", myController, ["get"])
+  route(router, "/hello", myController, ["get"]),
 ];
 
 export default routes;
