@@ -2,7 +2,7 @@
 import { Route } from "react-router-dom";
 
 // Layout
-import AdminLayout from "../layout/AdminLayout";
+import AdminLayout from "../layouts/AdminLayout";
 
 // Context
 import AuthContextProvider from "../contexts/auth/AuthContextProvider";

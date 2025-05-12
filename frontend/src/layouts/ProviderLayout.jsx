@@ -22,7 +22,7 @@ const ProviderLayout = () => {
     <div className="flex flex-row bg-zinc-900">
       <ThemeContext.Provider value={null}>
         <ProviderHeader />
-        <main>
+        <main class="bg-white w-screen flex flex-col items-center min-h-screen">
           <Outlet />
         </main>
       </ThemeContext.Provider>

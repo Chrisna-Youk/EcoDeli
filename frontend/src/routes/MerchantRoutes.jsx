@@ -2,7 +2,7 @@
 import { Route } from "react-router-dom";
 
 // Layout
-import MerchantLayout from "../layout/MerchantLayout";
+import MerchantLayout from "../layouts/MerchantLayout";
 
 // Context
 import AuthContextProvider from "../contexts/auth/AuthContextProvider";
