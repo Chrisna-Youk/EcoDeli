@@ -43,6 +43,13 @@ Si MIGRATE=0 alors pas migrer
 
 **L'utiliser avec parcimonie car peut alter vos models**
 
+## Paramètre à changer avant prod
+
+- le .env pour configurer les variables
+- le backend avec les bonnes variables pour les cookies (/auth/access et /auth/refresh)
+- les middlewares CORS et CSP
+- Enlever tous les middlewares du dossier /src/middlewares/dev dans le fichier /src/middlewares/_index.js
+
 ---
 
 **Projet annuel deuxième année - ESGI | Promotion 2A4**
