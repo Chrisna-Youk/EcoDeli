@@ -1,28 +1,38 @@
-import http from "../utils/http";
-// import { useTranslation } from "react-i18next";
+import { useContext, useMemo } from "react";
 
-// const useLanguage = () => {
-//   const { i18n } = useTranslation();
-//   return i18n.language;
-// };
+import axios from "axios";
+import { AuthContext } from "../context/auth/AuthContext";
 
 const useAuth = () => {
-  http.interceptors.request.use(
+  const { auth } = useContext(AuthContext);
 
-  );
+  const http = useMemo(() => {
+    const instance = axios.create({
+      baseURL: import.meta.env.VITE_BASE_URL,
+      timeout: 5000,
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": navigator.language || "en-US",
+      },
+      withCredentials: true,
+    });
+
+    instance.interceptors.request.use(
+      (config) => {
+        if (auth) {
+          config.headers.Authorization = `Bearer ${auth}`;
+        }
+        return config;
+      },
+      (error) => {
+        Promise.reject(error);
+      }
+    );
+
+    return instance;
+  }, [auth]);
+
+  return http;
 };
 
 export default useAuth;
-
-{/* 
-  
-L'utilisateur se connecte :
-  V => accessToken + refreshToken en httpOnly
-  E => Rien
-  
-L'utilisateur utilise le accessToken :
-  V => Tout va bien l'action se realise
-  E => Tenter de renouveller l'accessToken grace au refreshToken
-    V => 
-  
-*/}

@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 
-const Home = () => {
-  const { t, i18n } = useTranslation();
-  console.log(i18n.language);
+const HomeDelivrer = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <p>{t("welcome")}</p>
@@ -10,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeDelivrer;

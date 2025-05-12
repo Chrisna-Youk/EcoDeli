@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useMutate } from "../../hooks/useMutate";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMutate } from "../../../../hooks/useMutate";
+
 
 const Access = () => {
   const [error, setError] = useState("");
 
   const params = useParams();
+  const navigate = useNavigate();
   const accessMutation = useMutate("/auth/access", ["Access"]);
 
   const confirmationHandler = (e) => {
@@ -24,8 +26,8 @@ const Access = () => {
         const message = error?.response?.data?.message;
         setError(message);
       },
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
+        navigate("/");
       },
     });
   };

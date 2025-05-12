@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { useMutate } from "../../hooks/useMutate";
+import { useMutate } from "../../../../hooks/useMutate";
 import { useTranslation } from "react-i18next";
 
 import {
   validateEmail,
   validateName,
   validatePassword,
-} from "../../utils/formater";
+} from "../../../../utils/formater";
 
 const Register = () => {
   const [error, setError] = useState("");

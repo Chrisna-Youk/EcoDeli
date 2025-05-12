@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useMutate } from "../../hooks/useMutate";
-import { validateEmail } from "../../utils/formater";
+import { useMutate } from "../../../../hooks/useMutate";
+import { validateEmail } from "../../../../utils/formater";
 import { useTranslation } from "react-i18next";
-
-// Au fait c'est une 2fa donc faut rediriger vers un
-
-// endpoint : /api/v1/auth/login
-// body : email, password
 
 const Login = () => {
   const [emailError, setEmailError] = useState("");
