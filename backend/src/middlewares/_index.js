@@ -11,7 +11,7 @@ const middlewares = [
   corsMiddleware(),
   cookieParserMiddleware(),
   i18nMiddleware(),
-  intervalMiddleware(),
+  // intervalMiddleware(),
 ];
 
 export default middlewares;

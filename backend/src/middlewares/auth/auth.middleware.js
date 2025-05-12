@@ -10,7 +10,7 @@ function authMiddleware() {
 
     // Verification du type de token (JWT) et de sa validité
     if (!accessToken || authType !== "Bearer") {
-      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP")});
+      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello"});
     }
 
     verify(
