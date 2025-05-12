@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 // Auth & Theme context
-import { ThemeContext } from "../context/Context";
+import { ThemeContext } from "../contexts/Context";
 
 // Layout components
 import DelivrerHeader from "./header/DelivrerHeader";

@@ -2,9 +2,6 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-// Auth & Theme context
-import { ThemeContext } from "../context/Context";
-
 // Layout components
 import AdminHeader from "./header/AdminHeader";
 
@@ -20,12 +17,10 @@ const AdminLayout = () => {
   }, [i18n]);
   return (
     <div className="flex flex-row bg-zinc-900">
-      <ThemeContext.Provider value={null}>
         <AdminHeader />
         <main>
           <Outlet />
         </main>
-      </ThemeContext.Provider>
     </div>
   );
 };
