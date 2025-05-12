@@ -1,10 +1,9 @@
 import React from "react";
 
-const DisplayPresta = () => {
-  const description =
-    "orem, ipsum dolor sit amet consectetur adipisicing elit. Error aliquid necessitatibus quidem, cumque nulla ratione neque blanditiis! Ut, vero! Soluta, officia voluptates praesentium repudiandae beatae ea autem excepturi eos adipisci.";
-  const truncatedDescription =
-    description.length > 150 ? description.slice(0, 150) + "..." : description;
+	const DisplayProvider = () => {
+		const description = "orem, ipsum dolor sit amet consectetur adipisicing elit. Error aliquid necessitatibus quidem, cumque nulla ratione neque blanditiis! Ut, vero! Soluta, officia voluptates praesentium repudiandae beatae ea autem excepturi eos adipisci."
+		const truncatedDescription = description.length > 150 ? description.slice(0, 150) + "..." : description;
+		
 
   return (
     <div className="bg-white w-screen flex flex-col items-center min-h-screen">
