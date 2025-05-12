@@ -1,21 +1,21 @@
-import { createContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
-export const AuthContext = createContext("");
+import { AuthContext } from "../Context";
+import Axios from "../../utils/axios";
 
 const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
-  const http = useAuth();
   const [auth, setAuth] = useState(null);
-  const [loading, setLoading] = useState(true); // true au départ
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const newAccessToken = async () => {
       try {
-        const res = await http.get("/auth/refresh", { withCredentials: true });
+        const res = await Axios.get("/auth/refresh", { withCredentials: true });
         setAuth(res.data.accessToken);
-      } catch (err) {
+        // eslint-disable-next-line no-unused-vars
+      } catch (error) {
         navigate("/login");
       } finally {
         setLoading(false);
@@ -23,9 +23,9 @@ const AuthContextProvider = ({ children }) => {
     };
 
     newAccessToken();
-  }, [navigate, http]);
+  }, [navigate]);
 
-  if (loading) return null; // ou un <Loading />
+  if (loading) return null;
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
