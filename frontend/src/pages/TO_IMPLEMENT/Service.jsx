@@ -117,11 +117,6 @@ const Service = () => {
           </div>
         </a>
 
-
-
-
-
-
       </div>
     </div>
   );
