@@ -11,7 +11,6 @@ import confirmationController from "../controllers/auth/confirmation/confirmatio
 import loginController from "../controllers/auth/login/login.controller.js";
 import accessController from "../controllers/auth/access/access.controller.js";
 import refreshController from "../controllers/auth/refresh/refresh.controller.js";
-import roleController from "../controllers/auth/role/role.controller.js";
 
 // controllers/user
 import createUserController from "../controllers/user/create/create.controller.js";
@@ -39,7 +38,6 @@ const routes = [
   route(router, "/auth/login", loginController, ["post"]),
   route(router, "/auth/access", accessController, ["post"]),
   route(router, "/auth/refresh", refreshController, ["get"]),
-  route(router, "/auth/role", roleController, ["get"], authMiddleware()),
   // contorllers/user
   route(router, "/user/create", createUserController, ["post"], authMiddleware()),
   route(router, "/user/read", readUserController, ["get"], authMiddleware()),
