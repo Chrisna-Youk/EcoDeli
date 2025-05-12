@@ -6,7 +6,7 @@ export const useRequest = (endpoint, keys) => {
   return useQuery({
     queryKey: Array.isArray(keys) ? keys : Array(keys),
     queryFn: async () => {
-      const response = await http.get(endpoint, {}, { withCredentials: true });
+      const response = await http.get(endpoint);
       return response.data;
     },
   });
