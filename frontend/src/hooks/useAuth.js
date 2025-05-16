@@ -1,12 +1,11 @@
 import { useContext, useEffect } from "react";
-
 import { AuthContext } from "../contexts/Context";
 import Axios from "../utils/axios";
 
 const useAuth = () => {
   const { auth } = useContext(AuthContext);
 
-  const http = useEffect(() => {
+  useEffect(() => {
     Axios.interceptors.request.use(
       (config) => {
         if (auth) {
@@ -14,15 +13,11 @@ const useAuth = () => {
         }
         return config;
       },
-      (error) => {
-        Promise.reject(error);
-      }
+      (error) => Promise.reject(error)
     );
-
-    return Axios;
   }, [auth]);
 
-  return http;
+  return Axios;
 };
 
 export default useAuth;

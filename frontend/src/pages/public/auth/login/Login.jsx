@@ -12,7 +12,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const loginMutation = useMutate("/auth/login");
+  const loginMutation = useMutate("/auth/login", ["login"]);
 
   const loginHandler = (e) => {
     e.preventDefault();

@@ -2,7 +2,7 @@
 import { Route } from "react-router-dom";
 
 // Layout
-import DelivrerLayout from "../layout/DelivrerLayout";
+import DelivrerLayout from "../layouts/DelivrerLayout";
 
 // Context
 import AuthContextProvider from "../contexts/auth/AuthContextProvider";

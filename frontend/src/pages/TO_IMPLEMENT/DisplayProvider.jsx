@@ -6,7 +6,7 @@ const DisplayProvider = () => {
 
 		return (
 				<div className="bg-white w-screen flex flex-col items-center min-h-screen">
-					<h1 className="text-3xl font-bold mt-10 mb-6">Nosprestataires</h1>
+					<h1 className="text-3xl font-bold mt-10 mb-6">Nos prestataires</h1>
 					<div className="w-full max-w-5xl">
 		
 						{/* Search bar */}
