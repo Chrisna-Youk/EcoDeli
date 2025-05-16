@@ -24,7 +24,7 @@ const AnnouncementCards = ({
         />
         <div className="p-5 flex flex-col justify-between w-full">
           <div>
-            <p className="text-green-600 font-semibold text-xl">{price}</p>
+            <p className="text-green-600 font-semibold text-xl">{price} €</p>
             <h2 className="text-lg font-bold mt-2">{title}</h2>
             <p className="text-sm text-gray-600 mt-2">{city}</p> 
           </div>
