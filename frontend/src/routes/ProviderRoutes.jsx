@@ -9,7 +9,7 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 
 // Pages
 import HomeProvider from "../pages/provider/HomeProvider";
-import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
+// import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
 const ProviderRoutes = (
   <Route
@@ -21,7 +21,7 @@ const ProviderRoutes = (
     }
   >
     <Route index element={<HomeProvider />} />
-    <Route path="presta" element={<DisplayPresta />} />
+    {/* <Route path="presta" element={<DisplayPresta />} /> */}
   </Route>
 );
 

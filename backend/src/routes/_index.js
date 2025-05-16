@@ -38,10 +38,10 @@ const routes = [
   route(router, "/auth/login", loginController, ["post"]),
   route(router, "/auth/access", accessController, ["post"]),
   route(router, "/auth/refresh", refreshController, ["get"]),
-  // contorllers/user
-  route(router, "/user/create", createUserController, ["post"], authMiddleware()),
-  route(router, "/user/read", readUserController, ["get"], authMiddleware()),
-  route(router, "/user/read/:userId", readByIdUserController, ["get"], authMiddleware()),
+  // controllers/user
+  route(router, "/user", readUserController, ["get"], authMiddleware(), permissionMiddleware("admin")),
+  route(router, "/user/:userId", readByIdUserController, ["get"], authMiddleware(), permissionMiddleware("admin")),
+  route(router, "/user/create", createUserController, ["post"], authMiddleware(), permissionMiddleware("admin")),
   route(router, "/user/update", updateUserController, ["put"], authMiddleware()),
   route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
   // controllers

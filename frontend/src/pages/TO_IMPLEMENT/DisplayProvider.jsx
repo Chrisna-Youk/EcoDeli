@@ -267,4 +267,4 @@ import React from "react";
   );
 };
 
-export default DisplayPresta;
+export default DisplayProvider;

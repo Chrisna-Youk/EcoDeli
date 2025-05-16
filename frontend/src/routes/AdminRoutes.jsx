@@ -8,6 +8,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 
 // Pages
+import User from "../pages/admin/user/User";
 import HomeAdmin from "../pages/admin/HomeAdmin";
 
 const AdminRoutes = (
@@ -21,6 +22,7 @@ const AdminRoutes = (
       }
     >
       <Route index element={<HomeAdmin />} />
+      <Route path="user" element={<User />} />
     </Route>
   </>
 );

@@ -20,10 +20,9 @@ async function loginController(req, res) {
   if (!validatePassword(password) || !password) {
     return res.status(400).json({ message: req.t("400/BAD_REQUEST/LOGIN") });
   }
-
   try {
     const user = await User.findOne({ where: { email: email } });
-    if (user && user.active == true && user.verified == true) {
+    if (user.active == true && user.verified == true) {
       compare(password, user.password, (err, result) => {
         if (result) {
           user.update({
