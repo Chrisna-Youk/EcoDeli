@@ -10,6 +10,7 @@ import Register from "../pages/public/auth/register/Register";
 import Login from "../pages/public/auth/login/Login";
 import Access from "../pages/public/auth/login/Access";
 import DisplayProvider from "../pages/public/DisplayProvider";
+import Service from "../pages/public/Service";
 
 const PublicRoutes = (
   <Route path="/" element={<PublicLayout />}>
@@ -18,6 +19,7 @@ const PublicRoutes = (
     <Route path="login" element={<Login />} />
     <Route path="access/:verifyToken" element={<Access />} />
     <Route path="display-cards" element={<DisplayProvider />}/>
+    <Route path="service" element={<Service />}/>
   </Route>
 );
 
