@@ -9,6 +9,7 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 
 // Pages
 import HomeDelivrer from "../pages/delivrer/HomeDelivrer";
+import MyDeliverAccount from "../pages/delivrer/MyDeliveryAccount";
 
 const DelivrerRoutes = (
   <>
@@ -21,6 +22,7 @@ const DelivrerRoutes = (
       }
     >
       <Route index element={<HomeDelivrer />} />
+      <Route path="account" element={<MyDeliverAccount />} />
     </Route>
   </>
 );
