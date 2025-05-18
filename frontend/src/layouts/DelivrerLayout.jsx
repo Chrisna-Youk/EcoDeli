@@ -22,7 +22,7 @@ const DelivrerLayout = () => {
     <div className="flex flex-row bg-zinc-900">
       <ThemeContext.Provider value={null}>
         <DelivrerHeader />
-        <main>
+        <main className="overflow-x-hidden bg-white">
           <Outlet />
         </main>
       </ThemeContext.Provider>

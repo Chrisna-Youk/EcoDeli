@@ -4,8 +4,8 @@ const HomeDelivrer = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white pt-0 h-screen w-[100vw-18rem] ml-72 py-10 overflow-x-hidden">
-      <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
+    <div className="bg-white pt-0 h-screen ml-72 py-10 w-screen overflow-x-hidden">
+      <div className="p-10 bg-white w-screen mb-8 shadow-md over"></div>
       <div className="flex flex-col sm:ml-20">
         <div className="">
           <p className="text-black text-xl font-semibold">Welcome Enzo</p>
