@@ -49,7 +49,7 @@ async function registerController(req, res) {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        customer: true,
+        role: "customer",
         password: passwordHashGenerator(password),
         verifyToken: verifyTokenGenerator(),
       },

@@ -20,10 +20,10 @@ const User = db.define(
       unique: false,
     },
     company: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        unique: false,
-      },
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -51,25 +51,10 @@ const User = db.define(
       allowNull: false,
       defaultValue: false,
     },
-    customer: {
-      type: DataTypes.BOOLEAN,
+    role: {
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: false,
-    },
-    delivrer: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
-    merchant: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
-    admin: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+      defaultValue: "customer",
     },
   },
   {

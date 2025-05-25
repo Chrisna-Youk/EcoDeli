@@ -11,10 +11,10 @@ function permissionMiddleware(role) {
     const payload = req.user;
 
     try {
-      const { customer, delivrer, merchant, admin } = payload;
+      const { role } = payload;
       switch (role) {
         case "customer":
-          if (customer) {
+          if (role = "customer") {
             next();
           } else {
             return res
@@ -23,7 +23,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "delivrer":
-          if (delivrer) {
+          if (role = "delivrer") {
             next();
           } else {
             return res
@@ -32,7 +32,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "merchant":
-          if (merchant) {
+          if (role = "merchant") {
             next();
           } else {
             return res
@@ -41,7 +41,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "admin":
-          if (admin) {
+          if (role = "admin") {
             next();
           } else {
             return res
