@@ -16,7 +16,7 @@ const DelivrerAnnouncements = () => {
         </a>
       </div>
 
-      <div className='flex flex-row flex-wrap mt-8 gap-5 p-8 mr-72'>
+      <div className='flex flex-row flex-wrap mt-8 gap-5 p-8 mr-72 ml-10'>
 
       <DelivrerAnnouncementCard
         image="https://preview.redd.it/23-yamaha-r7-v0-dsk2foyjizud1.jpg?width=1080&crop=smart&auto=webp&s=819cf6fdaa1ff4e67d26e599bfd42460e14acfaf"

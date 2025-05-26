@@ -2,7 +2,7 @@ import React from 'react';
 
 const DelivrerProfile = () => {
   return (
-    <div className="bg-white pt-0 min-h-screen flex flex-col items-center w-screen py-10 px-4 mt-7">
+    <div className="bg-white pt-0 min-h-screen flex flex-col items-center w-screen py-10 px-4 mt-7 ml-30">
      <div className='flex flex-col items-center mt-12'>
       <img
           src="https://randomuser.me/api/portraits/men/1.jpg"
@@ -20,8 +20,8 @@ const DelivrerProfile = () => {
           <p className='flex flex-row ml-2 mt-1 text-gray-500'>Moyenne : 4.8 <span className='ml-1'><svg className='h-6' viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"  preserveAspectRatio="xMidYMid meet" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M62 25.2H39.1L32 3l-7.1 22.2H2l18.5 13.7l-7 22.1L32 47.3L50.5 61l-7.1-22.2L62 25.2z" fill="#ffce31"></path></g></svg></span></p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-md ml-72 flex">
-        <div className="space-y-4 flex gap-12 flex-wrap">
+        <div className="bg-white p-6 rounded-2xl shadow-md ml-55 flex">
+        <div className="space-y-4 flex gap-12 flex-wrap items-center">
 
           {/* Premier avis */}
           <div className="rounded-lg p-4 hover:bg-gray-200 transition">
