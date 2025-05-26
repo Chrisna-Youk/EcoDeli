@@ -20,14 +20,14 @@ const HomeDelivrer = () => {
               <div className="flex flex-col gap-6">
                 <a
                   href="#"
-                  className="p-8 bg-blue-300 hover:bg-blue-400 hover:bg-opacity-80 h-37 w-68 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                  className="p-8 bg-blue-300 hover:bg-blue-400 hover:bg-opacity-80 h-37 2xl:w-68 md:w-68 xl:w-55 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 >
                   <h2 className="text-sm font-semibold text-white">📦 Orders of the Day</h2>
                   <p className="text-white mt-2">You have 12 deliveries scheduled for today.</p>
                 </a>
                 <a
                   href="#"
-                  className="p-8 bg-emerald-300 hover:bg-emerald-400 hover:bg-opacity-80 h-37 w-68 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                  className="p-8 bg-emerald-300 hover:bg-emerald-400 hover:bg-opacity-80 h-37 2xl:w-68 md:w-68 xl:w-55 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 >
                   <h2 className="text-sm font-semibold text-white">✅ Deliveries Completed</h2>
                   <p className="text-white mt-2">8 orders already delivered.</p>
@@ -36,14 +36,14 @@ const HomeDelivrer = () => {
               <div className="flex flex-col gap-6 flex-wrap">
                 <a
                   href="#"
-                  className="p-8 bg-blue-500 hover:bg-blue-600 hover:bg-opacity-80 h-37 w-68 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                  className="p-8 bg-blue-500 hover:bg-blue-600 hover:bg-opacity-80 h-37 2xl:w-68 md:w-68 xl:w-55 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 >
                   <h2 className="text-sm font-semibold text-white">🕒 Next Delivery</h2>
                   <p className="text-white mt-2">Rue de Paris, 2:30 PM</p>
                 </a>
                 <a
                   href="#"
-                  className="p-8 bg-yellow-500 hover:bg-yellow-600 hover:bg-opacity-80 h-37 w-68 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                  className="p-8 bg-yellow-500 hover:bg-yellow-600 hover:bg-opacity-80 h-37 2xl:w-68 md:w-68 xl:w-55 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 >
                   <h2 className="text-sm font-semibold text-white">💰 Earnings of the Day</h2>
                   <p className="text-white mt-2">You earned €72.50 today.</p>
