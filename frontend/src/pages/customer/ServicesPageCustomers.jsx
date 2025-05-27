@@ -1,12 +1,29 @@
 import { useTranslation } from "react-i18next";
 import CustomersHomeCards from '../../components/CustomerComponents/CustomersHomeCards';
 
-const HomeCustomer = () => {
+const ServicesPageCustomers = () => {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col w-screen mt-10">
 
-      <h3 className="mt-12 ml-12 text-lg font-semibold">Les dernières offres de transport publiées</h3>
+         <div className="flex items-center justify-center">
+        <div className="flex flex-row mt-2 bg-white rounded-3xl shadow-2xl">
+          <input type="search" name="search" placeholder="Rechercher une annonce" id="search" className="min-w-md bg-white rounded-3xl h-13 indent-6 outline-none hover:bg-gray-100 hover:shadow-md duration-300"/>
+          <input type="text" placeholder="Où ?" className="bg-white outline-none indent-6 hover:bg-gray-100 hover:shadow-md duration-300 rounded-3xl" />
+          <input type="date" placeholder="Destination" className="bg-white outline-none indent-6 hover:bg-gray-100 hover:shadow-md duration-300 rounded-3xl mr-3" />
+          <select name="type_delivery" id="" className="bg-white min-w-20 outline-none text-gray-400 indent-3 hover:bg-gray-100 hover:shadow-md duration-300 rounded-3xl">
+            <option value="">Quoi ?</option>
+            <option value="" className="text-black">Coiffeur</option>
+            <option value="" className="text-black">Jardinage</option>
+            <option value="" className="text-black">Aide à la personne</option>
+          </select>
+          <a href="" className="ml-12 h-13 w-13 rounded-full flex items-center justify-center outline-nonehover:shadow-md duration-300 bg-yellow-100 hover:bg-yellow-200">
+            <svg className="h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>      </a>
+        </div>
+      </div>
+
+
+      <h3 className="mt-12 ml-12 text-lg font-semibold">Les dernières offres proposants des services publiées</h3>
 
       <div className='flex flex-row flex-wrap gap-5 p-8'>
 
@@ -70,7 +87,7 @@ const HomeCustomer = () => {
 
       </div>
 
-      <h3 className="mt-12 ml-12 text-lg font-semibold">Offres de covoiturage les mieux notées </h3>
+      <h3 className="mt-12 ml-12 text-lg font-semibold">Offres d'aide à la personne </h3>
 
       <div className='flex flex-row flex-wrap gap-5 p-8'>
 
@@ -134,7 +151,7 @@ const HomeCustomer = () => {
       
       </div>
 
-      <h3 className="mt-12 ml-12 text-lg font-semibold">Autres annonces qui pourraient vous plaire</h3>
+      <h3 className="mt-12 ml-12 text-lg font-semibold">Autres annonces de services qui pourraient vous plaire</h3>
 
       <div className='flex flex-row flex-wrap gap-5 p-8'>
 
@@ -207,4 +224,4 @@ const HomeCustomer = () => {
   );
 };
 
-export default HomeCustomer;
+export default ServicesPageCustomers;

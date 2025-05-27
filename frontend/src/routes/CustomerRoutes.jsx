@@ -9,6 +9,9 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 
 // Pages
 import HomeCustomer from "../pages/customer/HomeCustomer";
+import DeliveriesPageCustomer from "../pages/customer/DeliveriesPageCustomers";
+import ServicesPageCustomers from "../pages/customer/ServicesPageCustomers";
+import TransportPageCustomer from "../pages/customer/TransportPageCustomers";
 
 const CustomerRoutes = (
   <>
@@ -21,6 +24,9 @@ const CustomerRoutes = (
       }
     >
       <Route index element={<HomeCustomer />} />
+      <Route path="Deliveries" element={<DeliveriesPageCustomer />} />
+      <Route path="Services" element={<ServicesPageCustomers />} />
+      <Route path="Transport" element={<TransportPageCustomer />} />
     </Route>
   </>
 );

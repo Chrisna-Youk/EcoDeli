@@ -5,22 +5,28 @@ const CustomerHeader = () => {
     <header>
       <nav className="p-6 px-20 bg-white font-[Poppins] flex items-center justify-between relative">
 
-        <a href=""><img src="ecodeli-logo.png" alt="logo" className="h-10" /></a>
+        <a href=""><img src="../ecodeli-logo.png" alt="logo" className="h-10" /></a>
 
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <ul className="flex flex-row gap-10 items-center">
+            <a href="/customer/deliveries">
             <li tabIndex="0" className="flex items-center gap-3 text-base text-gray-600 hover:text-black cursor-pointer transition focus:font-semibold focus:text-black">
-              <img src="delivery-icon.png" alt="livraison" className="h-8" />
+              <img src="../delivery-icon.png" alt="livraison" className="h-8" />
               Livraison
             </li>
+            </a>
+            <a href="/customer/services">
             <li tabIndex="0" className="flex items-center gap-3 text-base text-gray-600 hover:text-black cursor-pointer transition focus:font-semibold focus:text-black">
-              <img src="services-icon.png" alt="services" className="h-8" />
+              <img src="../services-icon.png" alt="services" className="h-8" />
               Services
             </li>
+            </a>
+            <a href="/customer/transport">
             <li tabIndex="0" className="flex items-center gap-3 text-base text-gray-600 hover:text-black cursor-pointer transition focus:font-semibold focus:text-black">
-              <img src="transport-icon.png" alt="transport" className="h-8" />
+              <img src="../transport-icon.png" alt="transport" className="h-8" />
               Transport
             </li>
+            </a>
           </ul>
         </div>
 
