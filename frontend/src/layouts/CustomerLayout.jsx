@@ -25,7 +25,7 @@ const CustomerLayout = () => {
   return (
     <ThemeContext.Provider value={null}>
       <CustomerHeader />
-      <main>
+      <main className="overflow-y-hidden">
         <Outlet />
       </main>
     </ThemeContext.Provider>
