@@ -11,15 +11,15 @@ const CustomerProfilePage = () => {
             <img
               src="https://i.pinimg.com/736x/7f/b5/3c/7fb53c2810135f1081cbee48fc82a9b7.jpg"
               alt="Avatar utilisateur"
-              className="w-20 h-20 rounded-full object-cover shadow"
+              className="w-30 h-30 rounded-full object-cover shadow"
             />
-            <button
+            <a
               type="button"
               aria-label="Modifier l'avatar"
-              className="absolute bottom-0 right-0 bg-white border border-gray-300 rounded-full p-1 hover:bg-gray-100 transition"
+              className="absolute bottom-0 right-0 bg-white border border-gray-300 rounded-full p-1 hover:bg-gray-100 transition cursor-pointer hover:scale-105"
             >
               ✏️
-            </button>
+            </a>
           </div>
 
           <div className="flex-1">

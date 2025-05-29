@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyDeliverAccount = () => {
   return (
-    <div className="bg-white pt-0 min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center ml-30">
+    <div className="bg-white pt-0 min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center 2xl:ml-30">
       <div className='p-10 bg-white w-screen mb-8 shadow-md'></div>
       <h1 className="text-3xl font-bold mb-2">Mon compte - Livreur</h1>
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const DelivrerProfile = () => {
   return (
-    <div className="bg-white pt-0 min-h-screen flex flex-col items-center w-screen py-10 px-4 mt-7 ml-30">
+    <div className="bg-white pt-0 min-h-screen flex flex-col items-center w-screen py-10 px-4 mt-7 2xl:ml-30">
      <div className='flex flex-col items-center mt-12'>
       <img
           src="https://randomuser.me/api/portraits/men/1.jpg"

@@ -2,7 +2,7 @@ import React from 'react';
 
 const DelivrerCreateAnnoucements = () => {
   return (
-    <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center ml-30">
+    <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center 2xl:ml-30">
       <div className="p-4 bg-white w-screen mb-8 shadow-md over"></div>
       <h1 className="text-3xl font-bold mb-2">Créer une annonce</h1>
 

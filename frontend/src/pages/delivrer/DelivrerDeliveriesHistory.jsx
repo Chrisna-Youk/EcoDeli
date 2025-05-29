@@ -3,7 +3,7 @@ import React from 'react';
 
 const DelivrerDeliveriesHistory = () => {
   return (
-    <div className="bg-white pt-0 h-screen ml-72 py-10 w-full overflow-x-hidden">
+    <div className="bg-white pt-0 h-screen 2xl:ml-72 py-10 w-full overflow-x-hidden">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div class="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
               <h2 class="text-xl font-semibold text-gray-800 mb-4">Dernières Livraisons</h2>

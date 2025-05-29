@@ -4,7 +4,7 @@ import DelivrerAnnouncementCard from '../../components/DelivrerComponents/Delivr
 
 const DelivrerAnnouncements = () => {
   return (
-    <div className="bg-white pt-0 h-screen ml-72 py-10 w-full overflow-x-hidden">
+    <div className="bg-white pt-0 h-screen 2xl:ml-72 py-10 w-full overflow-x-hidden">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div className="flex flex-row justify-between">
         <div className="flex flex-col sm:ml-20">
