@@ -1,6 +1,6 @@
 const DelivrerAnnouncementCard = ({ image, title, date, price, rating, city_start, city_end }) => (
   <a href="">
-    <div className="max-w-60 rounded-xl shadow-md overflow-hidden border border-gray-200 hover:bg-gray-200 duration-300 hover:shadow-2xl">
+    <div className="max-w-60 rounded-xl shadow-md overflow-hidden border border-gray-200 hover:bg-gray-200 duration-300 hover:shadow-2xl hover:scale-110">
       <div className="relative">
         <img src={image} alt={title} className="w-full h-48 object-cover rounded-2xl" />
         <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow) ">

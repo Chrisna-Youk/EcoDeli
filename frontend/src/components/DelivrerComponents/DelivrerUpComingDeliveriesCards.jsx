@@ -9,7 +9,7 @@ const DelivrerUpComingDeliveriesCards = ({
   date,
   horaire,
 }) => (
-  <div className="bg-white rounded-xl shadow-md flex overflow-hidden mt-8 hover:bg-zinc-100 hover:shadow-xl w-[70vw]">
+  <div className="bg-white rounded-xl shadow-md flex overflow-hidden mt-8 hover:bg-zinc-100 hover:shadow-xl w-[70vw] hover:scale-102 duration-300">
 
     <img
       src={image || "https://cdn.vectorstock.com/i/500p/33/47/no-photo-available-icon-default-image-symbol-vector-40343347.jpg"}
