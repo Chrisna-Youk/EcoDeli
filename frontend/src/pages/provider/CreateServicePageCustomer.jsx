@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateServiceCustomer = () => {
+const CreateServiceProvider = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center">
       <h1 className="text-3xl font-bold mb-2">Créer une annonce de service</h1>
@@ -76,4 +76,4 @@ const CreateServiceCustomer = () => {
   );
 };
 
-export default CreateServiceCustomer;
+export default CreateServiceProvider;

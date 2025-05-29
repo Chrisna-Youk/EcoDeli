@@ -63,8 +63,8 @@ const AdminHeader = () => {
               Clients
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <a href="/admin/customers" className="py-1 hover:text-blue-600">Utilisateurs</a>
-              <a href="/admin/CustomersAnnouncements" className="py-1 hover:text-blue-600">Annonces</a>
+              <a href="/admin/customers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
+              <a href="/admin/CustomersAnnouncements" className="py-1 hover:text-yellow-600">Annonces</a>
             </div>
           </details>
 
@@ -76,10 +76,10 @@ const AdminHeader = () => {
               Livreurs
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <a href="/admin/delivrers" className="py-1 hover:text-blue-600">Utilisateurs</a>
-              <a href="/delivrer/DeliveriesHistory" className="py-1 hover:text-blue-600">Livraisons</a>
-              <a href="/admin/DelivrersAnnouncements" className="py-1 hover:text-blue-600">Annonces</a>
-              <a href="/admin/DelivrerRequests" className="py-1 hover:text-blue-600">Demandes</a>
+              <a href="/admin/delivrers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
+              <a href="/delivrer/DeliveriesHistory" className="py-1 hover:text-yellow-600">Livraisons</a>
+              <a href="/admin/DelivrersAnnouncements" className="py-1 hover:text-yellow-600">Annonces</a>
+              <a href="/admin/DelivrerRequests" className="py-1 hover:text-yellow-600">Demandes</a>
             </div>
           </details>
 
@@ -91,9 +91,9 @@ const AdminHeader = () => {
               Commerçants
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <a href="/admin/merchants" className="py-1 hover:text-blue-600">Utilisateurs</a>
-              <a href="/delivrer/DeliveriesHistory" className="py-1 hover:text-blue-600">Contrats</a>
-              <a href="/admin/MerchantRequests" className="py-1 hover:text-blue-600">Demandes</a>
+              <a href="/admin/merchants" className="py-1 hover:text-yellow-600">Utilisateurs</a>
+              <a href="/delivrer/DeliveriesHistory" className="py-1 hover:text-yellow-600">Contrats</a>
+              <a href="/admin/MerchantRequests" className="py-1 hover:text-yellow-600">Demandes</a>
             </div>
           </details>
         </nav>
