@@ -8,7 +8,7 @@ const DelivrerUpComingDeliveries = () => {
     <div className="bg-white pt-0 h-screen 2xl:ml-72 py-10 w-full overflow-x-hidden">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
 
-      <div className='flex flex-col items-center mr-72'>
+      <div className='flex flex-col items-center 2xl:mr-72'>
         <DelivrerUpComingDeliveriesCards
             image="https://img.leboncoin.fr/api/v1/lbcpb1/images/f7/a1/f6/f7a1f6d2dbdc3a2a7b0adf719e5151111f4d672b.jpg?rule=ad-large"
             title="Livraison Moto Yamaha R7"

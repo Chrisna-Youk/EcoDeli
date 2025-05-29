@@ -7,12 +7,12 @@ const AdminDelivrersAnnouncements = () => {
     <div className="bg-white pt-0 h-screen 2xl:ml-72 py-10 overflow-x-hidden w-screen">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div className="flex flex-row justify-between">
-        <div className="flex flex-col sm:ml-20">
-          <h1 className="text-3xl font-bold text-gray-900">Gestion des annonces des livreurs</h1>
+        <div className="flex flex-col">
+          <h1 className="text-3xl font-bold text-gray-900 ml-20">Gestion des annonces des livreurs</h1>
         </div>
       </div>
 
-      <div className='flex flex-row flex-wrap mt-8 gap-5 p-8 mr-72 ml-10'>
+      <div className='flex flex-row flex-wrap mt-8 gap-5 p-8 2xl:mr-72 ml-10'>
 
       <DelivrerAnnouncementCard
         image="https://preview.redd.it/23-yamaha-r7-v0-dsk2foyjizud1.jpg?width=1080&crop=smart&auto=webp&s=819cf6fdaa1ff4e67d26e599bfd42460e14acfaf"
