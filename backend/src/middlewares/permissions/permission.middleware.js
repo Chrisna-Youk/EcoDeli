@@ -1,20 +1,18 @@
 import jwt from "jsonwebtoken";
 const { verify, decode } = jwt;
 
-function permissionMiddleware(role) {
-  return (req, res, next) => {
-    if (typeof role !== "string") {
-      role = "customer";
-      throw new TypeError('Expected "role" to be a string');
-    }
+// Faire une liste de roleList et non juste un seul
 
-    const payload = req.user;
+function permissionMiddleware(roleList) {
+  return (req, res, next) => {
+    const { role } = req.user;
+
+    console.log(role)
 
     try {
-      const { role } = payload;
       switch (role) {
         case "customer":
-          if (role = "customer") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
@@ -23,7 +21,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "delivrer":
-          if (role = "delivrer") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
@@ -32,7 +30,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "merchant":
-          if (role = "merchant") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
@@ -41,17 +39,17 @@ function permissionMiddleware(role) {
           }
           break;
         case "admin":
-          if (role = "admin") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
               .status(403)
-              .json({ message: req.t("403/FORBIDDEN/HTTP") });
+              .json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello"  });
           }
           break;
 
         default:
-          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP")});
       }
     } catch (error) {
       return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });

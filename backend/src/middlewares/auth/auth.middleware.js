@@ -8,9 +8,11 @@ function authMiddleware() {
     const authType = req.header("Authorization")?.split(" ")[0];
     const accessToken = req.header("Authorization")?.split(" ")[1];
 
+    const headers = req.headers;
+
     // Verification du type de token (JWT) et de sa validité
     if (!accessToken || authType !== "Bearer") {
-      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello"});
+      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
     }
 
     verify(
@@ -23,7 +25,9 @@ function authMiddleware() {
         }
 
         if (err) {
-          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+          return res
+            .status(403)
+            .json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello" });
         }
 
         const { refreshToken } = req.cookies;

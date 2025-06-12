@@ -12,7 +12,7 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const newAccessToken = async () => {
       try {
-        const res = await Axios.get("/auth/refresh", { withCredentials: true });
+        const res = await Axios.get("/auth/refresh");
         setAuth(res.data.accessToken);
         // eslint-disable-next-line no-unused-vars
       } catch (error) {

@@ -24,11 +24,11 @@ async function accessController(req, res) {
       const jwtPayload = {
         id: user.id,
         email: user.email,
-        customer: user.role,
+        role: user.role,
       };
 
       const accessToken = jwt.sign(jwtPayload, process.env.ACCESS_TOKEN_KEY, {
-        expiresIn: "15m",
+        expiresIn: "60m",
       });
 
       const refreshToken = jwt.sign(jwtPayload, process.env.REFRESH_TOKEN_KEY, {

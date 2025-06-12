@@ -3,9 +3,9 @@ const app = express();
 
 import migrate from "./database/migration.js";
 import { dbConnection } from "./database/db.js";
-if (process.env.MIGRATE == 1) {
-  await migrate();
-}
+
+await migrate();
+
 await dbConnection();
 
 import middlewares from "./middlewares/_index.js";

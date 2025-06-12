@@ -5,6 +5,9 @@ import route from "./route.js";
 import authMiddleware from "../middlewares/auth/auth.middleware.js";
 import permissionMiddleware from "../middlewares/permissions/permission.middleware.js";
 
+// uploader
+import upload from "../upload/uploader.js";
+
 // controllers/auth
 import registerController from "../controllers/auth/register/register.controller.js";
 import confirmationController from "../controllers/auth/confirmation/confirmation.controller.js";
@@ -18,6 +21,19 @@ import readUserController from "../controllers/user/read/read.controller.js";
 import readByIdUserController from "../controllers/user/read/readById.controller.js";
 import updateUserController from "../controllers/user/update/update.controller.js";
 import deleteUserController from "../controllers/user/delete/delete.controller.js";
+
+// controllers/announcement
+import createAnnouncementController from "../controllers/announcement/create/create.controller.js";
+import readAnnouncementController from "../controllers/announcement/read/read.controller.js";
+import readAnnouncementByIdController from "../controllers/announcement/read/readById.controller.js";
+
+// controllers/papers
+import updatePapersController from "../controllers/papers/update/update.controller.js";
+import readPapersController from "../controllers/papers/read/read.controller.js";
+
+// controllers/checkpoint
+import createCheckpointController from "../controllers/checkpoint/create/create.controller.js";
+import readCheckpointController from "../controllers/checkpoint/read/read.controller.js";
 
 // controllers
 import myController from "../controllers/myController.controller.js";
@@ -39,14 +55,28 @@ const routes = [
   route(router, "/auth/access", accessController, ["post"]),
   route(router, "/auth/refresh", refreshController, ["get"]),
   // controllers/user
-  route(router, "/user", readUserController, ["get"], authMiddleware(), permissionMiddleware("admin")),
-  route(router, "/user/:userId", readByIdUserController, ["get"], authMiddleware(), permissionMiddleware("admin")),
-  route(router, "/user/create", createUserController, ["post"], authMiddleware(), permissionMiddleware("admin")),
-  route(router, "/user/update", updateUserController, ["put"], authMiddleware()),
+  route(router, "/user/read", readUserController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/user/read/:userId", readByIdUserController, ["get"]),
+  route(router, "/user/create", createUserController, ["post"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/user/update/:userId", updateUserController, ["put"]),
   route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
+  // controllers/announcement
+  route(router, "/announcement/read", readAnnouncementController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/announcement/read/:userId", readAnnouncementByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/announcement/create", createAnnouncementController, ["post"]),
+  route(router, "/announcement/update", updateUserController, ["put"], authMiddleware()),
+  route(router, "/announcement/delete", deleteUserController, ["delete"], authMiddleware()),
+  // controllers/papers
+  // route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["delivrer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}])),
+  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "delivrer"])),
+  // controllers/checkpoint
+  route(router, "/checkpoint/create", createCheckpointController, ["post"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/checkpoint/read", readCheckpointController, ["get"], authMiddleware(), permissionMiddleware(["admin", "delivrer"])),
+  // controllers/service
   // controllers
-  route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware("customer")),
-  route(router, "/hello", myController, ["get"]),
+  // route(router, "/", myController, ["get"], authMiddleware(), permissionMiddleware(["customer"])),
+  // route(router, "/hello", myController, ["get"]),
 ];
 
 export default routes;
+ 

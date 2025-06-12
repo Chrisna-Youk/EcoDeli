@@ -1,0 +1,8 @@
+INSERT INTO checkpoint (address, latitude, longitude, createdAt, updatedAt) VALUES
+("10 Rue de la Paix, 75002 Paris", 48.868692, 2.330190, NOW(), NOW()),
+("1 Place Bellecour, 69002 Lyon", 45.757814, 4.832011, NOW(), NOW()),
+("130 Avenue du Prado, 13008 Marseille", 43.276013, 5.387984, NOW(), NOW()),
+("24 Rue des Carmes, 31000 Toulouse", 43.603407, 1.445942, NOW(), NOW()),
+("50 Quai Lawton, 33300 Bordeaux", 44.860426, -0.548998, NOW(), NOW());
+
+SELECT * FROM checkpoint;

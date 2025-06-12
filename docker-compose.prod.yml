@@ -33,3 +33,7 @@ services:
 volumes:
   ecodeli-backend-volume-dev:
   ecodeli-mysql-volume-dev:
+
+networks:
+  ecodeli-frontend:
+    driver: bridge

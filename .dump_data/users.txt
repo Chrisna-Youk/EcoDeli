@@ -1,0 +1,33 @@
+USE ecodeli;
+
+INSERT INTO user (
+  id,
+  firstName,
+  lastName,
+  company,
+  email,
+  password,
+  verified,
+  verifyToken,
+  otp,
+  active,
+  role,
+  createdAt,
+  updatedAt
+) VALUES (
+    1,
+    'Dana',
+    'admin',
+    'Kalo',
+    'admin@test.com',
+    '$2b$10$6oQV1sCvDoMFcN4dCkokg.1Fz3nAhk6J9c/ymolNfkiviVo1gA0vO',
+    true,
+    NULL,
+    NULL,
+    true,
+    'admin',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP
+  );
+
+SELECT * FROM user;

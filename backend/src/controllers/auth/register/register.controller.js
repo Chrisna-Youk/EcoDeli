@@ -68,6 +68,7 @@ async function registerController(req, res) {
       return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
     }
   } catch (error) {
+    console.log(error);
     return res
       .status(500)
       .json({ message: req.t("500/INTERNAL_SERVER_ERROR/HTTP") });
