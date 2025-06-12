@@ -16,6 +16,9 @@ services:
     depends_on:
       ecodeli-database:
         condition: service_healthy
+    networks:
+      - frontend
+
   ecodeli-backend:
     image: ecodeli-backend-dev-i
     container_name: ecodeli-backend-dev-c
@@ -33,6 +36,9 @@ services:
     depends_on:
       ecodeli-database:
         condition: service_healthy
+    networks:
+      - backend
+
   ecodeli-database:
     image: mysql:8.0
     container_name: ecodeli-database-dev-c
@@ -54,8 +60,21 @@ services:
       - "3306:3306"
     volumes:
       - ecodeli-database-dev-v:/var/lib/mysql
+    networks:
+      - backend
 
 volumes:
   ecodeli-frontend-dev-v:
   ecodeli-backend-dev-v:
   ecodeli-database-dev-v:
+
+networks:
+  frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
+
+  backend:
+    driver: bridge
+    internal: true
+
