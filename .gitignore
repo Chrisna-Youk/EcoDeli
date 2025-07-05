@@ -1,7 +1,6 @@
 # custom
 node_modules
 .env
-.env*
 docker-compose.yml
 legacy
 backend/uploads

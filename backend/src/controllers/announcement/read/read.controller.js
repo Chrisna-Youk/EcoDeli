@@ -8,7 +8,7 @@ async function readAnnouncementController(req, res) {
       limit: limit,
       offset: offset,
     });
-    return res.status(200).json({ message: annoucements });
+    return res.status(200).json({ data: annoucements });
   } catch (error) {
     return res.status(400).json({ message: "Bad request" });
   }

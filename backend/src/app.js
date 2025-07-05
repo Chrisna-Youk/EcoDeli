@@ -1,10 +1,6 @@
-import express from "express";
-const app = express();
+import app from "./webserver/server.js";
 
-import migrate from "./database/migration.js";
 import { dbConnection } from "./database/db.js";
-
-await migrate();
 
 await dbConnection();
 
@@ -12,6 +8,10 @@ import middlewares from "./middlewares/_index.js";
 middlewares.forEach((middleware) => {
   app.use(middleware);
 });
+
+import staticfilesMiddleware from "./middlewares/basics/staticfiles.middleware.js";
+
+app.use("/uploads", staticfilesMiddleware());
 
 import routes from "./routes/_index.js";
 routes.forEach((route) => {

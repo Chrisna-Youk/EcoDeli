@@ -13,7 +13,7 @@ const AnnouncementCards = ({
   user_name,
 }) => {
   const truncatedDescription =
-    description.length > 150 ? description.slice(0, 150) + "..." : description;
+    description?.length > 150 ? description.slice(0, 150) + "..." : description;
   return (
     <Link to={path}>
       <div className="bg-white rounded-xl shadow-md flex overflow-hidden mt-8 hover:bg-zinc-100 hover:shadow-xl duration-300">
