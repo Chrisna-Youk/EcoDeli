@@ -8,10 +8,12 @@ function authMiddleware() {
     const authType = req.header("Authorization")?.split(" ")[0];
     const accessToken = req.header("Authorization")?.split(" ")[1];
 
+    const headers = req.headers;
+
     // Verification du type de token (JWT) et de sa validité
-    if (!accessToken || authType !== "Bearer") {
-      return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello"});
-    }
+    // if (!accessToken || authType !== "Bearer") {
+    //   return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), data: "No accessToken provided" });
+    // }
 
     verify(
       accessToken,
@@ -23,13 +25,15 @@ function authMiddleware() {
         }
 
         if (err) {
-          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+          return res
+            .status(403)
+            .json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "accessToken invalid" });
         }
 
         const { refreshToken } = req.cookies;
 
         if (!refreshToken) {
-          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP") });
+          return res.status(403).json({ message: req.t("403/FORBIDDEN/HTTP"), data: "No refreshToken provided" });
         }
 
         verify(
@@ -40,7 +44,7 @@ function authMiddleware() {
             if (err) {
               return res
                 .status(403)
-                .json({ message: req.t("403/FORBIDDEN/HTTP") });
+                .json({ message: req.t("403/FORBIDDEN/HTTP"), data: "refreshToken invalid" });
             }
 
             if (validatedRefreshedAccessToken) {

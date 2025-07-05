@@ -1,20 +1,14 @@
 import jwt from "jsonwebtoken";
-const { verify, decode } = jwt;
 
-function permissionMiddleware(role) {
+
+function permissionMiddleware(roleList) {
   return (req, res, next) => {
-    if (typeof role !== "string") {
-      role = "customer";
-      throw new TypeError('Expected "role" to be a string');
-    }
-
-    const payload = req.user;
+    const { role } = req.user;
 
     try {
-      const { role } = payload;
       switch (role) {
         case "customer":
-          if (role = "customer") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
@@ -23,7 +17,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "delivrer":
-          if (role = "delivrer") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
@@ -32,7 +26,7 @@ function permissionMiddleware(role) {
           }
           break;
         case "merchant":
-          if (role = "merchant") {
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
@@ -40,13 +34,23 @@ function permissionMiddleware(role) {
               .json({ message: req.t("403/FORBIDDEN/HTTP") });
           }
           break;
-        case "admin":
-          if (role = "admin") {
+        case "provider":
+          if (roleList.includes(role)) {
             next();
           } else {
             return res
               .status(403)
               .json({ message: req.t("403/FORBIDDEN/HTTP") });
+          }
+          break;
+
+        case "admin":
+          if (roleList.includes(role)) {
+            next();
+          } else {
+            return res
+              .status(403)
+              .json({ message: req.t("403/FORBIDDEN/HTTP"), hello: "hello" });
           }
           break;
 

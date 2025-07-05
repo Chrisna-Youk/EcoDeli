@@ -7,7 +7,7 @@ import intervalMiddleware from "./dev/interval.middleware.js";
 
 const middlewares = [
   jsonParserMiddleware(),
-  helmetMiddleware(),
+  // helmetMiddleware(),
   corsMiddleware(),
   cookieParserMiddleware(),
   i18nMiddleware(),

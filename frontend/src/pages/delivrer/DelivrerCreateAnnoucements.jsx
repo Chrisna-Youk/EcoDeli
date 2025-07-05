@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+import LocationAutocompleteInput from "../../components/DelivrerComponents/LocationAutocompleteInput";
+import ArrivalMapSelect from "../../components/DelivrerComponents/ArrivalMapSelect";
 
 const DelivrerCreateAnnoucements = () => {
   return (
@@ -25,13 +27,13 @@ const DelivrerCreateAnnoucements = () => {
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
 
-        <input
+          <input
             type="date"
             placeholder="Date"
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
 
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <input
               type="text"
               placeholder="Ville de départ"
@@ -42,7 +44,24 @@ const DelivrerCreateAnnoucements = () => {
               placeholder="Ville d’arrivée"
               className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
-          </div>
+          </div> */}
+
+<div className="w-full">
+  <LocationAutocompleteInput
+    placeholder="Ville de départ"
+    onSelect={(location) =>
+      console.log("Départ sélectionné:", location)
+    }
+  />
+</div>
+<div className="w-full">
+  <ArrivalMapSelect
+    onSelect={(location) =>
+      console.log("Arrivée sélectionnée via carte:", location)
+    }
+  />
+</div>
+
 
           <input
             type="number"
@@ -70,11 +89,7 @@ const DelivrerCreateAnnoucements = () => {
 
           <div>
             <label className="block mb-2 font-semibold">Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              className="w-full"
-            />
+            <input type="file" accept="image/*" className="w-full" />
           </div>
 
           <button

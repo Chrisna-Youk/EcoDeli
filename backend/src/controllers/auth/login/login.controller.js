@@ -24,22 +24,29 @@ async function loginController(req, res) {
     const user = await User.findOne({ where: { email: email } });
     if (user.active == true && user.verified == true) {
       compare(password, user.password, (err, result) => {
-        if (result) {
-          user.update({
-            verifyToken: verifyTokenGenerator(),
-            otp: otpGenerator(),
-          });
+      if (result) {
+        user.update({
+          verifyToken: verifyTokenGenerator(),
+          otp: otpGenerator(),
+        });
+
+        try {
           sendEmail(
             `EcoDeli ${process.env.SMTP_EMAIL}`,
             user.email,
             "EcoDeli Code Verification",
             `Hello there is the code ${user.otp}`
           );
-          return res.status(200).json({
-            message: req.t("200/OK/LOGIN"),
-            verifyToken: user.verifyToken,
-          });
+        } catch (error) {
+          console.error("Email sending failed:", error.message); // Don't crash the server
         }
+
+        return res.status(200).json({
+          message: req.t("200/OK/LOGIN"),
+          verifyToken: user.verifyToken,
+        });
+      }
+
         return res
           .status(400)
           .json({ message: req.t("400/BAD_REQUEST/LOGIN") });

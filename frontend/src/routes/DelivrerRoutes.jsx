@@ -28,7 +28,7 @@ const DelivrerRoutes = (
       }
     >
       <Route index element={<HomeDelivrer />} />
-      <Route path="account" element={<MyDeliverAccount />} />
+      <Route path="MyDeliverAccount" element={<MyDeliverAccount />} />
       <Route path="DelivrerAnnouncements" element={<DelivrerAnnoucements />} />
       <Route path="DelivrerCreateAnnoucements" element={<DelivrerCreateAnnoucements />} />
       <Route path="UpComingDeliveries" element={<DelivrerUpComingDeliveries />} />

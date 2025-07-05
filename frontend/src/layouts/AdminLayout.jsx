@@ -1,26 +1,36 @@
 // React
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 // Layout components
 import AdminHeader from "./header/AdminHeader";
 
 // Third
 import { useTranslation } from "react-i18next";
+import useAuthContext from "../contexts/auth/useAuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const AdminLayout = () => {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+
+  const authContext = useAuthContext();
+  const accessToken = jwtDecode(authContext.auth);
+
+  if (!(accessToken.role === "admin")) {
+    navigate(-1);
+  }
 
   useEffect(() => {
     // "en" needs to be replaced by a dynamic variable that is toggled by user interaction, reload page when clicked
-    i18n.changeLanguage("it");
+    i18n.changeLanguage("en");
   }, [i18n]);
   return (
     <div className="flex flex-row bg-zinc-900">
-        <AdminHeader />
-        <main>
-          <Outlet />
-        </main>
+      <AdminHeader />
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };

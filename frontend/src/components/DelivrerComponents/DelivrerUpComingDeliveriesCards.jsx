@@ -39,7 +39,7 @@ const DelivrerUpComingDeliveriesCards = ({
         style={{ border: 0 }}
         loading="lazy"
         allowFullScreen
-        src={`https://www.google.com/maps/embed/v1/place?key=CLE_API${encodeURI(deliveryAddress)}`}
+        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBK0Dd_nl7tUabcEYLwS8QPzBaC82myi-Q&q=${encodeURI(deliveryAddress)}`}
     ></iframe>
     </div>
   </div>

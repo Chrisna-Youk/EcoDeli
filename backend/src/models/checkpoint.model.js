@@ -9,10 +9,17 @@ const Checkpoint = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING(128),
-      allowNull: true,
-      unique: false,
+    address: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    latitude: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
   },
   {

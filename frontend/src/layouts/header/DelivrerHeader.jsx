@@ -22,8 +22,8 @@ const DelivrerHeader = () => {
         <div className="flex justify-around items-center mb-6">
           <svg className="h-15" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" 
         fill="#000000">
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+          <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
           <g id="SVGRepo_iconCarrier">
             <path d="M425.176 123.4h554.432v424.992H425.176z" fill="#f8e45c">
             </path>
