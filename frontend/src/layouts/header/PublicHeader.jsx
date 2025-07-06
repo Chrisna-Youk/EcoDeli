@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CustomerHeader = () => {
+const PublicHeader = () => {
   return (
     <header>
       <nav className="p-4 bg-green-950 font-[Poppins]">
@@ -116,4 +116,4 @@ const CustomerHeader = () => {
   );
 };
 
-export default CustomerHeader;
+export default PublicHeader;

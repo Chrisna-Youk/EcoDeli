@@ -2,12 +2,12 @@
 import { Outlet } from "react-router-dom";
 
 // Layout components
-import CustomerHeader from "./header/CustomerHeader";
+import PublicHeader from "./header/PublicHeader";
 
 const PublicLayout = () => {
   return (
     <>
-      <CustomerHeader />
+      <PublicHeader />
       <main>
         <Outlet />
       </main>
