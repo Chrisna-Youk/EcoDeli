@@ -20,7 +20,7 @@ const DelivrerLayout = () => {
   const authContext = useAuthContext();
   const accessToken = jwtDecode(authContext.auth);
 
-  if (!(accessToken.role === "delivrer")) {
+  if (!(accessToken.role === "provider" || "admin")){
     navigate(-1);
   }
 

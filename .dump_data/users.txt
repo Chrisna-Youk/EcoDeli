@@ -13,7 +13,9 @@ INSERT INTO user (
   active,
   role,
   createdAt,
-  updatedAt
+  updatedAt,
+  photo,
+  status,
 ) VALUES (
     1,
     'Dana',
@@ -28,6 +30,8 @@ INSERT INTO user (
     'admin',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
+    NULL,
+    Admin,
   );
 
 SELECT * FROM user;

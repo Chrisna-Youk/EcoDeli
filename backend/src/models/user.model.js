@@ -66,6 +66,14 @@ const User = db.define(
       allowNull: false,
       defaultValue: "customer",
     },
+    photo: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+    },
   },
   {
     freezeTableName: true,

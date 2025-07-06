@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ComponentServiceDetailsPage = ({ image, title, price, category, description }) => (
+const ComponentServiceDetailsPage = ({ image, title, price, category, description, city, name_provider, lastname_provider, status_provider, photo_provider }) => (
   <div className="min-h-screen w-full px-4 py-6 flex flex-col lg:flex-row lg:justify-around font-[Poppins] lg:px-20 mt-10">
     
     <div className="w-full lg:w-1/2 lg:max-w-[800px]">
@@ -14,8 +14,9 @@ const ComponentServiceDetailsPage = ({ image, title, price, category, descriptio
       />
 
       <div className="flex justify-between mt-3 px-1">
-        <span className="text-lg font-medium text-green-600">{price}</span>
+        <span className="text-lg font-medium text-green-600"><span className='text-md text-gray-600 italic'>Prix : </span>{price}€</span>
         <span className="text-md text-gray-600 italic">{category}</span>
+        <span className="text-md text-gray-600 italic">{city}</span>
       </div>
     </div>
 
@@ -23,11 +24,11 @@ const ComponentServiceDetailsPage = ({ image, title, price, category, descriptio
       
       <div className="w-full h-24 px-5 flex items-center justify-between rounded-t-md bg-gray-100">
         <div>
-          <h2 className="font-semibold text-lg">Prenom Nom</h2>
-          <h3 className="text-sm text-gray-600">Professeur particulier</h3>
+          <h2 className="font-semibold text-lg">{name_provider} {lastname_provider}</h2>
+          <h3 className="text-sm text-gray-600">{status_provider}</h3>
         </div>
         <img
-          src="https://i.pinimg.com/736x/7f/b5/3c/7fb53c2810135f1081cbee48fc82a9b7.jpg"
+          src={photo_provider}
           alt="Avatar utilisateur"
           className="w-16 h-16 rounded-full object-cover shadow"
         />

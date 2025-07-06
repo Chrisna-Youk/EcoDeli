@@ -1,14 +1,58 @@
-import React from 'react';
-import ComponentServiceDetailsPage from './ComponentServiceDetailsPage';
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import ComponentServiceDetailsPage from "./ComponentServiceDetailsPage";
+import useAuth from "../../hooks/useAuth";
 
 const ServiceDetailsPage = () => {
+  const { serviceId } = useParams();
+  const http = useAuth();
+
+  const {
+    data: service,
+    isLoading: isServiceLoading,
+    error: serviceError,
+  } = useQuery({
+    queryKey: ["Service", serviceId],
+    queryFn: async () => {
+      const response = await http.get(`/service/read/${serviceId}`);
+      return response.data.data;
+    }
+  });
+
+  const userId = service?.userId;
+
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    error: userError,
+  } = useQuery({
+    queryKey: ["User", userId],
+    queryFn: async () => {
+      const response = await http.get(`/user/read/${userId}`);
+      return response.data.data;
+    }
+  });
+
+  if (isServiceLoading || isUserLoading) return <p>Chargement...</p>;
+  if (serviceError || userError)
+    return <p>Erreur : {serviceError?.message || userError?.message}</p>;
+
+  console.log({ status: user.status });
+  console.log({ photo: user.photo });
+
+
   return (
     <ComponentServiceDetailsPage
-      title="Cours particuliers de mathématiques"
-      image="https://media.lesechos.com/api/v1/images/view/5e564738d286c275866fff96/1280x720/10577-1514976622-soutien-scolaire-job-etudes.jpg"
-      price="20 €/h"
-      category="Soutien scolaire"
-      description="Je suis étudiant en Informatique en bachelor d'informatique à l'ESGI et je propose des cours particuliers de mathématiques pour les élèves du collège et du lycée."
+      title={service.title}
+      image={service.photo}
+      price={service.price}
+      category={service.category}
+      description={service.description}
+      city={service.city}
+      name_provider={user.firstName}
+      lastname_provider={user.lastName}
+      status_provider={user.status}
+      photo_provider={user.photo}
     />
   );
 };

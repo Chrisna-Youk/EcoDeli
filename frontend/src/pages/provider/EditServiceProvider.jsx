@@ -19,7 +19,7 @@ const EditServiceProvider = () => {
   const http = useAuth();
 
   const { data: service } = useQuery({
-    queryKey: ["CategoriesAvailable", serviceId],
+    queryKey: ["Service", serviceId],
     queryFn: async () => {
       const response = await http.get(`/service/read/${serviceId}`);
       return response.data.data;

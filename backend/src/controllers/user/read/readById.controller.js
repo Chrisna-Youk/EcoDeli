@@ -11,6 +11,8 @@ async function readByIdUserController(req, res) {
       company: user.company,
       email: user.email,
       phone: user.phone,
+      photo: user.photo,
+      status: user.status,
     };
     res.status(200).json({ data: data });
   } catch (error) {
