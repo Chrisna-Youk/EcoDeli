@@ -50,7 +50,7 @@ const Login = () => {
   };
   return (
     <div className="bg-white w-screen h-[calc(100vh-80px)] flex flex-col items-center justify-center">
-      <div className="p-10 bg-gray-100 rounded-lg shadow-xl mb-10">
+      <div className="p-10 bg-gray-100 rounded-lg shadow-xl mb-10 w-100">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Se Connecter
         </h2>
