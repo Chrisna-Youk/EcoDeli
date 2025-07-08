@@ -1,29 +1,33 @@
 import { Link } from "react-router-dom";
+import TransportIcon from '../../assets/images/transport-icon.png'
+import DeliveryIcon from '../../assets/images/delivery-icon.png'
+import ServiceIcon from '../../assets/images/services-icon.png'
+import EcoDeliLogo from '../../assets/images/ecodeli-logo.png'
 
 const CustomerHeader = () => {
   return (
     <header>
       <nav className="p-6 px-20 bg-white font-[Poppins] flex items-center justify-between relative">
 
-        <a href="/Customer"><img src="../ecodeli-logo.png" alt="logo" className="h-10 hover:scale-110 duration-300" /></a>
+        <a href="/Customer"><img src={EcoDeliLogo} alt="logo" className="h-10 hover:scale-110 duration-300" /></a>
 
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <ul className="flex flex-row gap-10 items-center">
             <a href="/customer/deliveries">
             <li tabIndex="0" className="flex items-center gap-3 text-base text-gray-600 hover:text-black cursor-pointer transition focus:font-semibold focus:text-black hover:scale-105">
-              <img src="../delivery-icon.png" alt="livraison" className="h-8" />
+              <img src={DeliveryIcon} alt="livraison" className="h-8" />
               Livraison
             </li>
             </a>
             <a href="/customer/services">
             <li tabIndex="0" className="flex items-center gap-3 text-base text-gray-600 hover:text-black cursor-pointer transition focus:font-semibold focus:text-black hover:scale-105">
-              <img src="../services-icon.png" alt="services" className="h-8" />
+              <img src={ServiceIcon} alt="services" className="h-8" />
               Services
             </li>
             </a>
             <a href="/customer/transport">
             <li tabIndex="0" className="flex items-center gap-3 text-base text-gray-600 hover:text-black cursor-pointer transition focus:font-semibold focus:text-black hover:scale-105">
-              <img src="../transport-icon.png" alt="transport" className="h-8" />
+              <img src={TransportIcon} alt="transport" className="h-8" />
               Transport
             </li>
             </a>

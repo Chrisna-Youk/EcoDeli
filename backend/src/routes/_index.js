@@ -46,6 +46,9 @@ import readServiceByUserIdController from "../controllers/service/read/readByUse
 import deleteServiceController from "../controllers/service/delete/delete.controller.js";
 import updateServiceController from "../controllers/service/update/update.controller.js";
 
+// controller/review
+import readReviewByUserIdController from "../controllers/review/read/readReviewByUserId.controller.js";
+
 
 const router = Router({ mergeParams: true });
 
@@ -96,6 +99,9 @@ const routes = [
 
   // controllers/category
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+  //controller/review
+   route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
 ];
 
