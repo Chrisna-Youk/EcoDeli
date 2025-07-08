@@ -1,0 +1,20 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #B9D5C5;
+
+}
+.tool-bar {
+    -fx-background-color: #073722;
+}
+
+.toolbar-label {
+    -fx-text-fill: #F8F4F0;
+}
+.button {
+    -fx-background-radius: 5;
+    -fx-background-color: #F2D780;
+}
+
+.button:hover {
+    -fx-background-color: #bca14c;
+}
