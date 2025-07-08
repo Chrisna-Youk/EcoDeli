@@ -7,7 +7,7 @@ const PublicHeader = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img src="/ecodeli-logo.png" alt="EcoDeli" className="h-10" />
-            <a href="">
+            <a href="../">
               <p className="text-2xl text-amber-200">EcoDeli</p>
             </a>
           </div>
