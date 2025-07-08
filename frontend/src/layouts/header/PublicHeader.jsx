@@ -5,10 +5,10 @@ const PublicHeader = () => {
     <header>
       <nav className="p-4 bg-green-950 font-[Poppins]">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 hover:scale-105 transition">
             <img src="/ecodeli-logo.png" alt="EcoDeli" className="h-10" />
             <a href="../">
-              <p className="text-2xl text-amber-200">EcoDeli</p>
+              <p className="text-xl text-amber-200">EcoDeli</p>
             </a>
           </div>
 
@@ -38,16 +38,16 @@ const PublicHeader = () => {
           </div>
 
           <ul className="hidden md:flex justify-center items-center">
-            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md">
+            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
               <Link to={"/login"}>Livreur</Link>
             </li>
-            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md">
+            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
             <Link to={"/register"}>Particulier</Link>
             </li>
-            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md">
+            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
               <a href="">Prestataire</a>
             </li>
-            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md">
+            <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
               <a href="">Commerçant</a>
             </li>
           </ul>
@@ -67,7 +67,7 @@ const PublicHeader = () => {
 
             <a
               href="/register"
-              className="w-full block text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer"
+              className="w-full block text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
             >
               Get started
             </a>
