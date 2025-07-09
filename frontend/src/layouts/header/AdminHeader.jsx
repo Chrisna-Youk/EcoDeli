@@ -71,6 +71,19 @@ const AdminHeader = () => {
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
               <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A4 4 0 017.5 15h9a4 4 0 012.379.804M12 7a4 4 0 100-8 4 4 0 000 8z" />
+              </svg>
+              Prestataires
+            </summary>
+            <div className="pl-8 mt-2 space-y-1 flex flex-col">
+              <a href="/admin/providers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
+              <a href="/admin/" className="py-1 hover:text-yellow-600">Annonces</a>
+            </div>
+          </details>
+
+          <details className="group">
+            <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6h13v6M5 11V7h3M5 11h13M5 11l-2 2m0-4l2 2" />
               </svg>
               Livreurs

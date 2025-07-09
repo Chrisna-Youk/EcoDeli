@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import MerchantManagementComponent from '../../../components/AdminComponents/MerchantManagementComponent';
+import DelivrerManagementComponent from '../../../components/AdminComponents/DelivrerManagementComponent';
 
-const MerchantManagementPage = () => {
+const DelivrerManagementPage = () => {
 
  const http = useAuth();
 
@@ -35,7 +35,7 @@ const MerchantManagementPage = () => {
 
 
   return (
-    <MerchantManagementComponent
+    <DelivrerManagementComponent
       users={users}
       onEdit={handleEdit}
       onDelete={handleDelete}
@@ -43,4 +43,4 @@ const MerchantManagementPage = () => {
   );
 };
 
-export default MerchantManagementPage;
+export default DelivrerManagementPage;

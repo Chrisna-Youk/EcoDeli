@@ -1,12 +1,11 @@
 import React from 'react';
+import UserManagementComponent from "../../../components/AdminComponents/UserManagementComponent";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import MerchantManagementComponent from '../../../components/AdminComponents/MerchantManagementComponent';
 
-const MerchantManagementPage = () => {
-
- const http = useAuth();
+const UserManagementPage = () => {
+  const http = useAuth();
 
   const { data: users = [], isLoading, isError } = useQuery({
     queryKey: ['users'],
@@ -35,7 +34,7 @@ const MerchantManagementPage = () => {
 
 
   return (
-    <MerchantManagementComponent
+    <UserManagementComponent
       users={users}
       onEdit={handleEdit}
       onDelete={handleDelete}
@@ -43,4 +42,4 @@ const MerchantManagementPage = () => {
   );
 };
 
-export default MerchantManagementPage;
+export default UserManagementPage;
