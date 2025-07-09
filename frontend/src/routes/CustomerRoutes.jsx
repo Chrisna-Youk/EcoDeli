@@ -22,6 +22,8 @@ import CustomerProfilePage from "../pages/customer/CustomerProfile";
 import PaymentTrackingPage from "../pages/customer/CustomerPayementsTracking";
 import ChatCustomer from "../pages/customer/ChatCustomer";
 import ServiceDetailsPage from "../pages/customer/ServiceDetailsPage";
+import ServiceDetailsPage from "../pages/TO_IMPLEMENT/ServiceDetailsPage";
+import ProfileDetails from "../pages/customer/ProfileDetails";
 
 const CustomerRoutes = (
   <>
@@ -47,6 +49,8 @@ const CustomerRoutes = (
       <Route path="Subscription" element={<SubscriptionPlans />} />
       <Route path="Profil" element={<CustomerProfilePage />} />
       <Route path="Payements" element={<PaymentTrackingPage />} />
+      <Route path="ChatCustomer" element={<ChatCustomer />} />
+      <Route path="profile/:profileId" element={<ProfileDetails />}/>
     </Route>
   </>
 );

@@ -41,7 +41,7 @@ const AdminHeader = () => {
         </div>
 
         <nav className="flex-1 space-y-2 mt-6">
-          <a href="/delivrer" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <a href="/admin" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
             <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3v18h18" />
             </svg>
@@ -65,6 +65,19 @@ const AdminHeader = () => {
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <a href="/admin/customers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
               <a href="/admin/CustomersAnnouncements" className="py-1 hover:text-yellow-600">Annonces</a>
+            </div>
+          </details>
+
+          <details className="group">
+            <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A4 4 0 017.5 15h9a4 4 0 012.379.804M12 7a4 4 0 100-8 4 4 0 000 8z" />
+              </svg>
+              Prestataires
+            </summary>
+            <div className="pl-8 mt-2 space-y-1 flex flex-col">
+              <a href="/admin/providers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
+              <a href="/admin/" className="py-1 hover:text-yellow-600">Annonces</a>
             </div>
           </details>
 

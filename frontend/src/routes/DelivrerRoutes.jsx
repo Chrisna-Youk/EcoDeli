@@ -14,7 +14,6 @@ import DelivrerAnnoucements from "../pages/delivrer/DelivrerAnnoucements";
 import DelivrerCreateAnnoucements from "../pages/delivrer/DelivrerCreateAnnoucements";
 import DelivrerUpComingDeliveries from "../pages/delivrer/DelivrerUpComingDeliveries";
 import DelivrerDeliveriesHistory from "../pages/delivrer/DelivrerDeliveriesHistory";
-import DelivrerProfile from "../pages/delivrer/DelivrerProfile";
 import DelivrerPaymentsHistory from "../pages/delivrer/DelivrerPaymentsHistory";
 
 const DelivrerRoutes = (
@@ -33,7 +32,6 @@ const DelivrerRoutes = (
       <Route path="DelivrerCreateAnnoucements" element={<DelivrerCreateAnnoucements />} />
       <Route path="UpComingDeliveries" element={<DelivrerUpComingDeliveries />} />
       <Route path="DeliveriesHistory" element={<DelivrerDeliveriesHistory />} />
-      <Route path="Profile" element={<DelivrerProfile />} />
       <Route path="PaymentsHistory" element={<DelivrerPaymentsHistory />} />
     </Route>
   </>

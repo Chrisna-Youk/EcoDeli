@@ -24,6 +24,8 @@ import readUserController from "../controllers/user/read/read.controller.js";
 import readByIdUserController from "../controllers/user/read/readById.controller.js";
 import updateUserController from "../controllers/user/update/update.controller.js";
 import deleteUserController from "../controllers/user/delete/delete.controller.js";
+import deleteUserById from "../controllers/user/delete/deleteUserById.controller.js";
+import readUserByRoleController from "../controllers/user/read/readByRole.controller.js";
 
 // controllers/announcement
 import createAnnouncementController from "../controllers/announcement/create/create.controller.js";
@@ -52,6 +54,9 @@ import readMessageByChatIdController from "../controllers/message/read/readByCha
 // controller/chat
 import readChatByUserIdController from "../controllers/chat/read/readChatByUserId.controller.js";
 import readChatsByProviderIdController from "../controllers/chat/read/readChatByProviderId.controller.js";
+// controller/review
+import readReviewByUserIdController from "../controllers/review/read/readReviewByUserId.controller.js";
+
 
 const router = Router({ mergeParams: true });
 
@@ -73,9 +78,11 @@ const routes = [
   // controllers/user
   route(router, "/user/read", readUserController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
   route(router, "/user/read/:userId", readByIdUserController, ["get"]),
+  route(router, "/user/read/:userRole", readUserByRoleController, ["get"]),
   route(router, "/user/create", createUserController, ["post"], authMiddleware(), permissionMiddleware(["admin"])),
   route(router, "/user/update/:userId", updateUserController, ["put"]),
   route(router, "/user/delete", deleteUserController, ["delete"], authMiddleware()),
+  route(router, "/user/delete/:userId", deleteUserById, ["delete"], authMiddleware(), permissionMiddleware(["admin"])),
 
   // controllers/announcement
   route(router, "/announcement/read", readAnnouncementController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
@@ -109,6 +116,9 @@ const routes = [
 
   // controllers/category
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+  //controller/review
+   route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
 ];
 

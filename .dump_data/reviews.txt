@@ -1,0 +1,10 @@
+CREATE TABLE `review` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `grade` int DEFAULT NULL,
+  `userId` int NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+);
