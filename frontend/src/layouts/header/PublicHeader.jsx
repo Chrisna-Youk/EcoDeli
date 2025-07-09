@@ -39,16 +39,16 @@ const PublicHeader = () => {
 
           <ul className="hidden md:flex justify-center items-center">
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/login"}>Livreur</Link>
+              <Link to={"/delivrer"}>Livreur</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-            <Link to={"/register"}>Particulier</Link>
+              <Link to={"/customer"}>Particulier</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <a href="">Prestataire</a>
+              <Link to={"/provider"}>Prestataire</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <a href="">Commerçant</a>
+              <Link to={"/merchant"}>Commerçant</Link>
             </li>
           </ul>
 
@@ -103,12 +103,12 @@ const PublicHeader = () => {
             </form>
           </li>
           <li className="mt-2">
-            <a
+            <Link
               href="/register"
               className="w-full block text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer"
             >
               Get started
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

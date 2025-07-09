@@ -15,6 +15,8 @@ import EditServiceProvider from "../pages/provider/EditServiceProvider";
 import ProviderPaymentsHistory from "../pages/provider/ProviderPaymentsHistory";
 import ProviderProvidingHistory from "../pages/provider/ProviderProvidingHistory";
 import ProviderUpComingProviding from "../pages/provider/DelivrerUpComingServices";
+import ChatProvider from "../pages/provider/chat/ChatProvider";
+import ChatListCustomer from "../pages/provider/chat/ChatListCustomer";
 // import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
 const ProviderRoutes = (
@@ -31,6 +33,8 @@ const ProviderRoutes = (
     <Route path="services" element={<ProviderAnnouncements />} />
     <Route path="services/:serviceId" element={<EditServiceProvider />} />
     <Route path="create/service" element={<CreateServiceProvider />} />
+    <Route path="chat/" element={<ChatListCustomer />} />
+    <Route path="chat/:customerId" element={<ChatProvider />} />
     <Route path="Payements" element={<ProviderPaymentsHistory />} />
     <Route path="ProvidingHistory" element={<ProviderProvidingHistory />} />
     <Route path="ProvidingUpComing" element={<ProviderUpComingProviding />} />

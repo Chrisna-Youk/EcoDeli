@@ -11,7 +11,6 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 import HomeCustomer from "../pages/customer/HomeCustomer";
 import DeliveriesPageCustomer from "../pages/customer/DeliveriesPageCustomers";
 import ServicesPageCustomers from "../pages/customer/ServicesPageCustomers";
-import ServiceDetailCustomers from "../pages/customer/ServiceDetailCustomers";
 import TransportPageCustomer from "../pages/customer/TransportPageCustomers";
 import CreatePageCustomer from "../pages/customer/CreatePage";
 import CreateServiceCustomer from "../pages/customer/CreateServicePageCustomer";
@@ -22,7 +21,7 @@ import SubscriptionPlans from "../pages/customer/SubscriptionsCustomer";
 import CustomerProfilePage from "../pages/customer/CustomerProfile";
 import PaymentTrackingPage from "../pages/customer/CustomerPayementsTracking";
 import ChatCustomer from "../pages/customer/ChatCustomer";
-import ServiceDetailsPage from "../pages/TO_IMPLEMENT/ServiceDetailsPage";
+import ServiceDetailsPage from "../pages/customer/ServiceDetailsPage";
 
 const CustomerRoutes = (
   <>
@@ -36,19 +35,18 @@ const CustomerRoutes = (
     >
       <Route index element={<HomeCustomer />} />
       <Route path="Deliveries" element={<DeliveriesPageCustomer />} />
-      <Route path="Services" element={<ServicesPageCustomers />} />
+      <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
-      <Route path="ServiceDetails/:ServiceId" element={<ServiceDetailCustomers />} />
+      <Route path="chat/:customerId/:providerId" element={<ChatCustomer />} />
       <Route path="Transport" element={<TransportPageCustomer />} />
       <Route path="Create" element={<CreatePageCustomer />} />
       <Route path="CreateDelivery" element={<CreateDeliveryCustomer />} />
       <Route path="CreateService" element={<CreateServiceCustomer />} />
       <Route path="CreateTransport" element={<CreateTransportCustomer />} />
-      <Route path="MyAnnoucements" element={<CustomerAnnouncements />} />
+      <Route path="announcements" element={<CustomerAnnouncements />} />
       <Route path="Subscription" element={<SubscriptionPlans />} />
       <Route path="Profil" element={<CustomerProfilePage />} />
       <Route path="Payements" element={<PaymentTrackingPage />} />
-      <Route path="ChatCustomer" element={<ChatCustomer />} />
     </Route>
   </>
 );

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
-import { useSocket } from "../../utils/io";
+import useAuth from "../../../hooks/useAuth";
+import { useSocket } from "../../../utils/io";
 
-const ChatCustomer = () => {
+const ChatProvider = () => {
   const { customerId, providerId } = useParams();
   const http = useAuth();
   const socket = useSocket();
@@ -56,7 +56,10 @@ const ChatCustomer = () => {
     };
 
     socket.emit("sendMessage", messagePayload);
-    setLocalMessages((prev) => [...prev, { ...messagePayload, createdAt: new Date().toISOString() }]);
+    setLocalMessages((prev) => [
+      ...prev,
+      { ...messagePayload, createdAt: new Date().toISOString() },
+    ]);
     setNewMessage("");
   };
 
@@ -68,11 +71,17 @@ const ChatCustomer = () => {
         {allMessages.map((msg, idx) => (
           <div
             key={idx}
-            className={`flex ${msg.userId == customerId ? "justify-end" : "justify-start"}`}
+            className={`flex ${
+              msg.userId == customerId ? "justify-end" : "justify-start"
+            }`}
           >
-            <div className={`px-4 py-2 rounded-lg max-w-xs ${
-              msg.userId == customerId ? "bg-blue-100 text-blue-700" : "bg-white text-gray-700"
-            }`}>
+            <div
+              className={`px-4 py-2 rounded-lg max-w-xs ${
+                msg.userId == customerId
+                  ? "bg-blue-100 text-blue-700"
+                  : "bg-white text-gray-700"
+              }`}
+            >
               {msg.content}
             </div>
           </div>
@@ -98,4 +107,4 @@ const ChatCustomer = () => {
   );
 };
 
-export default ChatCustomer;
+export default ChatProvider;

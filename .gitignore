@@ -3,7 +3,7 @@ node_modules
 .env
 docker-compose.yml
 legacy
-backend/uploads
+backend/uploads/files
 
 # Logs
 logs

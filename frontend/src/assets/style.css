@@ -5,3 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --color-primary-100: #f2d780;
+  --color-primary-300: #f0cd5c;
+  --color-white-100: #f8f4f0;
+}

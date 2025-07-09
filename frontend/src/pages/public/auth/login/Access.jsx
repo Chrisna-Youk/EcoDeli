@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutate } from "../../../../hooks/useMutate";
 
-
 const Access = () => {
   const [error, setError] = useState("");
 

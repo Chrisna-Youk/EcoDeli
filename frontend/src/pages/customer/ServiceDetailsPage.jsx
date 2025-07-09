@@ -1,11 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import ComponentServiceDetailsPage from "./ComponentServiceDetailsPage";
+import ComponentServiceDetailsPage from "../../components/CustomerComponents/ComponentServiceDetailsPage";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import useAuthContext from "../../contexts/auth/useAuthContext";
 
 const ServiceDetailsPage = () => {
   const { serviceId } = useParams();
   const http = useAuth();
+
+  const [providerId, setProviderId] = useState("");
+  const customerId = jwtDecode(useAuthContext().auth)?.id;
 
   const {
     data: service,
@@ -15,36 +21,33 @@ const ServiceDetailsPage = () => {
     queryKey: ["Service", serviceId],
     queryFn: async () => {
       const response = await http.get(`/service/read/${serviceId}`);
+      setProviderId(response.data.data.userId);
       return response.data.data;
-    }
+    },
   });
-
-  const userId = service?.userId;
 
   const {
     data: user,
     isLoading: isUserLoading,
     error: userError,
   } = useQuery({
-    queryKey: ["User", userId],
+    queryKey: ["User", providerId],
     queryFn: async () => {
-      const response = await http.get(`/user/read/${userId}`);
+      const response = await http.get(`/user/read/${providerId}`);
       return response.data.data;
-    }
+    },
   });
 
   if (isServiceLoading || isUserLoading) return <p>Chargement...</p>;
   if (serviceError || userError)
     return <p>Erreur : {serviceError?.message || userError?.message}</p>;
 
-  console.log({ status: user.status });
-  console.log({ photo: user.photo });
-
-
   return (
     <ComponentServiceDetailsPage
       title={service.title}
       image={service.photo}
+      customerId={customerId}
+      providerId={providerId}
       price={service.price}
       category={service.category}
       description={service.description}

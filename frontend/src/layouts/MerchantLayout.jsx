@@ -20,7 +20,7 @@ const MerchantLayout = () => {
   const authContext = useAuthContext();
   const accessToken = jwtDecode(authContext.auth);
 
-  if (!(accessToken.role === "merchant")) {
+  if (!(accessToken.role === "merchant" || "admin")) {
     navigate(-1);
   }
 
