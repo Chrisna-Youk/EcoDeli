@@ -41,7 +41,7 @@ const AdminHeader = () => {
         </div>
 
         <nav className="flex-1 space-y-2 mt-6">
-          <a href="/delivrer" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <a href="/admin" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
             <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3v18h18" />
             </svg>
