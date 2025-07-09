@@ -11,7 +11,7 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 import User from "../pages/admin/user/UserManagementPage";
 import HomeAdmin from "../pages/admin/HomeAdmin";
 import UserManagementPage from "../pages/admin/user/UserManagementPage";
-import MerchantsManagementPage from "../pages/admin/user/Merchants";
+import MerchantsManagementPage from "../pages/admin/user/MerchantManagementPage";
 import DelivrerRequestsPage from "../pages/admin/delivrers/DelivererRequests";
 import AdminCustomersAnnouncements from "../pages/admin/customers/CustomersAllAnnouncements";
 import AdminDelivrersAnnouncements from "../pages/admin/delivrers/DelivrersAllAnnouncements";
