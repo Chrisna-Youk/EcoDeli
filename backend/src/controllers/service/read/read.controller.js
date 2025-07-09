@@ -5,12 +5,13 @@ async function readServiceController(req, res) {
 
   try {
     const services = await Service.findAll({
-      limit: limit,
-      offset: offset,
+      limit: Number(limit),
+      offset: Number(offset),
     });
-    return res.status(200).json({ message: services });
+    return res.status(200).json({ data: services });
   } catch (error) {
-    return res.status(400).json({ message: "Bad request" });
+    console.log(error)
+    return res.status(400).json({ data: "Bad request" });
   }
 }
 
