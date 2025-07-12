@@ -20,8 +20,8 @@ const ProviderLayout = () => {
   const authContext = useAuthContext();
   const accessToken = jwtDecode(authContext.auth);
 
-  if (!(accessToken.role === "provider" || "admin")) {
-    navigate(-1);
+  if (!(accessToken.role === "provider")) {
+    navigate("/");
   }
 
   useEffect(() => {

@@ -1,6 +1,9 @@
 // React
 import { Route } from "react-router-dom";
 
+// Contexts
+import LangContextProvider from "../contexts/language/LangContextProvider";
+
 // Layout
 import PublicLayout from "../layouts/PublicLayout";
 
@@ -13,13 +16,20 @@ import DisplayProvider from "../pages/public/DisplayProvider";
 import Service from "../pages/public/Service";
 
 const PublicRoutes = (
-  <Route path="/" element={<PublicLayout />}>
+  <Route
+    path="/"
+    element={
+      <LangContextProvider>
+        <PublicLayout />
+      </LangContextProvider>
+    }
+  >
     <Route index element={<HomePublic />} />
     <Route path="register" element={<Register />} />
     <Route path="login" element={<Login />} />
     <Route path="access/:verifyToken" element={<Access />} />
-    <Route path="display-cards" element={<DisplayProvider />}/>
-    <Route path="service" element={<Service />}/>
+    <Route path="display-cards" element={<DisplayProvider />} />
+    <Route path="service" element={<Service />} />
   </Route>
 );
 

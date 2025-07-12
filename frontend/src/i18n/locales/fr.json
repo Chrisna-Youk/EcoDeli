@@ -1,3 +1,19 @@
 {
-    "welcome": "Bienvenue sur React et react-i18next"
+  "welcome": "Bienvenue sur React et react-i18next",
+  "HEADER_DELIVRER": "Livreur",
+  "HEADER_PRIVATE": "Particulier",
+  "HEADER_PROVIDER": "Préstataire",
+  "HEADER_MERCHANT": "Commerçant",
+  "HEADER_LOGIN": "Connexion",
+  "HEADER_REGISTER": "S'inscrire",
+  "LANDING_TITLE": "EcoDeli, la livraison collaborative et solidaire.",
+  "LANDING_DESCRIPTION": "EcoDeli propose une nouvelle façon d’envoyer et de recevoir des colis en s’appuyant sur le crowdshipping : des particuliers livrent pour d'autres, lors de leurs trajets. Une solution économique, écologique et humaine qui favorise le lien social et le pouvoir d’achat. Au-delà des colis, EcoDeli permet aussi d’accéder à des services du quotidien : courses, trajets, transferts, aides ponctuelles… Une plateforme pensée pour simplifier la vie, ensemble.",
+  "LANDING_PRIVATE": "Particuliers",
+  "LANDING_PRIVATE_DESCRIPTION": "Faites livrer vos colis ou rendez service pendant vos trajets. Économique, solidaire et écoresponsable.",
+  "LANDING_DELIVRER": "Livreurs",
+  "LANDING_DELIVRER_DESCRIPTION": "Optimisez vos trajets en livrant des colis ou en rendant des services. Simple, flexible et rémunérateur.",
+  "LANDING_PROVIDER": "Prestataires",
+  "LANDING_PROVIDER_DESCRIPTION": "Proposez vos services du quotidien à une communauté locale. Visibilité, proximité et complément de revenus garantis.",
+  "LANDING_MERCHANT": "Commerçants",
+  "LANDING_MERCHANT_DESCRIPTION": "Offrez la livraison à vos clients sans logistique complexe. Gagnez en visibilité, fidélisez, et boostez vos ventes localement."
 }
