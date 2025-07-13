@@ -1,72 +1,57 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import useAuthContext from "../../contexts/auth/useAuthContext";
+import { jwtDecode } from "jwt-decode";
 
-const CreateTransportCustomer = ({ userId }) => {
-  const [formData, setFormData] = useState({
-    type: "demande",
-    title: "",
-    description: "",
-    addressDeparture: "",
-    addressDestination: "",
-    date: "",
-    time: "",
-    photoTransport: null,
-    active: 1,
-  });
+const CreateTransportCustomer = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const http = useAuth();
+  const context = useAuthContext();
+  const userId = jwtDecode(context.auth).id;
+  const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (files) {
-      setFormData((prev) => ({ ...prev, [name]: files[0] }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const data = new FormData();
-    data.append("type", formData.type);
-    data.append("title", formData.title);
-    data.append("description", formData.description);
-    data.append("addressDeparture", formData.addressDeparture);
-    data.append("addressDestination", formData.addressDestination);
-    data.append("date", formData.date);
-    data.append("time", formData.time);
-    data.append("userId", userId);
-    data.append("active", 1);
-
-    if (formData.photoTransport) {
-      data.append("photoTransport", formData.photoTransport);
-    }
-
-    try {
-      await http.post("/transport/create", data, {
+  const mutationCreateTransport = useMutation({
+    mutationKey: ["CreateTransportCustomer"],
+    mutationFn: async (formData) => {
+      const response = await http.post(`/transport/create`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+      return response.data;
+    },
+  });
 
-      alert("Annonce créée avec succès !");
-      setFormData({
-        type: "demande",
-        title: "",
-        description: "",
-        addressDeparture: "",
-        addressDestination: "",
-        date: "",
-        time: "",
-        photoTransport: null,
-        active: 1,
-      });
-    } catch (error) {
-      alert(
-        error.response?.data?.message || "Erreur lors de la création de l'annonce"
-      );
+  const onSubmit = (data) => {
+    const formData = new FormData();
+
+    formData.append("type", "demande");
+    formData.append("userId", userId);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("cityDeparture", data.cityDeparture);
+    formData.append("cityDestination", data.cityDestination);
+    formData.append("date", data.date || "");
+    formData.append("time", data.time || "");
+
+    if (data.photoDelivery?.[0]) {
+      formData.append("photoTransport", data.photoDelivery[0]);
     }
+
+    mutationCreateTransport.mutate(formData, {
+      onError: (err) => {
+        const msg = err?.response?.data?.message || "Erreur inconnue";
+        setError(msg);
+      },
+      onSuccess: () => {
+        alert("Annonce de covoiturage créée avec succès !");
+      },
+    });
   };
 
   return (
@@ -74,87 +59,72 @@ const CreateTransportCustomer = ({ userId }) => {
       <h1 className="text-3xl font-bold mb-2">Créer une annonce de covoiturage</h1>
 
       <div className="w-full max-w-2xl bg-gray-50 p-8 rounded-xl shadow-md">
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <div className="flex flex-col">
             <label className="mb-2 font-semibold">Type d'annonce</label>
             <select
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              required
+              className="w-full border border-gray-300 rounded-lg p-3 bg-white"
+              {...register("type")}
+              disabled
             >
               <option value="demande">Je cherche un trajet</option>
             </select>
           </div>
 
           <input
+            {...register("title", { required: "Le titre est requis" })}
             type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
             placeholder="Titre de l'annonce"
-            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            required
+            className="w-full border border-gray-300 rounded-lg p-3"
           />
+          {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
 
           <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
+            {...register("description", {
+              required: "La description est requise",
+              minLength: { value: 10, message: "Minimum 10 caractères" },
+            })}
             placeholder="Description (ex: ambiance, pause prévue, bagages, etc.)"
-            className="w-full border border-gray-300 rounded-lg p-3 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            required
+            className="w-full border border-gray-300 rounded-lg p-3 h-32 resize-none"
           />
+          {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
 
           <div className="flex gap-4">
             <input
+              {...register("cityDeparture", { required: "Ville de départ requise" })}
               type="text"
-              name="addressDeparture"
-              value={formData.addressDeparture}
-              onChange={handleChange}
               placeholder="Ville de départ"
-              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              required
+              className="w-1/2 border border-gray-300 rounded-lg p-3"
             />
             <input
+              {...register("cityDestination", { required: "Ville d’arrivée requise" })}
               type="text"
-              name="addressDestination"
-              value={formData.addressDestination}
-              onChange={handleChange}
               placeholder="Ville d’arrivée"
-              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              required
+              className="w-1/2 border border-gray-300 rounded-lg p-3"
             />
           </div>
 
           <div className="flex gap-4">
             <input
+              {...register("date", { required: "Date requise" })}
               type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              required
+              className="w-1/2 border border-gray-300 rounded-lg p-3"
             />
             <input
+              {...register("time")}
               type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              required
+              className="w-1/2 border border-gray-300 rounded-lg p-3"
             />
           </div>
 
           <div>
             <label className="block mb-2 font-semibold">Image du véhicule (optionnel)</label>
             <input
+              {...register("photoTransport")}
               type="file"
-              name="photoTransport"
               accept="image/*"
-              onChange={handleChange}
               className="w-full"
             />
           </div>

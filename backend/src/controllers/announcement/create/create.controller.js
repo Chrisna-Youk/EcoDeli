@@ -38,7 +38,7 @@ async function createAnnouncementController(req, res) {
       width: width,
       depth: depth,
       photo: photoPath,
-      active: active ?? 1, // valeur par défaut à 1 si non fournie
+      active: active ?? 1,
     });
 
     return res.status(200).json({ message: "Annonce créée avec succès." });
