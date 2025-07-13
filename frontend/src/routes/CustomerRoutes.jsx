@@ -20,6 +20,11 @@ import CustomerAnnouncements from "../pages/customer/CustomerAnnoucements";
 import SubscriptionPlans from "../pages/customer/SubscriptionsCustomer";
 import CustomerProfilePage from "../pages/customer/CustomerProfile";
 import PaymentTrackingPage from "../pages/customer/CustomerPayementsTracking";
+<<<<<<< HEAD
+=======
+import ChatCustomer from "../pages/customer/chat/ChatCustomer";
+import ChatListCustomer from "../pages/customer/chat/ChatListCustomer";
+>>>>>>> 823697af08bd0e0f07c3c0a1f38e1da1fde492eb
 import ServiceDetailsPage from "../pages/customer/ServiceDetailsPage";
 import ProfileDetails from "../pages/customer/ProfileDetails";
 import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
@@ -39,6 +44,8 @@ const CustomerRoutes = (
       <Route path="Deliveries" element={<DeliveriesPageCustomer />} />
       <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
+      <Route path="chat/" element={<ChatListCustomer />} />
+      <Route path="chat/:customerId/:providerId" element={<ChatCustomer />} />
       <Route path="Transport" element={<TransportPageCustomer />} />
       <Route path="create/delivery" element={<CreateDeliveryCustomer />} />
       <Route path="create/service" element={<CreateServiceCustomer />} />

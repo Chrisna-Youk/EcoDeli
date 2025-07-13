@@ -1,6 +1,37 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import useLangContext from "../../contexts/language/useLangContext";
+import i18n from "../../i18n/i18n";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
 
 const PublicHeader = () => {
+  const { t } = useTranslation();
+  const { lang, setLang } = useLangContext();
+  const [connected, setConnected] = useState(false);
+
+  const http = useAuth();
+
+  useEffect(() => {
+    setConnected(localStorage.getItem("connected"));
+  }, [connected]);
+
+  const handleLanguage = (e) => {
+    const newLang = e.target.value;
+    setLang(newLang);
+    localStorage.setItem("language", newLang);
+    i18n.changeLanguage(newLang);
+  };
+
+  const { data: role } = useQuery({
+    queryKey: ["Role"],
+    queryFn: async () => {
+      const response = await http.get(`/auth/role`);
+      return response.data.data;
+    },
+  });
+
   return (
     <header>
       <nav className="p-4 bg-green-950 font-[Poppins]">
@@ -39,38 +70,66 @@ const PublicHeader = () => {
 
           <ul className="hidden md:flex justify-center items-center">
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/delivrer"}>Livreur</Link>
+              <Link to={"/delivrer"}>{t("HEADER_DELIVRER")}</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/customer"}>Particulier</Link>
+              <Link to={"/customer"}>{t("HEADER_PRIVATE")}</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/provider"}>Prestataire</Link>
+              <Link to={"/provider"}>{t("HEADER_PROVIDER")}</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/merchant"}>Commerçant</Link>
+              <Link to={"/merchant"}>{t("HEADER_MERCHANT")}</Link>
             </li>
           </ul>
 
           {/* Langue + bouton */}
           <div className="hidden md:flex items-center">
-            <form action="" className="mx-2">
-              <select className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-3 py-2 text-center cursor-pointer mx-2">
-                <option lang="fr" value="french" defaultChecked>
+            <form className="mx-2">
+              <select
+                value={lang}
+                onChange={(e) => handleLanguage(e)}
+                className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-3 py-2 text-center cursor-pointer mx-2"
+              >
+                <option lang="fr" value="fr">
                   🇫🇷
                 </option>
-                <option lang="en" value="english">
+                <option lang="en" value="en">
                   🇬🇧
                 </option>
               </select>
             </form>
-
-            <a
-              href="/register"
-              className="w-full block text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
-            >
-              Get started
-            </a>
+            {connected ? (
+              <div className="hidden md:flex items-center space-x-4">
+                <Link
+                  to={"/profile"}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_PROFILE")}
+                </Link>
+                <Link
+                  to={`/${role}`}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_SPACE")}
+                </Link>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center space-x-4">
+                <Link
+                  to={"/login"}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_LOGIN")}
+                </Link>
+                <Link
+                  to={"/register"}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_REGISTER")}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
@@ -91,12 +150,12 @@ const PublicHeader = () => {
 
           {/* Langue + bouton en mobile */}
           <li className="mt-2">
-            <form action="">
+            <form>
               <select className="w-full text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-3 py-2 text-center cursor-pointer">
-                <option lang="fr" value="french" defaultChecked>
+                <option lang="fr" value="fr" defaultChecked>
                   🇫🇷
                 </option>
-                <option lang="en" value="english">
+                <option lang="en" value="en">
                   🇬🇧
                 </option>
               </select>

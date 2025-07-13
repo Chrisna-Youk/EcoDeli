@@ -9,6 +9,14 @@ const Chat = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    serviceId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "service",
+        key: "id",
+      },
+    },
     providerId: {
       type: DataTypes.INTEGER,
       allowNull: false,

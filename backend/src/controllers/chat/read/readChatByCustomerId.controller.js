@@ -2,11 +2,11 @@ import Chat from "../../../models/chat.model.js";
 import User from "../../../models/user.model.js";
 import Service from "../../../models/service.model.js";
 
-async function readChatsByProviderIdController(req, res) {
-  const { providerId } = req.params;
+async function readChatsByCustomerIdController(req, res) {
+  const { customerId } = req.params;
   try {
     const chats = await Chat.findAll({
-      where: { providerId: providerId },
+      where: { customerId: customerId },
       include: [
         {
           model: Service,
@@ -15,7 +15,7 @@ async function readChatsByProviderIdController(req, res) {
         },
         {
           model: User,
-          as: "customer",
+          as: "provider",
           attributes: ["id", "firstName", "lastName"],
         },
       ],
@@ -28,4 +28,4 @@ async function readChatsByProviderIdController(req, res) {
   }
 }
 
-export default readChatsByProviderIdController;
+export default readChatsByCustomerIdController;

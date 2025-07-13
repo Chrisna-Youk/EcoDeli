@@ -16,11 +16,11 @@
     <!-- Menu latéral -->
     <left>
         <VBox spacing="10" style="-fx-padding: 10;">
-            <Button text="Accueil"       onAction="#showHome"/>
-            <Button text="Ventes"        onAction="#showSales"/>
-            <Button text="Rapports"      onAction="#showReports"/>
-            <Button text="Paramètres"    onAction="#showSettings"/>
-            <Button text="Sign in"/>
+            <Button text="Home"                 onAction="#showHome"/>
+            <Button text="Monthly revenue"      onAction="#showSales"/>
+            <Button text="Rapports"             onAction="#showReports"/>
+            <Button text="Settings"             onAction="#showSettings"/>
+            <Button text="Sign out"             onAction="#onSignOutClicked"/>
         </VBox>
     </left>
 

@@ -15,6 +15,7 @@ import confirmationController from "../controllers/auth/confirmation/confirmatio
 import loginController from "../controllers/auth/login/login.controller.js";
 import accessController from "../controllers/auth/access/access.controller.js";
 import refreshController from "../controllers/auth/refresh/refresh.controller.js";
+import roleController from "../controllers/auth/role/role.controller.js";
 
 // controllers/category
 import readCategoryController from "../controllers/category/read/read.controller.js";
@@ -56,6 +57,8 @@ import readMessageByChatIdController from "../controllers/message/read/readByCha
 // controller/chat
 import readChatByUserIdController from "../controllers/chat/read/readChatByUserId.controller.js";
 import readChatsByProviderIdController from "../controllers/chat/read/readChatByProviderId.controller.js";
+import readChatsByCustomerIdController from "../controllers/chat/read/readChatByCustomerId.controller.js";
+
 // controller/review
 import readReviewByUserIdController from "../controllers/review/read/readReviewByUserId.controller.js";
 import readPapersAllController from "../controllers/papers/read/readPapersAllController.controller.js";
@@ -83,6 +86,7 @@ const routes = [
   route(router, "/auth/login", loginController, ["post"]),
   route(router, "/auth/access", accessController, ["post"]),
   route(router, "/auth/refresh", refreshController, ["get"]),
+  route(router, "/auth/role", roleController, ["get"]),
 
   // controllers/user
   route(router, "/user/read", readUserController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
@@ -124,13 +128,17 @@ const routes = [
 
   // controllers/chat
   route(router, "/chat/read/:customerId/:providerId", readChatByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "customer"])),
-  route(router, "/chat/read/:providerId", readChatsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider"])),
+  route(router, "/chat/provider/read/:providerId", readChatsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider"])),
+  route(router, "/chat/customer/read/:customerId", readChatsByCustomerIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
 
   // controllers/category
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   //controller/review
   route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+   //controller/transport
+   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   //controller/transport
   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
