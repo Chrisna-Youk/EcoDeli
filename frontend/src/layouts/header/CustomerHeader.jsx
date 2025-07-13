@@ -66,7 +66,7 @@ const CustomerHeader = () => {
             </summary>
             <ul className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-md z-10">
               <a href="/customer/profile"><li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon Profil</li></a>
-              <a href="/customer/preate"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Créer une annonce</li></a>
+              <a href="/customer/create"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Créer une annonce</li></a>
               <a href="/customer/annoucements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes annonces</li></a>
               <a href="/customer/Payements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes paiements</li></a>
               <a href="/customer/Subscription"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon abonnement</li></a>

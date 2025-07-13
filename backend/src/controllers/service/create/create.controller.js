@@ -1,7 +1,7 @@
 import Service from "../../../models/service.model.js";
 
 async function createServiceController(req, res) {
-  const { title, description, price, city, postalCode, categoryId } =
+  const { title, description, price, city, postalCode, categoryId,type } =
     req.body;
 
   const photoPath = req.files.photoService[0].filename || null;
@@ -29,6 +29,7 @@ async function createServiceController(req, res) {
       categoryId: categoryId,
       photo: photoPath || null,
       userId: req.user.id,
+      type : type,
     });
 
     return res.status(200).json({ message: "Service créé avec succès." });

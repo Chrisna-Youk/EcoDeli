@@ -19,11 +19,6 @@ const Transport = db.define(
       allowNull: false,
       unique: false,
     },
-    price: {
-      type: DataTypes.INTEGER(),
-      allowNull: false,
-      unique: false,
-    },
     addressDeparture: {
       type: DataTypes.STRING(128),
       allowNull: true,

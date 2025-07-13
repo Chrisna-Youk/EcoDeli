@@ -4,7 +4,6 @@ async function createTransportController(req, res) {
   const {
     title,
     description,
-    price,
     addressDeparture,
     addressDestination,
     date,
@@ -20,7 +19,6 @@ async function createTransportController(req, res) {
     await Transport.create({
       title,
       description,
-      price,
       addressDeparture,
       addressDestination,
       date: date ? new Date(date) : null,

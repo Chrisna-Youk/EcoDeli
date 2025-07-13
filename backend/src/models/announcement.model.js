@@ -44,7 +44,17 @@ const Announcement = db.define(
       allowNull: true,
       unique: false,
     },
+    preciseAddressDeparture: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
     addressDestination: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    preciseAddressDestination: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
@@ -91,7 +101,6 @@ const Announcement = db.define(
     },
     active: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
       allowNull: false,
       unique: false,
     },

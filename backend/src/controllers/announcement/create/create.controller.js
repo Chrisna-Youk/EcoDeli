@@ -6,46 +6,37 @@ async function createAnnouncementController(req, res) {
     title,
     description,
     addressDeparture,
+    preciseAddressDeparture,
     addressDestination,
+    preciseAddressDestination,
     date,
-    time,
-    price,
-    places_available,
+    weight,
+    length,
+    width,
+    depth,
+    userId,
     active,
   } = req.body;
 
-  const photoPath =
-    req.files && req.files.photo && req.files.photo.length > 0
-      ? req.files.photo[0].filename
-      : null;
+  const photoPath = req.files?.photoDelivery ? req.files.photoDelivery[0].filename : null;
 
   try {
-    // Vérifie si une annonce avec ce titre existe déjà pour cet utilisateur
-    const existingAnnouncement = await Announcement.findOne({
-      where: {
-        userId: req.user.id,
-        title: title,
-      },
-    });
-
-    if (existingAnnouncement) {
-      return res.status(409).json({ message: "Vous avez déjà une annonce avec ce titre." });
-    }
-
-    // Crée une nouvelle annonce en adaptant les champs
     await Announcement.create({
-      userId: req.user.id,
+      userId: req.user?.id || userId,
       type,
       title,
       description,
       addressDeparture,
+      preciseAddressDeparture,
       addressDestination,
+      preciseAddressDestination,
       date,
-      time,
-      price,
-      places_available,
-      active,
+      weight,
+      length,
+      width,
+      depth,
       photo: photoPath,
+      active: active ?? 1, // valeur par défaut à 1 si non fournie
     });
 
     return res.status(200).json({ message: "Annonce créée avec succès." });

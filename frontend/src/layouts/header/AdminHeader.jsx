@@ -65,7 +65,7 @@ const AdminHeader = () => {
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <a href="/admin/customers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
-              <a href="/admin/CustomersAnnouncements" className="py-1 hover:text-yellow-600">Annonces</a>
+              <a href="/admin/customers/announcements" className="py-1 hover:text-yellow-600">Annonces</a>
             </div>
           </details>
 

@@ -5,14 +5,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 const CreateTransportCustomer = ({ userId }) => {
   const [formData, setFormData] = useState({
-    type: "offre",
+    type: "demande",
     title: "",
     description: "",
     addressDeparture: "",
     addressDestination: "",
     date: "",
     time: "",
-    price: "",
     photoTransport: null,
     active: 1,
   });
@@ -39,7 +38,6 @@ const CreateTransportCustomer = ({ userId }) => {
     data.append("addressDestination", formData.addressDestination);
     data.append("date", formData.date);
     data.append("time", formData.time);
-    data.append("price", formData.price);
     data.append("userId", userId);
     data.append("active", 1);
 
@@ -54,14 +52,13 @@ const CreateTransportCustomer = ({ userId }) => {
 
       alert("Annonce créée avec succès !");
       setFormData({
-        type: "offre",
+        type: "demande",
         title: "",
         description: "",
         addressDeparture: "",
         addressDestination: "",
         date: "",
         time: "",
-        price: "",
         photoTransport: null,
         active: 1,
       });
@@ -88,7 +85,6 @@ const CreateTransportCustomer = ({ userId }) => {
               className="w-full border border-gray-300 rounded-lg p-3 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               required
             >
-              <option value="offre">Je propose un trajet</option>
               <option value="demande">Je cherche un trajet</option>
             </select>
           </div>
@@ -151,17 +147,6 @@ const CreateTransportCustomer = ({ userId }) => {
               required
             />
           </div>
-
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            placeholder="Prix par passager (€)"
-            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            required
-            min="0"
-          />
 
           <div>
             <label className="block mb-2 font-semibold">Image du véhicule (optionnel)</label>

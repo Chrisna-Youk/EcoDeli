@@ -38,7 +38,7 @@ const ServiceDetailsPage = () => {
   return (
     <ComponentServiceDetailsPage
       title={service?.title}
-      image={service?.photo}
+      image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
       price={service?.price}
       category={service?.category}
       description={service?.description}
