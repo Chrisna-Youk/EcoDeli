@@ -14,6 +14,21 @@ const Message = db.define(
       allowNull: true,
       unique: false,
     },
+    type: {
+      type: DataTypes.ENUM("offer", "message"),
+      allowNull: false,
+      defaultValue: "message",
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
+    dueDate: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      unique: false,
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
