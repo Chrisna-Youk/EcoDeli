@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
-import { useSocket } from "../../utils/io";
+import useAuth from "../../../hooks/useAuth";
+import { useSocket } from "../../../utils/io";
 
 const ChatCustomer = () => {
   const { customerId, providerId } = useParams();
@@ -29,11 +29,12 @@ const ChatCustomer = () => {
     },
   });
 
-  // WebSocket: Listen for incoming messages
+  // WebSocket
   useEffect(() => {
     if (!socket || !chat?.id) return;
 
-    socket.emit("joinRoom", chat.id); // optionally join a room
+    socket.emit("joinRoom", chat.id);
+
     socket.on("newMessage", (message) => {
       setLocalMessages((prev) => [...prev, message]);
     });
@@ -44,7 +45,7 @@ const ChatCustomer = () => {
   }, [socket, chat?.id]);
 
   // Combine messages
-  const allMessages = [...(messages || []), ...localMessages];
+  const allMessages = [...messages, ...localMessages];
 
   const handleSend = () => {
     if (!newMessage.trim()) return;
@@ -52,11 +53,11 @@ const ChatCustomer = () => {
     const messagePayload = {
       content: newMessage,
       chatId: chat.id,
-      userId: customerId, // ou providerId selon le contexte
+      userId: customerId,
+      type: "message",
     };
 
     socket.emit("sendMessage", messagePayload);
-    setLocalMessages((prev) => [...prev, { ...messagePayload, createdAt: new Date().toISOString() }]);
     setNewMessage("");
   };
 
@@ -68,11 +69,17 @@ const ChatCustomer = () => {
         {allMessages.map((msg, idx) => (
           <div
             key={idx}
-            className={`flex ${msg.userId == customerId ? "justify-end" : "justify-start"}`}
+            className={`flex ${
+              msg.userId == customerId ? "justify-end" : "justify-start"
+            }`}
           >
-            <div className={`px-4 py-2 rounded-lg max-w-xs ${
-              msg.userId == customerId ? "bg-blue-100 text-blue-700" : "bg-white text-gray-700"
-            }`}>
+            <div
+              className={`px-4 py-2 rounded-lg max-w-xs ${
+                msg.userId == customerId
+                  ? "bg-blue-100 text-blue-700"
+                  : "bg-white text-gray-700"
+              }`}
+            >
               {msg.content}
             </div>
           </div>

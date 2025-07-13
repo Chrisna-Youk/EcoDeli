@@ -132,7 +132,7 @@ async function migrate() {
         name: "bricolage",
         active: true,
       },
-    });*/
+    });
 
     // Create services for userId 1 and catégorieId 1
     await Service.findOrCreate({
