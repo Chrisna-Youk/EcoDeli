@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import useAuthContext from "../../contexts/auth/useAuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const CreateServiceCustomer = () => {
   const {
@@ -10,9 +12,10 @@ const CreateServiceCustomer = () => {
     formState: { errors },
   } = useForm();
 
-  const [error, setError] = useState("");
-
   const http = useAuth();
+  const context = useAuthContext();
+  const userId = jwtDecode(context.auth).id;
+  const [error, setError] = useState("");
 
   const { data: categories } = useQuery({
     queryKey: ["CategoriesAvailable"],
@@ -44,6 +47,7 @@ const CreateServiceCustomer = () => {
     formData.append("postalCode", data.postalCode);
     formData.append("categoryId", data.categoryId);
     formData.append("type", "demande");
+    formData.append("userId", userId);
 
     formData.append("photoService", data.photoService[0]);
 
@@ -63,7 +67,6 @@ const CreateServiceCustomer = () => {
 
       <div className="w-full max-w-2xl bg-gray-50 p-8 rounded-xl shadow-md">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          {/* Titre */}
           <input
             {...register("title", {
               required: "Le titre est requis",
@@ -80,7 +83,6 @@ const CreateServiceCustomer = () => {
             <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
           )}
           {error != "" && <p className="text-red-500 text-sm mt-1">{error}</p>}
-          {/* Description */}
           <textarea
             {...register("description", {
               required: "La description est requise",
@@ -97,7 +99,6 @@ const CreateServiceCustomer = () => {
               {errors.description.message}
             </p>
           )}
-          {/* Prix */}
           <input
             {...register("price", {
               required: "Le tarif est requis",
@@ -115,7 +116,6 @@ const CreateServiceCustomer = () => {
             <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>
           )}
 
-          {/* Adresse */}
           <div className="flex gap-4">
             <input
               {...register("city", {
@@ -142,7 +142,6 @@ const CreateServiceCustomer = () => {
               </p>
             )}
           </div>
-          {/* Type de service */}
           <select
             {...register("categoryId", {
               required: "Le type de service est requis",
@@ -161,7 +160,6 @@ const CreateServiceCustomer = () => {
               {errors.categorie.message}
             </p>
           )}
-          {/* Photo */}
           <div>
             <label className="block mb-2 font-semibold">
               Photo (optionnel)

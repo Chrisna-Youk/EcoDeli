@@ -1,15 +1,23 @@
 import Service from "../../../models/service.model.js";
 
 async function createServiceController(req, res) {
-  const { title, description, price, city, postalCode, categoryId,type } =
-    req.body;
+  const { 
+    title, 
+    description, 
+    price, 
+    city, 
+    postalCode, 
+    categoryId, 
+    type, 
+    userId 
+  } = req.body;
 
-  const photoPath = req.files.photoService[0].filename || null;
+  const photoPath = req.files?.photoService ? req.files.photoService[0].filename : null;
 
   try {
     const existingService = await Service.findOne({
       where: {
-        userId: req.user.id,
+        userId: userId,
         title: title,
       },
     });
@@ -27,14 +35,14 @@ async function createServiceController(req, res) {
       city: city,
       postalCode: postalCode,
       categoryId: categoryId,
-      photo: photoPath || null,
-      userId: req.user.id,
-      type : type,
+      photo: photoPath,
+      userId: userId,
+      type: type,
     });
 
     return res.status(200).json({ message: "Service créé avec succès." });
   } catch (error) {
-    console.error(error);
+    console.error("Erreur lors de la création du service:", error);
     return res.status(500).json({ message: "Erreur serveur." });
   }
 }
