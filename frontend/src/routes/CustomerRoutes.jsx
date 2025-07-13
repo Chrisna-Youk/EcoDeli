@@ -20,9 +20,7 @@ import CustomerAnnouncements from "../pages/customer/CustomerAnnoucements";
 import SubscriptionPlans from "../pages/customer/SubscriptionsCustomer";
 import CustomerProfilePage from "../pages/customer/CustomerProfile";
 import PaymentTrackingPage from "../pages/customer/CustomerPayementsTracking";
-import ChatCustomer from "../pages/customer/ChatCustomer";
 import ServiceDetailsPage from "../pages/customer/ServiceDetailsPage";
-import ServiceDetailsPage from "../pages/TO_IMPLEMENT/ServiceDetailsPage";
 import ProfileDetails from "../pages/customer/ProfileDetails";
 import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
 import RequestBecomeProvider from "../pages/customer/RequestBecomeProvider";
@@ -41,16 +39,14 @@ const CustomerRoutes = (
       <Route path="Deliveries" element={<DeliveriesPageCustomer />} />
       <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
-      <Route path="chat/:customerId/:providerId" element={<ChatCustomer />} />
       <Route path="Transport" element={<TransportPageCustomer />} />
-      <Route path="CreateDelivery" element={<CreateDeliveryCustomer />} />
+      <Route path="create/delivery" element={<CreateDeliveryCustomer />} />
       <Route path="create/service" element={<CreateServiceCustomer />} />
-      <Route path="customer/create" element={<CreatePageCustomer />} />
+      <Route path="create/" element={<CreatePageCustomer />} />
       <Route path="create/transport" element={<CreateTransportCustomer />} />
       <Route path="customer/announcements" element={<CustomerAnnouncements />} />
       <Route path="Subscription" element={<SubscriptionPlans />} />
       <Route path="payements" element={<PaymentTrackingPage />} />
-      <Route path="ChatCustomer" element={<ChatCustomer />} />
       <Route path="profile/:profileId" element={<ProfileDetails />}/>
       <Route path="profile" element={<CustomerProfilePage />}/>
       <Route path="profile/request/delivrer" element={<RequestBecomeDeliverer />}/>

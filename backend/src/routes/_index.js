@@ -62,6 +62,9 @@ import readPapersAllController from "../controllers/papers/read/readPapersAllCon
 
 // controller/transport
 import createTransportController from "../controllers/transport/create/create.controller.js";
+import readTransportController from "../controllers/transport/read/read.controller.js";
+import deleteAnnouncementController from "../controllers/announcement/delete/delete.controller.js";
+import deleteTransportController from "../controllers/transport/delete/delete.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -93,9 +96,10 @@ const routes = [
   // controllers/announcement
   route(router, "/announcement/read", readAnnouncementController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
   route(router, "/announcement/read/:userId", readAnnouncementByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
-  route(router, "/announcement/create", createAnnouncementController, ["post"]),
-  route(router, "/announcement/update", updateUserController, ["put"], authMiddleware()),
-  route(router, "/announcement/delete", deleteUserController, ["delete"], authMiddleware()),
+  route(router, "/announcement/create", createAnnouncementController, ["post"], upload.fields([{ name: "photoDelivery", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/announcement/delete", deleteAnnouncementController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+  
 
   // controllers/papers
   route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}, {name: "pricesDocument", maxCount: 1}])),
@@ -126,11 +130,12 @@ const routes = [
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   //controller/review
-   route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
-   //controller/transport
-   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-
+  //controller/transport
+  route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/transport/read", readTransportController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/transport/delete", deleteTransportController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 ];
 
 export default routes;

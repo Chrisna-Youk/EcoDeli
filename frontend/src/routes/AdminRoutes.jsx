@@ -22,6 +22,7 @@ import ProviderManagementPage from "../pages/admin/user/ProviderManagementPage"
 import ProviderRequestImages from "../pages/admin/providers/ProviderRequestImages";
 import DelivrerRequestsPage from "../pages/admin/delivrers/DelivrerRequests";
 import ProviderAnnouncementsAdmin from "../pages/admin/providers/ProviderAnnouncementsAdmin";
+import CustomerAnnouncementsAdmin from "../pages/admin/customers/CustomerAnnouncementsAdmin";
 
 
 const AdminRoutes = (
@@ -39,6 +40,7 @@ const AdminRoutes = (
       <Route path="customers" element={<CustomersManagementPage />} />
       <Route path="providers" element={<ProviderManagementPage />} />
       <Route path="/admin/providers/annoucements" element={<ProviderAnnouncementsAdmin />} />
+      <Route path="/admin/customers/announcements" element={<CustomerAnnouncementsAdmin />} />
       <Route path="delivrers" element={<DelivrerManagementPage />} />
       <Route path="merchants" element={<MerchantsManagementPage />} />
       <Route path="MerchantRequests" element={<MerchantRequestsPage />} />
