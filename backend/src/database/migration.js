@@ -7,24 +7,24 @@ import Message from "../models/message.model.js";
 import Chat from "../models/chat.model.js";
 
 async function migrate() {
-  const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_DIALECT } =
-    process.env;
+  // const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_DIALECT } =
+  //   process.env;
 
-  const instanceToCreateDbIfNotExists = new Sequelize(
-    "",
-    DB_USERNAME,
-    DB_PASSWORD,
-    {
-      host: DB_HOST,
-      port: DB_PORT,
-      dialect: DB_DIALECT,
-      logging: false,
-    }
-  );
+  // const instanceToCreateDbIfNotExists = new Sequelize(
+  //   "",
+  //   DB_USERNAME,
+  //   DB_PASSWORD,
+  //   {
+  //     host: DB_HOST,
+  //     port: DB_PORT,
+  //     dialect: DB_DIALECT,
+  //     logging: false,
+  //   }
+  // );
   try {
-    await instanceToCreateDbIfNotExists.query(
-      `CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`
-    );
+    // await instanceToCreateDbIfNotExists.query(
+    //   `CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`
+    // );
 
     console.log(`⏳ Connecting to database...`);
     await db.authenticate();
@@ -45,6 +45,7 @@ async function migrate() {
     await import("../models/relations/step.relation.js");
     await import("../models/relations/service.relation.js");
     await import("../models/transport.model.js");
+    await import("../models/relations/chat.relation.js");
 
     const args = process.argv.slice(2);
     const force = args.includes("--force") ? true : false;
@@ -184,6 +185,7 @@ async function migrate() {
       where: { id: 1 },
       defaults: {
         id: 1,
+        serviceId: 1,
         customerId: 20,
         providerId: 30,
       },
