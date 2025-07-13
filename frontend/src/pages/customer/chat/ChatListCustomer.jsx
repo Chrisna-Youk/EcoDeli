@@ -19,8 +19,8 @@ const ChatListCustomer = () => {
 
   console.log(chats);
   return (
-    <div className="bg-white pt-0 h-screen 2xl:ml-150 py-10 w-full overflow-x-hidden">
-      <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
+    <div className="bg-white pt-0 h-screen py-10 w-full max-w-7xl mx-auto overflow-x-hidden">
+      <div className="p-10 bg-white w-full max-w-7xl mx-auto mb-8 shadow-md"></div>
       <div className="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Dernières Prestations
@@ -58,8 +58,9 @@ const ChatListCustomer = () => {
                 return (
                   <tr key={chat.id} className="hover:bg-zinc-300">
                     <td className="px-4 py-3 text-sm text-gray-800">
-                      {chat?.provider.firstName + " " + chat?.provider.lastName ??
-                        "Client inconnu"}
+                      {chat?.provider.firstName +
+                        " " +
+                        chat?.provider.lastName ?? "Client inconnu"}
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-800">
                       {chat.service.title ?? "Service inconnu"}

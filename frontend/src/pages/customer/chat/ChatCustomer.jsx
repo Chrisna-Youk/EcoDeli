@@ -73,15 +73,37 @@ const ChatCustomer = () => {
               msg.userId == customerId ? "justify-end" : "justify-start"
             }`}
           >
-            <div
-              className={`px-4 py-2 rounded-lg max-w-xs ${
-                msg.userId == customerId
-                  ? "bg-blue-100 text-blue-700"
-                  : "bg-white text-gray-700"
-              }`}
-            >
-              {msg.content}
-            </div>
+            {msg?.type === "offer" ? (
+              <div
+                className={`px-4 py-2 rounded-lg max-w-xs bg-yellow-100 text-yellow-800`}
+              >
+                {msg.content}
+                {msg.type === "offer" && msg.price && (
+                  <div>
+                    <div className="text-sm mt-1">
+                      💰 {msg.price} € – 📅
+                      {new Date(msg.dueDate).toLocaleDateString()}
+                    </div>
+                    <button
+                      onClick={() => handleAcceptOffer(msg)}
+                      className="mt-2 text-sm text-green-600 hover:underline"
+                    >
+                      ✅ Accepter l'offre
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div
+                className={`px-4 py-2 rounded-lg max-w-xs ${
+                  msg.userId == customerId
+                    ? "bg-blue-100 text-blue-700"
+                    : "bg-white text-gray-700"
+                }`}
+              >
+                {msg.content}
+              </div>
+            )}
           </div>
         ))}
       </div>

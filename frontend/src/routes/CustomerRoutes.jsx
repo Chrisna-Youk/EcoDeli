@@ -20,11 +20,8 @@ import CustomerAnnouncements from "../pages/customer/CustomerAnnoucements";
 import SubscriptionPlans from "../pages/customer/SubscriptionsCustomer";
 import CustomerProfilePage from "../pages/customer/CustomerProfile";
 import PaymentTrackingPage from "../pages/customer/CustomerPayementsTracking";
-<<<<<<< HEAD
-=======
 import ChatCustomer from "../pages/customer/chat/ChatCustomer";
 import ChatListCustomer from "../pages/customer/chat/ChatListCustomer";
->>>>>>> 823697af08bd0e0f07c3c0a1f38e1da1fde492eb
 import ServiceDetailsPage from "../pages/customer/ServiceDetailsPage";
 import ProfileDetails from "../pages/customer/ProfileDetails";
 import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
@@ -49,9 +46,9 @@ const CustomerRoutes = (
       <Route path="Transport" element={<TransportPageCustomer />} />
       <Route path="create/delivery" element={<CreateDeliveryCustomer />} />
       <Route path="create/service" element={<CreateServiceCustomer />} />
-      <Route path="create/" element={<CreatePageCustomer />} />
+      <Route path="create" element={<CreatePageCustomer />} />
       <Route path="create/transport" element={<CreateTransportCustomer />} />
-      <Route path="customer/announcements" element={<CustomerAnnouncements />} />
+      <Route path="announcements" element={<CustomerAnnouncements />} />
       <Route path="Subscription" element={<SubscriptionPlans />} />
       <Route path="payements" element={<PaymentTrackingPage />} />
       <Route path="profile/:profileId" element={<ProfileDetails />}/>

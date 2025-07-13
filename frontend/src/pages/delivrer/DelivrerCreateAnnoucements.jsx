@@ -46,22 +46,21 @@ const DelivrerCreateAnnoucements = () => {
             />
           </div> */}
 
-<div className="w-full">
-  <LocationAutocompleteInput
-    placeholder="Ville de départ"
-    onSelect={(location) =>
-      console.log("Départ sélectionné:", location)
-    }
-  />
-</div>
-<div className="w-full">
-  <ArrivalMapSelect
-    onSelect={(location) =>
-      console.log("Arrivée sélectionnée via carte:", location)
-    }
-  />
-</div>
-
+          <div className="w-full">
+            <LocationAutocompleteInput
+              placeholder="Ville de départ"
+              onSelect={(location) =>
+                console.log("Départ sélectionné:", location)
+              }
+            />
+          </div>
+          <div className="w-full">
+            <ArrivalMapSelect
+              onSelect={(location) =>
+                console.log("Arrivée sélectionnée via carte:", location)
+              }
+            />
+          </div>
 
           <input
             type="number"
