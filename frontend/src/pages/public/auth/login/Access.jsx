@@ -26,6 +26,7 @@ const Access = () => {
         setError(message);
       },
       onSuccess: () => {
+        localStorage.setItem("connected", true);
         navigate("/");
       },
     });
