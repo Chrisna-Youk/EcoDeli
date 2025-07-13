@@ -1,5 +1,5 @@
 .root {
-    -fx-font-family: "Segoe UI";
+    /*-fx-font-family: "Segoe UI";*/
     -fx-background-color: #B9D5C5;
 
 }
@@ -18,3 +18,10 @@
 .button:hover {
     -fx-background-color: #bca14c;
 }
+
+
+
+.alert-error .content {
+    -fx-background-color: #B9D5C5;
+}
+

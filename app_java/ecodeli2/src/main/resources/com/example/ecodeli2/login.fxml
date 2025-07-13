@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.ecodeli2.LoginController"
+      alignment="CENTER"
+      spacing="10">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Ecodeli Admin Graph" style="-fx-font-size:18px;"/>
+
+    <TextField fx:id="emailField"
+               promptText="Email"
+               prefWidth="250"/>
+
+    <PasswordField fx:id="passwordField"
+                   promptText="Password"
+                   prefWidth="250"/>
+
+    <Button text="Login"
+            onAction="#onLoginClicked"
+            defaultButton="true"
+            prefWidth="250"/>
+</VBox>
