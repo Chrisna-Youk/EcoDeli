@@ -33,8 +33,8 @@ const HomeAdmin = () => {
 
         <div className="flex flex-row mt-12 gap-25 flex-wrap">
           <div className="text-black rounded-2xl shadow-xl p-8 2xl:w-140 md:w-140 xl:w-90 h-80 bg-[url(https://img.freepik.com/free-photo/delivery-truck-with-location-pin-tracking-shipping-fast-delivery-car-deliver-express-delivery-transportation-logistics-concept-background-3d-rendering-illustration_56104-2063.jpg?t=st=1752068677~exp=1752072277~hmac=99a519b68c4919d2b70d36b9882904446d2f611b3d7d7779472eb9a1a981880f&w=900)] bg-cover">
-            <div className="text-xl font-bold">🧾 {totalUsers}</div>
-            <div className="text-md">Comptes créés</div>
+            <div className="text-4xl font-bold">🧾 {totalUsers}</div>
+            <div className="text-xl mt-3">Comptes créés</div>
           </div>
 
           <div className="flex flex-row gap-8 flex-wrap">
@@ -79,11 +79,11 @@ const HomeAdmin = () => {
                 </thead>
                 <tbody className="bg-white">
                   {lastUsers.map((user, index) => (
-                    <tr key={index} className="hover:bg-zinc-300">
-                      <td className="px-4 py-3 text-sm text-gray-800">{user.firstName} {user.lastName}</td>
+                    <tr key={index} className="hover:bg-yellow-100 cursor-grab">
+                      <td className="px-4 py-3 text-sm text-gray-800 rounded-l-2xl">{user.firstName} {user.lastName}</td>
                       <td className="px-4 py-3 text-sm text-gray-800">{user.email}</td>
                       <td className="px-4 py-3 text-sm text-gray-800">{user.role}</td>
-                      <td className="px-4 py-3 text-sm">
+                      <td className="px-4 py-3 text-sm rounded-r-2xl">
                         <span
                         className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                         user.active == 1

@@ -12,11 +12,31 @@ const Papers = db.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    driverLicence: {
+    driverLicense: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    pricesDocument: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     profilePhoto: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    siret: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    provider_category: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    request_status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    role_requested: {
       type: DataTypes.STRING,
       allowNull: true,
     },

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminDasboardLogo from '../../assets/images/admin-icon.svg'
 
 const AdminHeader = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -26,7 +27,7 @@ const AdminHeader = () => {
         } 2xl:translate-x-0 transition-transform duration-300 fixed z-40 top-0 left-0 h-full w-72 bg-white shadow-md text-gray-700 flex flex-col p-4 font-[Poppins] text-md border-r border-gray-200`}
       >
         <div className="flex justify-around items-center mb-6">
-          <img src="../admin-icon.svg" alt="Logo" className="h-16" />
+          <img src={AdminDasboardLogo} alt="Logo" className="h-16" />
           <button className="2xl:hidden" onClick={() => setIsSidebarOpen(false)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +78,8 @@ const AdminHeader = () => {
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <a href="/admin/providers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
-              <a href="/admin/" className="py-1 hover:text-yellow-600">Annonces</a>
+              <a href="/admin/providers/annoucements" className="py-1 hover:text-yellow-600">Annonces</a>
+              <a href="/admin/request/provider" className="py-1 hover:text-yellow-600">Demandes</a>
             </div>
           </details>
 
@@ -92,7 +94,7 @@ const AdminHeader = () => {
               <a href="/admin/delivrers" className="py-1 hover:text-yellow-600">Utilisateurs</a>
               <a href="/delivrer/DeliveriesHistory" className="py-1 hover:text-yellow-600">Livraisons</a>
               <a href="/admin/DelivrersAnnouncements" className="py-1 hover:text-yellow-600">Annonces</a>
-              <a href="/admin/DelivrerRequests" className="py-1 hover:text-yellow-600">Demandes</a>
+              <a href="/admin/request/delivrer" className="py-1 hover:text-yellow-600">Demandes</a>
             </div>
           </details>
 

@@ -1,5 +1,6 @@
 USE ecodeli;
 
+
 INSERT INTO user (
   id,
   firstName,

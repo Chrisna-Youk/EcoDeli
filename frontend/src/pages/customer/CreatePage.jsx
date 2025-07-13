@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 const CreatePageCustomer = () => {
   const { t } = useTranslation();
@@ -19,20 +20,20 @@ const CreatePageCustomer = () => {
         </a>
 
         {/* Services */}
-        <a href="../Customer/CreateService">
+        <Link to="/customer/create/service">
           <div className="bg-yellow-500 hover:bg-yellow-600 text-white transition duration-300 rounded-3xl shadow-xl p-10 flex flex-col justify-center items-center text-center hover:scale-105">
             <h3 className="text-xl font-semibold mb-2">🧰 Créer une annonce de Services</h3>
             <p className="text-sm opacity-90">Proposer ou demander un service</p>
           </div>
-        </a>
+        </Link>
 
         {/* Transport */}
-        <a href="../Customer/CreateTransport">
+        <Link to="/customer/create/transport">
           <div className="bg-yellow-500 hover:bg-yellow-600 text-white transition duration-300 rounded-3xl shadow-xl p-10 flex flex-col justify-center items-center text-center hover:scale-105">
             <h3 className="text-xl font-semibold mb-2">🚗Créer une annonce de Transport"</h3>
             <p className="text-sm opacity-90">Covoiturage ou demande de trajet</p>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );

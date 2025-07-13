@@ -41,8 +41,8 @@ const CustomerHeader = () => {
              <h3 tabIndex={0} className="text-gray-500 hover:text-black hover:bg-gray-300 p-2 shadow-2xl bg-gray-100 rounded-3xl duration-500 hover:scale-105">Pro</h3>
             </summary>
             <ul className="absolute right-0 mt-2 w-40 bg-white shadow-md z-10 rounded-xl">
-              <li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Devenir Livreur</li>
-              <li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Devenir Prestataire</li>
+              <li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg"><Link to={"/customer/profile/request/delivrer"}>Devenir Livreur</Link></li>
+              <li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg"><Link to={"/customer/profile/request/provider"}>Devenir Prestataire</Link></li>
             </ul>
           </details>
 
@@ -65,11 +65,11 @@ const CustomerHeader = () => {
               </svg>
             </summary>
             <ul className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-md z-10">
-              <a href="/Customer/Profil"><li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon Profil</li></a>
-              <a href="/Customer/Create"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Créer une annonce</li></a>
-              <a href="/Customer/MyAnnoucements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes annonces</li></a>
-              <a href="/Customer/Payements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes paiements</li></a>
-              <a href="/Customer/Subscription"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon abonnement</li></a>
+              <a href="/customer/profile"><li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon Profil</li></a>
+              <a href="/customer/preate"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Créer une annonce</li></a>
+              <a href="/customer/annoucements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes annonces</li></a>
+              <a href="/customer/Payements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes paiements</li></a>
+              <a href="/customer/Subscription"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon abonnement</li></a>
               <a href=""><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Déconnexion</li></a>
             </ul>
           </details>

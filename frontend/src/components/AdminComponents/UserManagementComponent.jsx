@@ -5,7 +5,7 @@ const UserManagementComponent = ({ users = [], onEdit, onDelete }) => {
     <div className="bg-white min-h-screen py-12 px-6 flex flex-col items-center w-screen">
       <div className="p-4 bg-white w-screen mb-8 shadow-md"></div>
       <div className="w-full max-w-5xl space-y-10">
-        <h1 className="text-3xl font-bold text-gray-900">Gestion des utilisateurs</h1>
+        <h1 className="text-3xl font-bold text-gray-900 flex gap-3">Gestion des <p className='text-yellow-500'>Utilisateurs</p></h1>
 
         <div className="overflow-x-auto rounded-lg shadow">
           <table className="min-w-full divide-y divide-gray-200 text-sm text-gray-700">

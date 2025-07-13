@@ -8,9 +8,7 @@ const ServiceDetailsPage = () => {
   const http = useAuth();
 
   const {
-    data: service,
-    isLoading: isServiceLoading,
-    error: serviceError,
+    data: service
   } = useQuery({
     queryKey: ["Service", serviceId],
     queryFn: async () => {
@@ -21,11 +19,7 @@ const ServiceDetailsPage = () => {
 
   const userId = service?.userId;
 
-  const {
-    data: user,
-    isLoading: isUserLoading,
-    error: userError,
-  } = useQuery({
+  const {data: user} = useQuery({
     queryKey: ["User", userId],
     queryFn: async () => {
       const response = await http.get(`/user/read/${userId}`);
@@ -33,26 +27,19 @@ const ServiceDetailsPage = () => {
     }
   });
 
-  if (isServiceLoading || isUserLoading) return <p>Chargement...</p>;
-  if (serviceError || userError)
-    return <p>Erreur : {serviceError?.message || userError?.message}</p>;
-
-  console.log({ status: user.status });
-  console.log({ photo: user.photo });
-
 
   return (
     <ComponentServiceDetailsPage
-      title={service.title}
-      image={service.photo}
-      price={service.price}
-      category={service.category}
-      description={service.description}
-      city={service.city}
-      name_provider={user.firstName}
-      lastname_provider={user.lastName}
-      status_provider={user.status}
-      photo_provider={user.photo}
+      title={service?.title}
+      image={service?.photo}
+      price={service?.price}
+      category={service?.category}
+      description={service?.description}
+      city={service?.city}
+      name_provider={user?.firstName}
+      lastname_provider={user?.lastName}
+      status_provider={user?.status}
+      photo_provider={user?.photo}
     />
   );
 };

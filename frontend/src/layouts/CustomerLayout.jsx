@@ -21,7 +21,7 @@ const CustomerLayout = () => {
   const authContext = useAuthContext();
   const accessToken = jwtDecode(authContext.auth);
 
-  if (!(accessToken.role === "admin")) {
+  if (!(accessToken.role === "customer" || "admin")) {
     navigate(-1);
   }
 

@@ -10,11 +10,11 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 // Pages
 import HomeProvider from "../pages/provider/HomeProvider";
 import ProviderAnnouncements from "../pages/provider/ProviderAnnoucments";
-import CreateServiceProvider from "../pages/provider/CreateServicePageProvider";
 import EditServiceProvider from "../pages/provider/EditServiceProvider";
 import ProviderPaymentsHistory from "../pages/provider/ProviderPaymentsHistory";
 import ProviderProvidingHistory from "../pages/provider/ProviderProvidingHistory";
 import ProviderUpComingProviding from "../pages/provider/DelivrerUpComingServices";
+import CreateServiceProvider from "../pages/provider/CreateServiceProvider";
 // import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
 const ProviderRoutes = (

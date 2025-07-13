@@ -26,7 +26,7 @@ const ProviderAnnouncements = () => {
           <p className="text-black text-xl font-semibold">Your Announcements</p>
           <p>You can edit, create or delete an announcements here.</p>
         </div>
-        <Link to={``} className="mr-100">
+        <Link to={`/provider/create/service`} className="mr-100">
           <svg
             className="h-10 hover:opacity-80 duration-300"
             viewBox="0 0 1024 1024"

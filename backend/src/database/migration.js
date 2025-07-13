@@ -31,7 +31,6 @@ async function migrate() {
     await import("../models/user.model.js");
     await import("../models/subscription.model.js");
     await import("../models/papers.model.js");
-    await import("../models/announcement.model.js");
     await import("../models/checkpoint.model.js");
     await import("../models/order.model.js");
     await import("../models/invoice.model.js");
@@ -41,6 +40,7 @@ async function migrate() {
     await import("../models/relations/user.relation.js");
     await import("../models/relations/step.relation.js");
     await import("../models/relations/service.relation.js");
+    await import("../models/transport.model.js");
 
     // Create admin sample User : admin@test.com and Admin123?WowBro
     await User.findOrCreate({
@@ -61,7 +61,7 @@ async function migrate() {
     });
 
     // Create categories : 5 units
-    await Category.findOrCreate({
+    /*await Category.findOrCreate({
       where: { id: 1, name: "cours" },
       defaults: {
         name: "cours",
@@ -83,7 +83,7 @@ async function migrate() {
         name: "bricolage",
         active: true,
       },
-    });
+    });*/
 
     // Create services for userId 1 and catégorieId 1
     await Service.findOrCreate({

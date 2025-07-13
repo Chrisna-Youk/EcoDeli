@@ -4,6 +4,7 @@ import route from "./route.js";
 // middlewares
 import authMiddleware from "../middlewares/auth/auth.middleware.js";
 import permissionMiddleware from "../middlewares/permissions/permission.middleware.js";
+import staticfilesMiddleware from "../middlewares/basics/staticfiles.middleware.js";
 
 // uploader
 import upload from "../upload/uploader.js";
@@ -35,6 +36,7 @@ import readAnnouncementByIdController from "../controllers/announcement/read/rea
 // controllers/papers
 import updatePapersController from "../controllers/papers/update/update.controller.js";
 import readPapersController from "../controllers/papers/read/read.controller.js";
+import readPapersByRoleRequested from "../controllers/papers/read/readPapersAllController.controller.js";
 
 // controllers/checkpoint
 import createCheckpointController from "../controllers/checkpoint/create/create.controller.js";
@@ -50,6 +52,10 @@ import updateServiceController from "../controllers/service/update/update.contro
 
 // controller/review
 import readReviewByUserIdController from "../controllers/review/read/readReviewByUserId.controller.js";
+import readPapersAllController from "../controllers/papers/read/readPapersAllController.controller.js";
+
+// controller/transport
+import createTransportController from "../controllers/transport/create/create.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -86,8 +92,10 @@ const routes = [
   route(router, "/announcement/delete", deleteUserController, ["delete"], authMiddleware()),
 
   // controllers/papers
-  route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["delivrer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}])),
-  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "delivrer"])),
+  route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}, {name: "pricesDocument", maxCount: 1}])),
+  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/paper/read/", readPapersAllController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
 
   // controllers/checkpoint
   route(router, "/checkpoint/create", createCheckpointController, ["post"], authMiddleware(), permissionMiddleware(["admin"])),
@@ -98,7 +106,7 @@ const routes = [
   route(router, "/service/read", readServiceController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/service/read/:serviceId", readServiceByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/service/read/user/:userId", readServiceByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/service/delete", deleteServiceController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider"])),
+  route(router, "/service/delete", deleteServiceController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/service/update/:serviceId", updateServiceController, ["put"], upload.fields([{ name: "photoService", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider"])),
 
   // controllers/category
@@ -106,6 +114,9 @@ const routes = [
 
   //controller/review
    route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+   //controller/transport
+   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
 ];
 

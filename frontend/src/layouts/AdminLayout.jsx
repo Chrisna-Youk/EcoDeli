@@ -26,7 +26,7 @@ const AdminLayout = () => {
     i18n.changeLanguage("en");
   }, [i18n]);
   return (
-    <div className="flex flex-row bg-zinc-900">
+    <div className="flex flex-row bg-white">
       <AdminHeader />
       <main>
         <Outlet />

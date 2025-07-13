@@ -1,8 +1,8 @@
 import { db } from "../database/db.js";
 import { DataTypes } from "sequelize";
 
-const Announcement = db.define(
-  "announcement",
+const Transport = db.define(
+  "transport",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,32 +11,17 @@ const Announcement = db.define(
     },
     title: {
       type: DataTypes.STRING(128),
-      allowNull: true,
-      unique: false,
-    },
-    photo: {
-      type: DataTypes.STRING(128),
-      allowNull: true,
+      allowNull: false,
       unique: false,
     },
     description: {
       type: DataTypes.TEXT(),
-      allowNull: true,
+      allowNull: false,
       unique: false,
     },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      unique: false,
-    },
-    size: {
-      type: DataTypes.STRING(3),
-      allowNull: true,
-      unique: false,
-    },
-    weight: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
+    price: {
+      type: DataTypes.INTEGER(),
+      allowNull: false,
       unique: false,
     },
     addressDeparture: {
@@ -49,18 +34,8 @@ const Announcement = db.define(
       allowNull: true,
       unique: false,
     },
-    type: {
+    photo: {
       type: DataTypes.STRING(128),
-      allowNull: true,
-      unique: false,
-    },
-    length: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      unique: false,
-    },
-    width: {
-      type: DataTypes.FLOAT,
       allowNull: true,
       unique: false,
     },
@@ -74,26 +49,22 @@ const Announcement = db.define(
       allowNull: true,
       unique: false,
     },
-    depth: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      unique: false,
-    },
-    price: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      unique: false,
-    },
-    places_available: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      unique: false,
-    },
     active: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
-      allowNull: false,
+      allowNull: true,
       unique: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
@@ -102,4 +73,4 @@ const Announcement = db.define(
   }
 );
 
-export default Announcement;
+export default Transport;

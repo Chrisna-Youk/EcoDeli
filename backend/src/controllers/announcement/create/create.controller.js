@@ -1,39 +1,57 @@
-import Announcement from "../../../models/announcement.model.js";
+import Announcement from "../../../models/Announcement.model.js";
 
 async function createAnnouncementController(req, res) {
   const {
+    type,
     title,
-    photo,
     description,
-    quantity,
-    size,
-    weight,
     addressDeparture,
     addressDestination,
-    length,
-    width,
-    depth,
+    date,
+    time,
+    price,
+    places_available,
     active,
   } = req.body;
 
+  const photoPath =
+    req.files && req.files.photo && req.files.photo.length > 0
+      ? req.files.photo[0].filename
+      : null;
+
   try {
-    await Announcement.create({
-      title: title,
-      photo: photo,
-      description: description,
-      quantity: quantity,
-      size: size,
-      weight: weight,
-      addressDeparture: addressDeparture,
-      addressDestination: addressDestination,
-      length: length,
-      width: width,
-      depth: depth,
-      active: active,
+    // Vérifie si une annonce avec ce titre existe déjà pour cet utilisateur
+    const existingAnnouncement = await Announcement.findOne({
+      where: {
+        userId: req.user.id,
+        title: title,
+      },
     });
-    return res.status(200).json({ message: "Annoucement created" });
+
+    if (existingAnnouncement) {
+      return res.status(409).json({ message: "Vous avez déjà une annonce avec ce titre." });
+    }
+
+    // Crée une nouvelle annonce en adaptant les champs
+    await Announcement.create({
+      userId: req.user.id,
+      type,
+      title,
+      description,
+      addressDeparture,
+      addressDestination,
+      date,
+      time,
+      price,
+      places_available,
+      active,
+      photo: photoPath,
+    });
+
+    return res.status(200).json({ message: "Annonce créée avec succès." });
   } catch (error) {
-    return res.status(400).json({ message: "Bad request" });
+    console.error("Erreur lors de la création d'annonce:", error);
+    return res.status(500).json({ message: "Erreur serveur." });
   }
 }
 

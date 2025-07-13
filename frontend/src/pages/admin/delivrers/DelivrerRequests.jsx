@@ -2,9 +2,9 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 
 import { useQuery } from '@tanstack/react-query';
-import RequestProviderComponent from '../../../components/AdminComponents/RequestProviderComponent';
+import RequestDelivrerComponent from '../../../components/AdminComponents/RequestDelivrerComponent';
 
-const ProviderRequestsPage = () => {
+const DelivrerRequestsPage = () => {
   const http = useAuth();
 
   const { data: papers = [], isLoading, isError } = useQuery({
@@ -17,23 +17,31 @@ const ProviderRequestsPage = () => {
 
   const handleAccept = async (paper) => {
   try {
-    const userId = paper.userId; // Supposant que paper contient un champ user avec un _id
-    await http.put(`/user/update/${userId}`, { role: "provider" });
+    const userId = paper.userId;
+    await http.put(`/user/update/${userId}`, { role: "delivrer" });
     await http.put(`/paper/update/${userId}`, { request_status: "0" });
 
-    alert('Utilisateur promu en prestataire !');
+    alert('Utilisateur promu en livreur !');
   } catch (error) {
     console.error(error);
     alert("Erreur lors de l'envoi");
   }
 };
 
-  const handleDecline = (paper) => {
-    console.log('Supprimer :', paper);
+  const handleDecline = async (paper) => {
+    try {
+      const userId = paper.userId; 
+      await http.put(`/paper/update/${userId}`, { request_status: "0" });
+
+      alert('Utilisateur refusé en tant que livreur !');
+    } catch (error) {
+      console.error(error);
+      alert("Erreur lors de l'envoi");
+    }
   };
 
   return (
-    <RequestProviderComponent
+    <RequestDelivrerComponent
       papers={papers}
       onEdit={handleAccept}
       onDelete={handleDecline}
@@ -41,4 +49,4 @@ const ProviderRequestsPage = () => {
   );
 };
 
-export default ProviderRequestsPage;
+export default DelivrerRequestsPage;
