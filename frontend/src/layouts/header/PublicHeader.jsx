@@ -1,11 +1,21 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useLangContext from "../../contexts/language/useLangContext";
 import i18n from "../../i18n/i18n";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
 
 const PublicHeader = () => {
   const { t } = useTranslation();
   const { lang, setLang } = useLangContext();
+  const [connected, setConnected] = useState(false);
+
+  const http = useAuth();
+
+  useEffect(() => {
+    setConnected(localStorage.getItem("connected"));
+  }, [connected]);
 
   const handleLanguage = (e) => {
     const newLang = e.target.value;
@@ -13,6 +23,14 @@ const PublicHeader = () => {
     localStorage.setItem("language", newLang);
     i18n.changeLanguage(newLang);
   };
+
+  const { data: role } = useQuery({
+    queryKey: ["Role"],
+    queryFn: async () => {
+      const response = await http.get(`/auth/role`);
+      return response.data.data;
+    },
+  });
 
   return (
     <header>
@@ -81,20 +99,37 @@ const PublicHeader = () => {
                 </option>
               </select>
             </form>
-            <div className="hidden md:flex items-center space-x-4">
-              <Link
-                to={"/login"}
-                className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
-              >
-                {t("HEADER_LOGIN")}
-              </Link>
-              <Link
-                to={"/register"}
-                className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
-              >
-                {t("HEADER_REGISTER")}
-              </Link>
-            </div>
+            {connected ? (
+              <div className="hidden md:flex items-center space-x-4">
+                <Link
+                  to={"/profile"}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_PROFILE")}
+                </Link>
+                <Link
+                  to={`/${role}`}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_SPACE")}
+                </Link>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center space-x-4">
+                <Link
+                  to={"/login"}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_LOGIN")}
+                </Link>
+                <Link
+                  to={"/register"}
+                  className="text-green-950 bg-amber-300 hover:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center cursor-pointer hover:scale-105 transition"
+                >
+                  {t("HEADER_REGISTER")}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 

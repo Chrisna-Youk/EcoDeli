@@ -14,6 +14,8 @@
   "HEADER_MERCHANT": "Merchant",
   "HEADER_LOGIN": "Sign in",
   "HEADER_REGISTER": "Register",
+  "HEADER_PROFILE": "Profil",
+  "HEADER_SPACE": "My space",
   "LANDING_TITLE": "EcoDeli, collaborative and supportive delivery.",
   "LANDING_DESCRIPTION": "EcoDeli offers a new way to send and receive packages by leveraging crowdshipping: individuals deliver for others, during their journeys. An economical, ecological and human solution that promotes social ties and purchasing power. Beyond packages, EcoDeli also provides access to everyday services: shopping, journeys, transfers, occasional assistance... A platform designed to simplify life, together.",
   "LANDING_PRIVATE": "Private",
