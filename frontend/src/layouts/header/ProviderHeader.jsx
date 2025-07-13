@@ -165,29 +165,9 @@ const ProviderHeader = () => {
         </div>
 
         <nav className="flex-1 space-y-2 mt-6">
+          {/* Planning */}
           <Link
-            to={"/provider/services"}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 12l2-2m0 0l7-7 7 7m-9 0v6m4 0v-6m0 6h6v6H6v-6h6"
-              />
-            </svg>
-            Mes annonces
-          </Link>
-
-          <a
-            href="/delivrer/PaymentsHistory"
+            to={"/provider/chat"}
             className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
             <svg
@@ -204,8 +184,76 @@ const ProviderHeader = () => {
                 d="M2 7h20M2 11h20m-2 4h-4m6 0a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h16a2 2 0 012 2v8z"
               />
             </svg>
-            Planning
-          </a>
+            Discussions
+          </Link>
+          {/* Annonces */}
+          <details className="group">
+            <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 4v16m0 0H5a2 2 0 01-2-2V6a2 2 0 012-2h11z"
+                />
+              </svg>
+              Annonces
+            </summary>
+            <div className="pl-8 mt-2 space-y-1 flex flex-col">
+              <Link
+                to={"/provider/services"}
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                Mes annonces
+              </Link>
+              <Link
+                to={"/provider/create/service"}
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Créer une annonce
+              </Link>
+            </div>
+          </details>
 
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">

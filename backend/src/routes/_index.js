@@ -50,6 +50,12 @@ import readServiceByUserIdController from "../controllers/service/read/readByUse
 import deleteServiceController from "../controllers/service/delete/delete.controller.js";
 import updateServiceController from "../controllers/service/update/update.controller.js";
 
+// controllers/message
+import readMessageByChatIdController from "../controllers/message/read/readByChatId.controller.js";
+
+// controller/chat
+import readChatByUserIdController from "../controllers/chat/read/readChatByUserId.controller.js";
+import readChatsByProviderIdController from "../controllers/chat/read/readChatByProviderId.controller.js";
 // controller/review
 import readReviewByUserIdController from "../controllers/review/read/readReviewByUserId.controller.js";
 import readPapersAllController from "../controllers/papers/read/readPapersAllController.controller.js";
@@ -108,6 +114,13 @@ const routes = [
   route(router, "/service/read/user/:userId", readServiceByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/service/delete", deleteServiceController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/service/update/:serviceId", updateServiceController, ["put"], upload.fields([{ name: "photoService", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider"])),
+
+  // controllers/message
+  route(router, "/message/read/:chatId", readMessageByChatIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "customer"])),
+
+  // controllers/chat
+  route(router, "/chat/read/:customerId/:providerId", readChatByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "customer"])),
+  route(router, "/chat/read/:providerId", readChatsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider"])),
 
   // controllers/category
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
