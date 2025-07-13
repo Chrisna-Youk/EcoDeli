@@ -24,6 +24,11 @@ const Transport = db.define(
       allowNull: true,
       unique: false,
     },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      unique: false,
+    },
     addressDestination: {
       type: DataTypes.STRING(128),
       allowNull: true,

@@ -26,6 +26,7 @@ import ServiceDetailsPage from "../pages/customer/ServiceDetailsPage";
 import ProfileDetails from "../pages/customer/ProfileDetails";
 import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
 import RequestBecomeProvider from "../pages/customer/RequestBecomeProvider";
+import TransportDetailsPage from "../pages/customer/TransportDetailsPage";
 
 const CustomerRoutes = (
   <>
@@ -41,6 +42,7 @@ const CustomerRoutes = (
       <Route path="Deliveries" element={<DeliveriesPageCustomer />} />
       <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
+      <Route path="transport/:transportId" element={<TransportDetailsPage />} />
       <Route path="chat/" element={<ChatListCustomer />} />
       <Route path="chat/:customerId/:providerId" element={<ChatCustomer />} />
       <Route path="Transport" element={<TransportPageCustomer />} />

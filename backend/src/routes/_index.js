@@ -68,6 +68,7 @@ import createTransportController from "../controllers/transport/create/create.co
 import readTransportController from "../controllers/transport/read/read.controller.js";
 import deleteAnnouncementController from "../controllers/announcement/delete/delete.controller.js";
 import deleteTransportController from "../controllers/transport/delete/delete.controller.js";
+import readTransportByIdController from "../controllers/transport/read/readById.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -144,6 +145,8 @@ const routes = [
   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/read", readTransportController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/delete", deleteTransportController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+    route(router, "/transport/read/:transportId", readTransportByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
 ];
 
 export default routes;

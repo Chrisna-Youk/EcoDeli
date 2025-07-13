@@ -1,4 +1,4 @@
-import Transport from "../../../models/transport.model.js"; // corriger le nom de l'import si besoin
+import Transport from "../../../models/transport.model.js";
 
 async function readTransportController(req, res) {
   const limit = Number(req.query.limit) || 100;

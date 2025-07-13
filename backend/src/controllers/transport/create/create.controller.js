@@ -14,15 +14,13 @@ async function createTransportController(req, res) {
     time,
     type,
     userId,
+    price,
+    photo,
   } = req.body;
 
-  const photoPath = req.files?.photoDelivery?.[0]?.filename || null;
+  const photoPath = req.files?.photoTransport?.[0]?.filename || null;
 
   try {
-    if (!title || !description || !cityDeparture || !cityDestination || !userId) {
-      return res.status(400).json({ message: "Champs requis manquants." });
-    }
-
     await Transport.create({
       title,
       description,
@@ -38,6 +36,8 @@ async function createTransportController(req, res) {
       userId,
       photo: photoPath,
       active: true,
+      price: price,
+      photo: photoPath,
     });
 
     return res.status(200).json({ message: "Annonce de transport créée avec succès." });

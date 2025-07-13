@@ -161,11 +161,10 @@ const ProviderHeader = () => {
         </div> */}
         <div className="flex flex-row items-center space-x-4">
           <img src="../../../public/ecodeli-logo.png" alt="Logo" width={100} />
-          <h1 className="text-lg font-semibold">Espace Préstataire</h1>
+          <h1 className="text-lg font-semibold">Espace Prestataire</h1>
         </div>
 
         <nav className="flex-1 space-y-2 mt-6">
-          {/* Planning */}
           <Link
             to={"/provider/chat"}
             className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -186,7 +185,6 @@ const ProviderHeader = () => {
             </svg>
             Discussions
           </Link>
-          {/* Annonces */}
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
               <svg
@@ -251,6 +249,26 @@ const ProviderHeader = () => {
                   />
                 </svg>
                 Créer une annonce
+              </Link>
+              <Link
+                to={"/provider/create/transport"}
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Créer une annonce de transport
               </Link>
             </div>
           </details>
