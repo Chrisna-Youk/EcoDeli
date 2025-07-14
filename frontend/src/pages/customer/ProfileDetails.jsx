@@ -24,17 +24,12 @@ const ProfileDetails = () => {
     },
   });
 
-  const grades = reviews?.map((review) => review.grade) || [];
-  const averageGrade =
-    grades.length > 0 ? Math.round(getAverage(grades) * 10) / 10 : null;
-
   return (
     <ProfileDetailsComponent
       photo={profile?.photo}
       firstname={profile?.firstName}
       lastname={profile?.lastName}
       status={profile?.status}
-      average_grade={averageGrade}
       reviews={reviews || []}
     />
   );

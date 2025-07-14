@@ -1,200 +1,117 @@
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
 import CustomersHomeCards from "../../components/CustomerComponents/CustomersHomeCards";
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
 
 const HomeCustomer = () => {
   const { t } = useTranslation();
+
+  const http = useAuth();
+
+  const [offset, setOffset] = useState(0);
+  const [allServices, setAllServices] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+
+  const { data: categories } = useQuery({
+    queryKey: ["CategoriesAvailable"],
+    queryFn: async () => {
+      const response = await http.get(`/category/read/`);
+      return response.data.data;
+    },
+  });
+
+  const { data: services } = useQuery({
+    queryKey: ["Services", offset],
+    queryFn: async () => {
+      const response = await http.get(
+        `/service/read?limit=${5}&offset=${offset}`
+      );
+      const newServices = response.data.data;
+      setAllServices((prev) => [...prev, ...newServices]);
+      if (newServices.length < 5) {
+        setHasMore(false);
+      }
+      return response.data.data;
+    },
+  });
+
   return (
     <div className="flex flex-col w-screen mt-10">
       <h3 className="mt-12 ml-12 text-lg font-semibold">
-        Les dernières offres de transport publiées
+        Les dernières offres de services publiées
       </h3>
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
-        <CustomersHomeCards
-          image="https://preview.redd.it/23-yamaha-r7-v0-dsk2foyjizud1.jpg?width=1080&crop=smart&auto=webp&s=819cf6fdaa1ff4e67d26e599bfd42460e14acfaf"
-          title="Moto · Paris"
-          date="20 juil"
-          city_start="Paris"
-          city_end="Toulouse"
-          price="84 €"
-          rating="4,9"
-        />
+        {allServices
+          ?.filter(service => service.type === "offre")
+          .map((service, index) => (
+            <CustomersHomeCards
+              key={service.id || index}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+              title={service.title}
+              href={`/customer/service/${service?.id}`}
+              date={new Date(service.date).toLocaleDateString("fr-FR", {
+                day: "numeric",
+                month: "short",
+              })}
+              price={`${service.price} €`}
+              rating={5}
+              city_start={service.city_start}
+              city_end={service.city_end}
+            />
+          ))}
 
-        <CustomersHomeCards
-          image="https://www.theparisphotographer.com/wp-content/uploads/2020/02/The-Paris-Photographer-Best-photography-team-in-Paris.jpg"
-          title="Photographe Pro · Paris"
-          date="20 juil"
-          price="20 €"
-          rating="4,2"
-        />
-
-        <CustomersHomeCards
-          image="https://media.istockphoto.com/id/516329534/fr/photo/en-paille.jpg?s=612x612&w=0&k=20&c=AbUPoF0rjp_EbQDt4HneiYtXRozIyb79YTvvpAeJmDg="
-          title="Traiteur · Paris"
-          date="20 juil"
-          price="200 €"
-          rating="4,6"
-        />
-
-        <CustomersHomeCards
-          image="https://www.aufauteuilducoiffeur.fr/img/images/3-original.jpg"
-          title="Coiffeur · Paris"
-          date="20 juil"
-          price="15 €"
-          rating="5"
-        />
-
-        <CustomersHomeCards
-          image="https://i.notretemps.com/2000x1125/smart/2024/04/30/illustration-de-travaux-de-jardinage.jpeg"
-          title="Jardinage à Domicile · Paris"
-          date="20 juil"
-          price="30 €"
-          rating="4,8"
-        />
-
-        <CustomersHomeCards
-          image="https://cdn.prod.website-files.com/6413856d54d41b5f298d5953/67ae1d4b1945f7be580af6a5_65815eec29effcc74349ed64_passageres-covoiturage-nuit.jpeg"
-          title="Covoiturage · Paris - Toulouse"
-          date="20 juil"
-          price="50 €"
-          rating="4,9"
-        />
-
-        <CustomersHomeCards
-          image="https://demarchesadministratives.fr/images/demarches/189/garde_enfant_domicile_nounou.jpg"
-          title="Garde d'enfant · Paris"
-          date="20 juil"
-          price="35 €"
-          rating="4,9"
-        />
       </div>
 
       <h3 className="mt-12 ml-12 text-lg font-semibold">
-        Offres de covoiturage les mieux notées{" "}
+        Offres de transport
       </h3>
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
-        <CustomersHomeCards
-          image="https://preview.redd.it/23-yamaha-r7-v0-dsk2foyjizud1.jpg?width=1080&crop=smart&auto=webp&s=819cf6fdaa1ff4e67d26e599bfd42460e14acfaf"
-          title="Moto · Paris"
-          date="20 juil"
-          city_start="Paris"
-          city_end="Toulouse"
-          price="84 €"
-          rating="4,9"
-        />
-
-        <CustomersHomeCards
-          image="https://www.theparisphotographer.com/wp-content/uploads/2020/02/The-Paris-Photographer-Best-photography-team-in-Paris.jpg"
-          title="Photographe Pro · Paris"
-          date="20 juil"
-          price="20 €"
-          rating="4,2"
-        />
-
-        <CustomersHomeCards
-          image="https://media.istockphoto.com/id/516329534/fr/photo/en-paille.jpg?s=612x612&w=0&k=20&c=AbUPoF0rjp_EbQDt4HneiYtXRozIyb79YTvvpAeJmDg="
-          title="Traiteur · Paris"
-          date="20 juil"
-          price="200 €"
-          rating="4,6"
-        />
-
-        <CustomersHomeCards
-          image="https://www.aufauteuilducoiffeur.fr/img/images/3-original.jpg"
-          title="Coiffeur · Paris"
-          date="20 juil"
-          price="15 €"
-          rating="5"
-        />
-
-        <CustomersHomeCards
-          image="https://i.notretemps.com/2000x1125/smart/2024/04/30/illustration-de-travaux-de-jardinage.jpeg"
-          title="Jardinage à Domicile · Paris"
-          date="20 juil"
-          price="30 €"
-          rating="4,8"
-        />
-
-        <CustomersHomeCards
-          image="https://cdn.prod.website-files.com/6413856d54d41b5f298d5953/67ae1d4b1945f7be580af6a5_65815eec29effcc74349ed64_passageres-covoiturage-nuit.jpeg"
-          title="Covoiturage · Paris - Toulouse"
-          date="20 juil"
-          price="50 €"
-          rating="4,9"
-        />
-
-        <CustomersHomeCards
-          image="https://demarchesadministratives.fr/images/demarches/189/garde_enfant_domicile_nounou.jpg"
-          title="Garde d'enfant · Paris"
-          date="20 juil"
-          price="35 €"
-          rating="4,9"
-        />
-      </div>
+        {allServices
+          ?.filter(service => service.categoryId === 4)
+          .map((service, index) => (
+            <CustomersHomeCards
+              key={service.id || index}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+              title={service.title}
+              href={`/customer/service/${service?.id}`}
+              date={new Date(service.date).toLocaleDateString("fr-FR", {
+                day: "numeric",
+                month: "short",
+              })}
+              price={`${service.price} €`}
+              rating={5}
+              city_start={service.city_start}
+              city_end={service.city_end}
+            />
+          ))}
+          </div>
 
       <h3 className="mt-12 ml-12 text-lg font-semibold">
-        Autres annonces qui pourraient vous plaire
+        Offres de cours particuliers
       </h3>
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
-        <CustomersHomeCards
-          image="https://preview.redd.it/23-yamaha-r7-v0-dsk2foyjizud1.jpg?width=1080&crop=smart&auto=webp&s=819cf6fdaa1ff4e67d26e599bfd42460e14acfaf"
-          title="Moto · Paris"
-          date="20 juil"
-          city_start="Paris"
-          city_end="Toulouse"
-          price="84 €"
-          rating="4,9"
-        />
-
-        <CustomersHomeCards
-          image="https://www.theparisphotographer.com/wp-content/uploads/2020/02/The-Paris-Photographer-Best-photography-team-in-Paris.jpg"
-          title="Photographe Pro · Paris"
-          date="20 juil"
-          price="20 €"
-          rating="4,2"
-        />
-
-        <CustomersHomeCards
-          image="https://media.istockphoto.com/id/516329534/fr/photo/en-paille.jpg?s=612x612&w=0&k=20&c=AbUPoF0rjp_EbQDt4HneiYtXRozIyb79YTvvpAeJmDg="
-          title="Traiteur · Paris"
-          date="20 juil"
-          price="200 €"
-          rating="4,6"
-        />
-
-        <CustomersHomeCards
-          image="https://www.aufauteuilducoiffeur.fr/img/images/3-original.jpg"
-          title="Coiffeur · Paris"
-          date="20 juil"
-          price="15 €"
-          rating="5"
-        />
-
-        <CustomersHomeCards
-          image="https://i.notretemps.com/2000x1125/smart/2024/04/30/illustration-de-travaux-de-jardinage.jpeg"
-          title="Jardinage à Domicile · Paris"
-          date="20 juil"
-          price="30 €"
-          rating="4,8"
-        />
-
-        <CustomersHomeCards
-          image="https://cdn.prod.website-files.com/6413856d54d41b5f298d5953/67ae1d4b1945f7be580af6a5_65815eec29effcc74349ed64_passageres-covoiturage-nuit.jpeg"
-          title="Covoiturage · Paris - Toulouse"
-          date="20 juil"
-          price="50 €"
-          rating="4,9"
-        />
-
-        <CustomersHomeCards
-          image="https://demarchesadministratives.fr/images/demarches/189/garde_enfant_domicile_nounou.jpg"
-          title="Garde d'enfant · Paris"
-          date="20 juil"
-          price="35 €"
-          rating="4,9"
-        />
+        {allServices
+          ?.filter(service => service.categoryId === 1)
+          .map((service, index) => (
+            <CustomersHomeCards
+              key={service.id || index}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+              title={service.title}
+              href={`/customer/service/${service?.id}`}
+              date={new Date(service.date).toLocaleDateString("fr-FR", {
+                day: "numeric",
+                month: "short",
+              })}
+              price={`${service.price} €`}
+              rating={5}
+              city_start={service.city_start}
+              city_end={service.city_end}
+            />
+          ))}
       </div>
       <div className="flex flex-row items-center justify-center mt-12 mb-20 gap-2">
         <svg

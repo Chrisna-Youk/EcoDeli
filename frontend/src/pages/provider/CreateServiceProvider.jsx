@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import useAuthContext from "../../contexts/auth/useAuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const CreateServiceProvider = () => {
   const {
@@ -10,9 +12,10 @@ const CreateServiceProvider = () => {
     formState: { errors },
   } = useForm();
 
-  const [error, setError] = useState("");
-
   const http = useAuth();
+  const context = useAuthContext();
+  const userId = jwtDecode(context.auth).id;
+  const [error, setError] = useState("");
 
   const { data: categories } = useQuery({
     queryKey: ["CategoriesAvailable"],
@@ -43,6 +46,8 @@ const CreateServiceProvider = () => {
     formData.append("city", data.city);
     formData.append("postalCode", data.postalCode);
     formData.append("categoryId", data.categoryId);
+    formData.append("userId", userId);
+    formData.append("type", "offre");
 
     formData.append("photoService", data.photoService[0]);
 

@@ -1,4 +1,4 @@
-import Announcement from "../../../models/Announcement.model.js";
+import Announcement from "../../../models/announcement.model.js";
 
 async function createAnnouncementController(req, res) {
   const {
@@ -20,23 +20,25 @@ async function createAnnouncementController(req, res) {
 
   const photoPath = req.files?.photoDelivery ? req.files.photoDelivery[0].filename : null;
 
+  console.log(req.body);
+
   try {
     await Announcement.create({
-      userId: req.user?.id || userId,
-      type,
-      title,
-      description,
-      addressDeparture,
-      preciseAddressDeparture,
-      addressDestination,
-      preciseAddressDestination,
-      date,
-      weight,
-      length,
-      width,
-      depth,
+      userId: userId,
+      type: type,
+      title: title,
+      description: description,
+      addressDeparture: addressDeparture,
+      preciseAddressDeparture: preciseAddressDeparture,
+      addressDestination: addressDestination,
+      preciseAddressDestination: preciseAddressDestination,
+      date: date,
+      weight: weight,
+      length: length,
+      width: width,
+      depth: depth,
       photo: photoPath,
-      active: active ?? 1, // valeur par défaut à 1 si non fournie
+      active: active ?? 1,
     });
 
     return res.status(200).json({ message: "Annonce créée avec succès." });

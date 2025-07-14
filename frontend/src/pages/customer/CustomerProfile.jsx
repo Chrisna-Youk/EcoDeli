@@ -22,7 +22,6 @@ const CustomerProfilePage = () => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
 
-  // ⚠️ Met à jour les champs une seule fois quand le profil est chargé
   useEffect(() => {
     if (profile) {
       setFirstname(profile.firstName || '');

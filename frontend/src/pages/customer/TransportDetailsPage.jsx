@@ -6,25 +6,25 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import useAuthContext from "../../contexts/auth/useAuthContext";
 
-const ServiceDetailsPage = () => {
-  const { serviceId } = useParams();
+const TransportDetailsPage = () => {
+  const { transportId } = useParams();
   const http = useAuth();
 
   const [providerId, setProviderId] = useState("");
   const customerId = jwtDecode(useAuthContext().auth)?.id;
 
   const {
-    data: service
+    data: transport
   } = useQuery({
-    queryKey: ["Service", serviceId],
+    queryKey: ["transport", transportId],
     queryFn: async () => {
-      const response = await http.get(`/service/read/${serviceId}`);
+      const response = await http.get(`/transport/read/${transportId}`);
       setProviderId(response.data.data.userId);
       return response.data.data;
     },
   });
 
-  const userId = service?.userId;
+  const userId = transport?.userId;
 
   const {data: user} = useQuery({
     queryKey: ["User", userId],
@@ -37,12 +37,12 @@ const ServiceDetailsPage = () => {
 
   return (
     <ComponentServiceDetailsPage
-      title={service?.title}
-      image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
-      price={service?.price}
-      category={service?.category}
-      description={service?.description}
-      city={service?.city}
+      title={transport?.title}
+      image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${transport?.photo}`}
+      price={transport?.price}
+      category={transport?.category}
+      description={transport?.description}
+      city={transport?.city}
       name_provider={user?.firstName}
       lastname_provider={user?.lastName}
       status_provider={user?.status}
@@ -51,4 +51,4 @@ const ServiceDetailsPage = () => {
   );
 };
 
-export default ServiceDetailsPage;
+export default TransportDetailsPage;

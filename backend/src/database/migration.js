@@ -134,6 +134,14 @@ async function migrate() {
       },
     });
 
+    await Category.findOrCreate({
+      where: { id: 4, name: "transport" },
+      defaults: {
+        name: "transport",
+        active: true,
+      },
+    });
+
     // Create services for userId 1 and catégorieId 1
     await Service.findOrCreate({
       where: { title: "Cours de guitare pour débutants" },
@@ -177,6 +185,21 @@ async function migrate() {
         city: "Marseille",
         postalCode: "13005",
         photo: "uploads/files/ikea.jpg",
+      },
+    });
+
+    await Service.findOrCreate({
+      where: { title: "Transport de personnes agés" },
+      defaults: {
+        userId: 20,
+        categoryId: 4,
+        title: "Transport de personnes agés",
+        description:
+          "Besoin d'aide pour conduire vos grands parents ? Je suis rapide, soigné, et expérimenté.",
+        price: 60,
+        city: "Marseille",
+        postalCode: "13005",
+        photo: "uploads/files/taxi.jpg",
       },
     });
 

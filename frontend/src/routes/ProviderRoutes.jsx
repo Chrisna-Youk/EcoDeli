@@ -17,6 +17,7 @@ import ProviderUpComingProviding from "../pages/provider/DelivrerUpComingService
 import CreateServiceProvider from "../pages/provider/CreateServiceProvider";
 import ChatProvider from "../pages/provider/chat/ChatProvider";
 import ChatListProvider from "../pages/provider/chat/ChatListProvider";
+import CreateTransportProvider from "../pages/provider/CreateTransportPageProvider";
 
 // import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
@@ -39,6 +40,7 @@ const ProviderRoutes = (
     <Route path="Payements" element={<ProviderPaymentsHistory />} />
     <Route path="ProvidingHistory" element={<ProviderProvidingHistory />} />
     <Route path="ProvidingUpComing" element={<ProviderUpComingProviding />} />
+    <Route path="create/transport" element={<CreateTransportProvider />} />
   </Route>
 );
 

@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useAuthContext from "../../contexts/auth/useAuthContext";
 import { jwtDecode } from "jwt-decode";
 
-const CreateTransportCustomer = () => {
+const CreateTransportProvider = () => {
   const {
     register,
     handleSubmit,
@@ -30,14 +30,11 @@ const CreateTransportCustomer = () => {
   const onSubmit = (data) => {
     const formData = new FormData();
 
-    formData.append("type", "demande");
+    formData.append("type", "offre");
     formData.append("userId", userId);
     formData.append("title", data.title);
     formData.append("description", data.description);
-    formData.append("cityDeparture", data.cityDeparture);
-    formData.append("cityDestination", data.cityDestination);
-    formData.append("date", data.date || "");
-    formData.append("time", data.time || "");
+    formData.append("price", data.price);
 
     if (data.photoTransport?.[0]) {
       formData.append("photoTransport", data.photoTransport[0]);
@@ -49,14 +46,14 @@ const CreateTransportCustomer = () => {
         setError(msg);
       },
       onSuccess: () => {
-        alert("Annonce de covoiturage créée avec succès !");
+        alert("Annonce de transport créée avec succès !");
       },
     });
   };
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center">
-      <h1 className="text-3xl font-bold mb-2">Créer une annonce de covoiturage</h1>
+      <h1 className="text-3xl font-bold mb-2">Créer une annonce de transport</h1>
 
       <div className="w-full max-w-2xl bg-gray-50 p-8 rounded-xl shadow-md">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +66,7 @@ const CreateTransportCustomer = () => {
               {...register("type")}
               disabled
             >
-              <option value="demande">Je cherche un trajet</option>
+              <option value="offre">Je cherche à conduire</option>
             </select>
           </div>
 
@@ -98,26 +95,17 @@ const CreateTransportCustomer = () => {
               placeholder="Ville de départ"
               className="w-1/2 border border-gray-300 rounded-lg p-3"
             />
-            <input
-              {...register("cityDestination", { required: "Ville d’arrivée requise" })}
-              type="text"
-              placeholder="Ville d’arrivée"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
-            />
           </div>
 
-          <div className="flex gap-4">
-            <input
-              {...register("date", { required: "Date requise" })}
-              type="date"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
-            />
-            <input
-              {...register("time")}
-              type="time"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
-            />
-          </div>
+          <input
+            {...register("price", {
+              required: "Le prix est requis",
+            })}
+            type="text"
+            placeholder="Prix (€)"
+            className="w-full border border-gray-300 rounded-lg p-3"
+          />
+          {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>}
 
           <div>
             <label className="block mb-2 font-semibold">Image du véhicule (optionnel)</label>
@@ -141,4 +129,4 @@ const CreateTransportCustomer = () => {
   );
 };
 
-export default CreateTransportCustomer;
+export default CreateTransportProvider;
