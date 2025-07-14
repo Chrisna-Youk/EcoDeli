@@ -411,7 +411,27 @@ const ProviderHeader = () => {
                 Consulter
               </a>
               <a
-                href="/delivrer/account"
+                href="/provider/update/documents"
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 5h10M11 5v14m0-14L3 19"
+                  />
+                </svg>
+                Modifier mes documents
+              </a>
+              <a
+                href="/provider/profile"
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg
