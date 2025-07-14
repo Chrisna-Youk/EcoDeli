@@ -27,6 +27,7 @@ import ProfileDetails from "../pages/customer/ProfileDetails";
 import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
 import RequestBecomeProvider from "../pages/customer/RequestBecomeProvider";
 import TransportDetailsPage from "../pages/customer/TransportDetailsPage";
+import DeliveryDetailsPage from "../pages/TO_IMPLEMENT/test";
 
 const CustomerRoutes = (
   <>
