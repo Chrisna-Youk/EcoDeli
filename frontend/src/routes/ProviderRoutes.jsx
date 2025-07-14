@@ -38,7 +38,7 @@ const ProviderRoutes = (
     <Route path="services/:serviceId" element={<EditServiceProvider />} />
     <Route path="create/service" element={<CreateServiceProvider />} />
     <Route path="chat/" element={<ChatListProvider />} />
-    <Route path="chat/:customerId/:providerId" element={<ChatProvider />} />
+    <Route path="chat/:customerId/:providerId/:serviceId" element={<ChatProvider />} />
     <Route path="Payements" element={<ProviderPaymentsHistory />} />
     <Route path="ProvidingHistory" element={<ProviderProvidingHistory />} />
     <Route path="ProvidingUpComing" element={<ProviderUpComingProviding />} />

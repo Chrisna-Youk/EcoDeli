@@ -58,7 +58,7 @@ async function migrate() {
     await db.sync({ force: force, alter: alter });
 
     // Create admin sample User : admin@test.com and Admin123?WowBro id 1
-    await User.findOrCreate({
+    /*await User.findOrCreate({
       where: { email: "admin@test.com" },
       defaults: {
         id: 10,
@@ -274,7 +274,7 @@ async function migrate() {
         chatId: 1,
         content: "Merci pour votre aide.",
       },
-    });
+    });*/
 
     console.log(`🎉 Database synced successfully.`);
   } catch (error) {

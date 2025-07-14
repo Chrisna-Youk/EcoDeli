@@ -70,6 +70,7 @@ import deleteAnnouncementController from "../controllers/announcement/delete/del
 import deleteTransportController from "../controllers/transport/delete/delete.controller.js";
 import readTransportByIdController from "../controllers/transport/read/readById.controller.js";
 import createReviewController from "../controllers/review/create/create.controller.js";
+import createChatController from "../controllers/chat/create/createChat.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -126,12 +127,13 @@ const routes = [
   route(router, "/service/update/:serviceId", updateServiceController, ["put"], upload.fields([{ name: "photoService", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider"])),
 
   // controllers/message
-  route(router, "/message/read/:chatId", readMessageByChatIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "customer"])),
+  route(router, "/message/read/:chatId", readMessageByChatIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   // controllers/chat
-  route(router, "/chat/read/:customerId/:providerId", readChatByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "customer"])),
-  route(router, "/chat/provider/read/:providerId", readChatsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider"])),
-  route(router, "/chat/customer/read/:customerId", readChatsByCustomerIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
+  route(router, "/chat/read/:customerId/:providerId", readChatByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/chat/provider/read/:providerId", readChatsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/chat/customer/read/:customerId", readChatsByCustomerIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/chat/create", createChatController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   // controllers/category
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
