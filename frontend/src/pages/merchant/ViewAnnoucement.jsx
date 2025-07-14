@@ -6,7 +6,7 @@ import { useState } from "react";
 import DisplayCards from '../../components/MerchantComponents/DisplayCards';
 import MerchantAnnouncementCards from "../../components/MerchantComponents/MerchantAnnouncementCards"
 
-const Test = () => {
+const ViewAnnoucement = () => {
   return (
 
     <div class="p-5 flex flex-wrap gap-4">
@@ -75,5 +75,5 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default ViewAnnoucement;
 
