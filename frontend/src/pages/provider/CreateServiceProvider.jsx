@@ -47,6 +47,7 @@ const CreateServiceProvider = () => {
     formData.append("postalCode", data.postalCode);
     formData.append("categoryId", data.categoryId);
     formData.append("userId", userId);
+    formData.append("type", "offre");
 
     formData.append("photoService", data.photoService[0]);
 
