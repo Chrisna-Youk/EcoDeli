@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 const ComponentDeliveryDetailsPage = ({
   image,
   title,
-  customerId,
-  providerId,
   price,
-  category,
   description,
-  city,
-  name_provider,
-  lastname_provider,
-  status_provider,
-  photo_provider,
+  cityDeparture,
+  cityDestination,
+  name_delivrer,
+  lastname_delivrer,
+  status_delivrer,
+  photo_delivrer,
 }) => (
-  <div className="min-h-screen w-full px-4 py-6 flex flex-col lg:flex-row lg:justify-around font-[Poppins] lg:px-20 mt-10">
+  <div className="min-h-screen w-screen px-4 py-6 flex flex-col lg:flex-row lg:justify-around font-[Poppins] lg:px-20 mt-10 xl:ml-35">
     <div className="w-full lg:w-1/2 lg:max-w-[800px]">
       <h2 className="font-semibold text-3xl mb-4">{title}</h2>
 
@@ -29,8 +27,9 @@ const ComponentDeliveryDetailsPage = ({
           <span className="text-md text-gray-600 italic">Prix : </span>
           {price}€
         </span>
-        <span className="text-md text-gray-600 italic">{category}</span>
-        <span className="text-md text-gray-600 italic">{city}</span>
+        <span className="text-md text-gray-600 italic">{cityDeparture}</span>
+        <span className="text-md text-gray-600 italic">à</span>
+        <span className="text-md text-gray-600 italic">{cityDestination}</span>
       </div>
     </div>
 
@@ -38,12 +37,12 @@ const ComponentDeliveryDetailsPage = ({
       <div className="w-full h-24 px-5 flex items-center justify-between rounded-t-md bg-gray-100">
         <div>
           <h2 className="font-semibold text-lg">
-            {name_provider} {lastname_provider}
+            {name_delivrer} {lastname_delivrer}
           </h2>
-          <h3 className="text-sm text-gray-600">{status_provider}</h3>
+          <h3 className="text-sm text-gray-600">{status_delivrer}</h3>
         </div>
         <img
-          src={photo_provider}
+          src={photo_delivrer}
           alt="Avatar utilisateur"
           className="w-16 h-16 rounded-full object-cover shadow"
         />

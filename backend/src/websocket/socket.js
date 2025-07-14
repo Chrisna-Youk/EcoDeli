@@ -7,7 +7,6 @@ export default function websocketInit(server) {
 
   io.on("connection", (socket) => {
     socket.on("joinRoom", (chatId) => {
-      console.log("Rejoint la room :", chatId);
       socket.join(chatId);
     });
 
@@ -18,7 +17,6 @@ export default function websocketInit(server) {
         content: data.content,
         type: data.type,
       });
-
       io.to(data.chatId).emit("newMessage", data);
     });
 

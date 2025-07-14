@@ -10,32 +10,12 @@ const ProviderAnnouncementCard = ({
   title,
   date,
   price,
-  rating,
+  // rating,
   city_start,
   city_end,
 }) => {
-  // const http = useAuth();
 
-  // const { data: serviceDates } = useQuery({
-  //   queryKey: ["ProviderAnnouncementsDates", id],
-  //   queryFn: async () => {
-  //     const response = await http.get(`/service/date/read/${id}`);
-  //     return response.data.data;
-  //   },
-  // });
-
-  // const formatDate = (dateStr) => {
-  //   const dateObj = new Date(dateStr);
-  //   return new Intl.DateTimeFormat("fr-FR", {
-  //     day: "numeric",
-  //     month: "long",
-  //   }).format(dateObj);
-  // };
-
-  const formattedDates = "";
-  // const formattedDates = serviceDates
-  //   ? serviceDates.map((sd) => formatDate(sd.date)).join(", ")
-  //   : "";
+  console.log(date)
 
   return (
     <Link to={href} key={index}>
@@ -68,11 +48,12 @@ const ProviderAnnouncementCard = ({
         <div className="p-4">
           <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
           <p className="text-sm text-gray-600 mt-1">
-            {formattedDates} | {city_start} {city_end ? `- ${city_end}` : ""}
+            {date} | {city_start} {city_end ? `- ${city_end}` : ""}
           </p>
           <p className="text-sm text-gray-800 mt-1">
-            <span className="font-semibold">{price}</span> ·
-            <span className="text-amber-400">★ {rating}</span>
+            <span className="font-semibold">{price}</span>
+             {/* · */}
+            {/* <span className="text-amber-400">★ {rating}</span> */}
           </p>
         </div>
       </div>

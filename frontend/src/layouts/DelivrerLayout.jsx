@@ -20,7 +20,7 @@ const DelivrerLayout = () => {
   const authContext = useAuthContext();
   const accessToken = jwtDecode(authContext.auth);
 
-  if (!(accessToken.role === "provider" || "admin")){
+  if (!(accessToken.role === "delivrer" || "admin")){
     navigate(-1);
   }
 
@@ -29,7 +29,7 @@ const DelivrerLayout = () => {
     i18n.changeLanguage("it");
   }, [i18n]);
   return (
-    <div className="flex flex-row bg-zinc-900">
+    <div className="flex flex-row bg-white w-screen">
       <ThemeContext.Provider value={null}>
         <DelivrerHeader />
         <main className="overflow-x-hidden bg-white">
