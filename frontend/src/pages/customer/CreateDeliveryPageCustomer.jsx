@@ -14,10 +14,10 @@ const CreateDeliveryCustomer = ({ userId }) => {
     date: "",
     cityDeparture: "",
     addressDeparture: "",
-    preciseAddressDeparture: "",     // Ajouté
+    preciseAddressDeparture: "", // Ajouté
     cityDestination: "",
     addressDestination: "",
-    preciseAddressDestination: "",   // Ajouté
+    preciseAddressDestination: "", // Ajouté
     photoDelivery: null,
   });
 
@@ -58,10 +58,10 @@ const CreateDeliveryCustomer = ({ userId }) => {
         date: "",
         cityDeparture: "",
         addressDeparture: "",
-        preciseAddressDeparture: "",       // Reset aussi
+        preciseAddressDeparture: "", // Reset aussi
         cityDestination: "",
         addressDestination: "",
-        preciseAddressDestination: "",     // Reset aussi
+        preciseAddressDestination: "", // Reset aussi
         photoDelivery: null,
       });
     } catch (error) {
@@ -74,7 +74,9 @@ const CreateDeliveryCustomer = ({ userId }) => {
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center">
-      <h1 className="text-3xl font-bold mb-6">Créer une annonce de livraison</h1>
+      <h1 className="text-3xl font-bold mb-6">
+        Créer une annonce de livraison
+      </h1>
 
       <div className="w-full max-w-2xl bg-gray-50 p-8 rounded-xl shadow-md">
         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -205,7 +207,9 @@ const CreateDeliveryCustomer = ({ userId }) => {
 
           {/* Photo */}
           <div>
-            <label className="block mb-2 font-semibold">Photo (optionnel)</label>
+            <label className="block mb-2 font-semibold">
+              Photo (optionnel)
+            </label>
             <input
               type="file"
               name="photoDelivery"
