@@ -18,6 +18,8 @@ import CreateServiceProvider from "../pages/provider/CreateServiceProvider";
 import ChatProvider from "../pages/provider/chat/ChatProvider";
 import ChatListProvider from "../pages/provider/chat/ChatListProvider";
 import CreateTransportProvider from "../pages/provider/CreateTransportPageProvider";
+import ProviderProfileEdit from "../pages/provider/ProviderProfileEdit";
+import UpdateProviderInfos from "../pages/provider/UpdateProviderInfos";
 
 // import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
@@ -41,6 +43,8 @@ const ProviderRoutes = (
     <Route path="ProvidingHistory" element={<ProviderProvidingHistory />} />
     <Route path="ProvidingUpComing" element={<ProviderUpComingProviding />} />
     <Route path="create/transport" element={<CreateTransportProvider />} />
+    <Route path="profile" element={<ProviderProfileEdit />} />
+    <Route path="update/documents" element={<UpdateProviderInfos />} />
   </Route>
 );
 
