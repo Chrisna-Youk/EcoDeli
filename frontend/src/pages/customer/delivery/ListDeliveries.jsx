@@ -1,8 +1,6 @@
-import { useTranslation } from "react-i18next";
-import CustomersHomeCards from "../../components/CustomerComponents/CustomersHomeCards";
+import CustomersHomeCards from "../../../components/CustomerComponents/CustomersHomeCards";
 
-const DeliveriesPageCustomer = () => {
-  const { t } = useTranslation();
+const ListDeliveries = () => {
   return (
     <div className="flex flex-col w-screen mt-10">
       <div className="flex items-center justify-center">
@@ -83,46 +81,6 @@ const DeliveriesPageCustomer = () => {
           city_start="Paris"
           city_end="Toulouse"
           price="84 €"
-          rating="4,9"
-        />
-
-        <CustomersHomeCards
-          image="https://www.theparisphotographer.com/wp-content/uploads/2020/02/The-Paris-Photographer-Best-photography-team-in-Paris.jpg"
-          title="Photographe Pro · Paris"
-          date="20 juil"
-          price="20 €"
-          rating="4,2"
-        />
-
-        <CustomersHomeCards
-          image="https://media.istockphoto.com/id/516329534/fr/photo/en-paille.jpg?s=612x612&w=0&k=20&c=AbUPoF0rjp_EbQDt4HneiYtXRozIyb79YTvvpAeJmDg="
-          title="Traiteur · Paris"
-          date="20 juil"
-          price="200 €"
-          rating="4,6"
-        />
-
-        <CustomersHomeCards
-          image="https://www.aufauteuilducoiffeur.fr/img/images/3-original.jpg"
-          title="Coiffeur · Paris"
-          date="20 juil"
-          price="15 €"
-          rating="5"
-        />
-
-        <CustomersHomeCards
-          image="https://i.notretemps.com/2000x1125/smart/2024/04/30/illustration-de-travaux-de-jardinage.jpeg"
-          title="Jardinage à Domicile · Paris"
-          date="20 juil"
-          price="30 €"
-          rating="4,8"
-        />
-
-        <CustomersHomeCards
-          image="https://cdn.prod.website-files.com/6413856d54d41b5f298d5953/67ae1d4b1945f7be580af6a5_65815eec29effcc74349ed64_passageres-covoiturage-nuit.jpeg"
-          title="Covoiturage · Paris - Toulouse"
-          date="20 juil"
-          price="50 €"
           rating="4,9"
         />
 
@@ -320,4 +278,4 @@ const DeliveriesPageCustomer = () => {
   );
 };
 
-export default DeliveriesPageCustomer;
+export default ListDeliveries;

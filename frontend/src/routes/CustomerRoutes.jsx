@@ -9,12 +9,12 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 
 // Pages
 import HomeCustomer from "../pages/customer/HomeCustomer";
-import DeliveriesPageCustomer from "../pages/customer/DeliveriesPageCustomers";
+import DeliveriesPageCustomer from "../pages/customer/delivery/ListDeliveries";
 import ServicesPageCustomers from "../pages/customer/ServicesPageCustomers";
 import TransportPageCustomer from "../pages/customer/TransportPageCustomers";
 import CreatePageCustomer from "../pages/customer/CreatePage";
 import CreateServiceCustomer from "../pages/customer/CreateServiceCustomer";
-import CreateDeliveryCustomer from "../pages/customer/CreateDeliveryPageCustomer";
+import CreateDeliveryCustomer from "../pages/customer/CreateDeliveryCustomer";
 import CreateTransportCustomer from "../pages/customer/CreateTransportPageCustomer";
 import CustomerAnnouncements from "../pages/customer/CustomerAnnoucements";
 import SubscriptionPlans from "../pages/customer/SubscriptionsCustomer";
@@ -39,7 +39,8 @@ const CustomerRoutes = (
       }
     >
       <Route index element={<HomeCustomer />} />
-      <Route path="Deliveries" element={<DeliveriesPageCustomer />} />
+      {/* Deliveries */}
+      <Route path="deliveries" element={<DeliveriesPageCustomer />} />
       <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
       <Route path="transport/:transportId" element={<TransportDetailsPage />} />
@@ -50,13 +51,19 @@ const CustomerRoutes = (
       <Route path="create/service" element={<CreateServiceCustomer />} />
       <Route path="create" element={<CreatePageCustomer />} />
       <Route path="create/transport" element={<CreateTransportCustomer />} />
-      <Route path="/customer/announcements" element={<CustomerAnnouncements />} />
+      <Route path="announcements" element={<CustomerAnnouncements />} />
       <Route path="Subscription" element={<SubscriptionPlans />} />
       <Route path="payements" element={<PaymentTrackingPage />} />
-      <Route path="profile/:profileId" element={<ProfileDetails />}/>
-      <Route path="profile" element={<CustomerProfilePage />}/>
-      <Route path="profile/request/delivrer" element={<RequestBecomeDeliverer />}/>
-      <Route path="profile/request/provider" element={<RequestBecomeProvider />}/>
+      <Route path="profile/:profileId" element={<ProfileDetails />} />
+      <Route path="profile" element={<CustomerProfilePage />} />
+      <Route
+        path="profile/request/delivrer"
+        element={<RequestBecomeDeliverer />}
+      />
+      <Route
+        path="profile/request/provider"
+        element={<RequestBecomeProvider />}
+      />
     </Route>
   </>
 );

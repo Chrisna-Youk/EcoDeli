@@ -39,22 +39,32 @@ const Announcement = db.define(
       allowNull: true,
       unique: false,
     },
-    addressDeparture: {
+    cityDeparture: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },
-    preciseAddressDeparture: {
+    cityDestination: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },
-    addressDestination: {
+    latDeparture: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,
     },
-    preciseAddressDestination: {
+    lonDeparture: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    latDestination: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    lonDestination: {
       type: DataTypes.STRING(128),
       allowNull: true,
       unique: false,

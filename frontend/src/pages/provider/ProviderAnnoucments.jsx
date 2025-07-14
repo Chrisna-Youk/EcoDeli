@@ -18,7 +18,7 @@ const ProviderAnnouncements = () => {
     },
   });
 
-  console.log(userId)
+  console.log(services)
 
   return (
     <div className="bg-white pt-0 h-screen 2xl:ml-120 py-10 w-full overflow-x-hidden">
@@ -86,7 +86,7 @@ const ProviderAnnouncements = () => {
               service?.photo
             }`}
             title={`${service.title}`}
-            date="20 juil"
+            date={service?.date}
             city_start={service.city}
             price={`${service.price} €`}
             rating="4,9"

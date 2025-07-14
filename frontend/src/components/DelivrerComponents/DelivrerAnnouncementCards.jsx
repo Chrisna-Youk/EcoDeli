@@ -15,9 +15,6 @@ const DelivrerAnnouncementCard = ({index, href, image, title, date, price, ratin
       <div className="p-4">
         <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
         <p className="text-sm text-gray-600 mt-1">{date} | {city_start} {city_end ? `- ${city_end}` : ""}</p>
-        <p className="text-sm text-gray-800 mt-1">
-          <span className="font-semibold">{price}</span> · <span className="text-amber-400">★ {rating}</span>
-        </p>
       </div>
     </div>
   </Link>

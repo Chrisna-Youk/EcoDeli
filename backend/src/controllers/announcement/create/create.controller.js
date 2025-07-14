@@ -5,10 +5,12 @@ async function createAnnouncementController(req, res) {
     type,
     title,
     description,
-    addressDeparture,
-    preciseAddressDeparture,
-    addressDestination,
-    preciseAddressDestination,
+    cityDeparture,
+    cityDestination,
+    latDeparture,
+    lonDeparture,
+    latDestination,
+    lonDestination,
     date,
     weight,
     length,
@@ -18,9 +20,25 @@ async function createAnnouncementController(req, res) {
     active,
   } = req.body;
 
-  const photoPath = req.files?.photoDelivery ? req.files.photoDelivery[0].filename : null;
+  const photoPath = req.files?.photoDelivery
+    ? req.files.photoDelivery[0].filename
+    : null;
 
-  console.log(req.body);
+  const announcementAlreadyExists = await Announcement.findOne({
+    where: {
+      type,
+      title,
+      userId,
+      cityDeparture,
+      cityDestination,
+    },
+  });
+
+  if (announcementAlreadyExists) {
+    return res
+      .status(400)
+      .json({ message: "Une annonce identique existe déjà." });
+  }
 
   try {
     await Announcement.create({
@@ -28,15 +46,17 @@ async function createAnnouncementController(req, res) {
       type: type,
       title: title,
       description: description,
-      addressDeparture: addressDeparture,
-      preciseAddressDeparture: preciseAddressDeparture,
-      addressDestination: addressDestination,
-      preciseAddressDestination: preciseAddressDestination,
+      cityDeparture: cityDeparture,
+      cityDestination: cityDestination,
+      latDeparture: latDeparture,
+      lonDeparture: lonDeparture,
+      latDestination: latDestination,
+      lonDestination: lonDestination,
       date: date,
-      weight: weight,
-      length: length,
-      width: width,
-      depth: depth,
+      weight: weight || 0.0,
+      length: length || 0,
+      width: width || 0,
+      depth: depth || 0,
       photo: photoPath,
       active: active ?? 1,
     });
