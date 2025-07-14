@@ -26,11 +26,12 @@ const ProfileDetails = () => {
 
   return (
     <ProfileDetailsComponent
-      photo={profile?.photo}
+      photo={profile?.photo || 'https://img.freepik.com/vecteurs-premium/silhouette-noire-homme-anonyme-point-interrogation-illustration-vectorielle-personne-sexe-masculin-incognito_261737-806.jpg?semt=ais_hybrid&w=740'}
       firstname={profile?.firstName}
       lastname={profile?.lastName}
       status={profile?.status}
       reviews={reviews || []}
+      profileId = {profileId}
     />
   );
 };

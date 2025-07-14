@@ -1,8 +1,17 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+import useAuthContext from "../../contexts/auth/useAuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const ProviderHeader = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const http = useAuth();
+  const context = useAuthContext();
+  const userId = jwtDecode(context.auth).id;
 
   return (
     <>
@@ -376,7 +385,7 @@ const ProviderHeader = () => {
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <a
-                href="/delivrer/profile"
+                href={`../../customer/profile/${userId}`}
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg

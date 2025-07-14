@@ -11,17 +11,17 @@ const ProviderAnnoucementAdminComponent = ({
   rating,
   city_start,
   city_end,
-  onDelete, // 👈 ajoute cette prop
+  onDelete,
 }) => {
 
-  const formattedDates = ""; // À compléter plus tard si tu veux formater les dates
+  const formattedDates = "";
 
   const handleDelete = async (e) => {
-    e.preventDefault(); // 👈 évite que le <Link> redirige au clic sur le bouton
+    e.preventDefault();
     const confirmed = window.confirm("Supprimer ?");
     if (!confirmed) return;
 
-    onDelete(id); // 👈 déclenche la suppression via le parent
+    onDelete(id); 
   };
 
   return (
