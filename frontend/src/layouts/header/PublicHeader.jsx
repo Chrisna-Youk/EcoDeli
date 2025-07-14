@@ -70,16 +70,16 @@ const PublicHeader = () => {
 
           <ul className="hidden md:flex justify-center items-center">
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/delivrer"}>{t("HEADER_DELIVRER")}</Link>
+              <Link to={"/delivrers"}>{t("HEADER_DELIVRER")}</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/customer"}>{t("HEADER_PRIVATE")}</Link>
+              <Link to={"/customers"}>{t("HEADER_PRIVATE")}</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/provider"}>{t("HEADER_PROVIDER")}</Link>
+              <Link to={"/providers"}>{t("HEADER_PROVIDER")}</Link>
             </li>
             <li className="mx-4 text-amber-50 hover:text-amber-300 duration-500 text-md hover:scale-105 transition">
-              <Link to={"/merchant"}>{t("HEADER_MERCHANT")}</Link>
+              <Link to={"/merchants"}>{t("HEADER_MERCHANT")}</Link>
             </li>
           </ul>
 
