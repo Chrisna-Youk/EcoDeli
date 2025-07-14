@@ -11,6 +11,7 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 import HomeDelivrer from "../pages/delivrer/HomeDelivrer";
 import MyDeliverAccount from "../pages/delivrer/MyDeliveryAccount";
 import DelivrerAnnoucements from "../pages/delivrer/DelivrerAnnoucements";
+import DelivrerAnnouncementDetails from "../pages/delivrer/DelivrerAnnouncementDetails";
 import DelivrerCreateAnnoucements from "../pages/delivrer/DelivrerCreateAnnoucements";
 import DelivrerUpComingDeliveries from "../pages/delivrer/DelivrerUpComingDeliveries";
 import DelivrerDeliveriesHistory from "../pages/delivrer/DelivrerDeliveriesHistory";
@@ -29,7 +30,7 @@ const DelivrerRoutes = (
       <Route index element={<HomeDelivrer />} />
       <Route path="MyDeliverAccount" element={<MyDeliverAccount />} />
       <Route path="announcements" element={<DelivrerAnnoucements />} />
-      <Route path="announcement/:announcementId" element={<DelivrerAnnoucements />} />
+      <Route path="announcement/:announcementId" element={<DelivrerAnnouncementDetails />} />
       <Route path="DelivrerCreateAnnoucements" element={<DelivrerCreateAnnoucements />} />
       <Route path="UpComingDeliveries" element={<DelivrerUpComingDeliveries />} />
       <Route path="DeliveriesHistory" element={<DelivrerDeliveriesHistory />} />

@@ -4,6 +4,7 @@ node_modules
 docker-compose.yml
 legacy
 backend/uploads/files
+backend/src/database/migration.js
 
 # Logs
 logs

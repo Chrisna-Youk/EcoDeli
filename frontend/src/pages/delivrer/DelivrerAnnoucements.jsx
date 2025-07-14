@@ -36,6 +36,7 @@ const DelivrerAnnouncements = () => {
           return (
             <DelivrerAnnouncementCard
               key={key}
+              href={`/delivrer/announcement/${announcement?.id}`}
               image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${
                 announcement?.photo
               }`}

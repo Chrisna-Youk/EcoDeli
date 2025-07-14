@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import { useSocket } from "../../../utils/io";
@@ -102,7 +102,9 @@ const ChatProvider = () => {
               {msg.content}
               {msg.type === "offer" && msg.price && (
                 <div className="text-sm mt-1">
-                  💰 {msg.price} € – 📅 {new Date(msg.dueDate).toLocaleDateString()}
+                  💰 {msg.price} € – 📅{" "}
+                  {new Date(msg.dueDate).toLocaleDateString()}
+                  <Link to={"Stripe"}>Accepter</Link>
                 </div>
               )}
             </div>

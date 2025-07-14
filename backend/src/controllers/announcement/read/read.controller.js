@@ -8,7 +8,6 @@ async function readAnnouncementController(req, res) {
       limit: Number(limit),
       offset: Number(offset),
     });
-    console.log(annoucements)
     return res.status(200).json({ data: annoucements });
   } catch (error) {
     console.log(error)
