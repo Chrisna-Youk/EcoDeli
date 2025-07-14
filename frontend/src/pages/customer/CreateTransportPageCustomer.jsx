@@ -39,8 +39,8 @@ const CreateTransportCustomer = () => {
     formData.append("date", data.date || "");
     formData.append("time", data.time || "");
 
-    if (data.photoDelivery?.[0]) {
-      formData.append("photoTransport", data.photoDelivery[0]);
+    if (data.photoTransport?.[0]) {
+      formData.append("photoTransport", data.photoTransport[0]);
     }
 
     mutationCreateTransport.mutate(formData, {

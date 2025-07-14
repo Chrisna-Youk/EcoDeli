@@ -1,85 +1,132 @@
-import React from 'react';
-import DelivrerAnnouncementCard from '../../components/DelivrerComponents/DelivrerAnnouncementCards';
+import { Link } from "react-router-dom";
+import ProviderAnnoucementAdminComponent from "../../components/AdminComponents/ProviderAnnoucementAdminComponent";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+import useAuthContext from "../../contexts/auth/useAuthContext";
+import { jwtDecode } from "jwt-decode";
 
+const CustomerAnnouncementsAdmin = () => {
+  const http = useAuth();
+  const authContext = useAuthContext().auth;
+  const { id: userId } = jwtDecode(authContext);
 
-const CustomerAnnouncements = () => {
+  const { data: services } = useQuery({
+    queryKey: ["CustomerServices"],
+    queryFn: async () => {
+      const response = await http.get(`/service/read?limit=100&offset=0`);
+      return response.data.data;
+    },
+  });
+
+  const { data: transports } = useQuery({
+    queryKey: ["CustomerTransports"],
+    queryFn: async () => {
+      const response = await http.get(`/transport/read?limit=100&offset=0`);
+      return response.data.data;
+    },
+  });
+
+  const { data: deliveries } = useQuery({
+    queryKey: ["CustomerDeliveries"],
+    queryFn: async () => {
+      const response = await http.get(`/announcement/read`);
+      return response.data.data;
+    },
+  });
+
+  const handleDeleteService = async (id) => {
+    try {
+      await http.delete("/service/delete", { data: { id } });
+      alert("Annonce de service supprimée avec succès.");
+    } catch (error) {
+      console.error("Erreur lors de la suppression :", error);
+      alert("Erreur lors de la suppression.");
+    }
+  };
+
+  const handleDeleteTransport = async (id) => {
+    try {
+      await http.delete("/transport/delete", { data: { id } });
+      alert("Annonce de transport supprimée avec succès.");
+    } catch (error) {
+      console.error("Erreur lors de la suppression :", error);
+      alert("Erreur lors de la suppression.");
+    }
+  };
+
+  const handleDeleteDelivery = async (id) => {
+    try {
+      await http.delete("/announcement/delete", { data: { id } });
+      alert("Annonce de livraison supprimée avec succès.");
+    } catch (error) {
+      console.error("Erreur lors de la suppression :", error);
+      alert("Erreur lors de la suppression.");
+    }
+  };
+
   return (
-    <div className="bg-white pt-0 h-screen py-10 w-full overflow-x-hidden">
+    <div className="bg-white pt-0 h-screen py-10 w-screen overflow-x-hidden">
+      <div className="p-10 bg-white w-screen mb-8 shadow-md">
+        <h1 className="text-xl font-bold">Toutes vos annonces</h1>
+      </div>
 
-      <div className="flex flex-col items-center mt-10">
-          <p className="text-black text-xl font-semibold">Your Announcements</p>
-          <p>You can edit or delete an announcements here.</p>
-        </div>
-      <div className='flex flex-row flex-wrap mt-8 gap-5 p-8 ml-10'>
+      <div className="flex flex-row flex-wrap mt-8 gap-5 p-8 2xl:mr-72 ml-10">
+        {services
+          ?.filter((service) => service.userId === userId)
+          .map((service, index) => (
+            <ProviderAnnoucementAdminComponent
+              key={`service-${service.id}`}
+              id={service.id}
+              index={index}
+              href={`/customer/service/${service.id}`}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+              title={service.title}
+              date="20 juil"
+              city_start={service.city}
+              price={`${service.price} €`}
+              rating="4,9"
+              onDelete={handleDeleteService}
+            />
+          ))}
 
-      <DelivrerAnnouncementCard
-        image="https://preview.redd.it/23-yamaha-r7-v0-dsk2foyjizud1.jpg?width=1080&crop=smart&auto=webp&s=819cf6fdaa1ff4e67d26e599bfd42460e14acfaf"
-        title="Moto · Paris"
-        date="20 juil"
-        city_start="Paris"
-        city_end="Toulouse"
-        price="84 €"
-        rating="4,9"
-      />
+        {transports
+          ?.filter((transport) => transport.userId === userId)
+          .map((transport, index) => (
+            <ProviderAnnoucementAdminComponent
+              key={`transport-${transport.id}`}
+              id={transport.id}
+              index={index}
+              href={`/customer/transport/${transport.id}`}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${transport?.photo}`}
+              title={transport.title}
+              date="20 juil"
+              city_start={transport.departure_city}
+              price={`${transport.price} €`}
+              rating="4,9"
+              onDelete={handleDeleteTransport}
+            />
+          ))}
 
-      <DelivrerAnnouncementCard
-        image="https://www.theparisphotographer.com/wp-content/uploads/2020/02/The-Paris-Photographer-Best-photography-team-in-Paris.jpg"
-        title="Photographe Pro · Paris"
-        date="20 juil"
-        price="20 €"
-        rating="4,2"
-      />
-
-      <DelivrerAnnouncementCard
-        image="https://media.istockphoto.com/id/516329534/fr/photo/en-paille.jpg?s=612x612&w=0&k=20&c=AbUPoF0rjp_EbQDt4HneiYtXRozIyb79YTvvpAeJmDg="
-        title="Traiteur · Paris"
-        date="20 juil"
-        price="200 €"
-        rating="4,6"
-      />
-
-      <DelivrerAnnouncementCard
-        image="https://www.aufauteuilducoiffeur.fr/img/images/3-original.jpg"
-        title="Coiffeur · Paris"
-        date="20 juil"
-        price="15 €"
-        rating="5"
-      />
-
-      <DelivrerAnnouncementCard
-        image="https://i.notretemps.com/2000x1125/smart/2024/04/30/illustration-de-travaux-de-jardinage.jpeg"
-        title="Jardinage à Domicile · Paris"
-        date="20 juil"
-        price="30 €"
-        rating="4,8"
-      />
-
-      <DelivrerAnnouncementCard
-        image="https://cdn.prod.website-files.com/6413856d54d41b5f298d5953/67ae1d4b1945f7be580af6a5_65815eec29effcc74349ed64_passageres-covoiturage-nuit.jpeg"
-        title="Covoiturage · Paris - Toulouse"
-        date="20 juil"
-        price="50 €"
-        rating="4,9"
-      />
-
-    <DelivrerAnnouncementCard
-        image="https://demarchesadministratives.fr/images/demarches/189/garde_enfant_domicile_nounou.jpg"
-        title="Garde d'enfant · Paris"
-        date="20 juil"
-        price="35 €"
-        rating="4,9"
-      />
-
-    <DelivrerAnnouncementCard
-        image="https://www.domaliance.fr/wp-content/uploads/2022/10/lit-senior-garde.jpg"
-        title="Aide personnes agées · Paris"
-        date="20 juil"
-        price="84 €"
-        rating="4,9"
-      />
+        {deliveries
+          ?.filter((delivery) => delivery.userId === userId)
+          .map((delivery, index) => (
+            <ProviderAnnoucementAdminComponent
+              key={`delivery-${delivery.id}`}
+              id={delivery.id}
+              index={index}
+              href={`/customer/announcement/${delivery.id}`}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${delivery?.photo}`}
+              title={delivery.title}
+              date="20 juil"
+              city_start={delivery.city}
+              price={`${delivery.price} €`}
+              rating="4,9"
+              onDelete={handleDeleteDelivery}
+            />
+          ))}
       </div>
     </div>
   );
 };
 
-export default CustomerAnnouncements;
+export default CustomerAnnouncementsAdmin;

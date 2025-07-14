@@ -50,7 +50,7 @@ const CustomerRoutes = (
       <Route path="create/service" element={<CreateServiceCustomer />} />
       <Route path="create" element={<CreatePageCustomer />} />
       <Route path="create/transport" element={<CreateTransportCustomer />} />
-      <Route path="announcements" element={<CustomerAnnouncements />} />
+      <Route path="/customer/announcements" element={<CustomerAnnouncements />} />
       <Route path="Subscription" element={<SubscriptionPlans />} />
       <Route path="payements" element={<PaymentTrackingPage />} />
       <Route path="profile/:profileId" element={<ProfileDetails />}/>
