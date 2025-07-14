@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const StarIcon = () => (
   <svg
@@ -28,8 +29,8 @@ const ProfileDetailsComponent = ({
   firstname,
   lastname,
   status,
-  average_grade,
   reviews,
+  profileId,
 }) => (
   <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 mt-7 space-y-10">
 
@@ -46,10 +47,9 @@ const ProfileDetailsComponent = ({
       <p className="mt-1 font-semibold text-yellow-600">{status}</p>
 
       <div className="flex items-center gap-1 mt-2">
-        <StarIcon />
-        <span className="font-semibold text-yellow-600">
-          {average_grade ?? "Pas encore noté"}
-        </span>
+        <Link className="underline text-yellow-600" to={`/customer/create/review/${profileId}`}>
+          Poster un avis sur cet utilisateur
+        </Link>
       </div>
 
     </div>
