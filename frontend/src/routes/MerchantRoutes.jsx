@@ -9,6 +9,7 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 
 // Pages
 import HomeMerchant from "../pages/merchant/HomeMerchant";
+import Test from "../pages/merchant/Test";
 
 const MerchantRoutes = (
   <Route
@@ -20,6 +21,7 @@ const MerchantRoutes = (
     }
   >
     <Route index element={<HomeMerchant />} />
+    <Route path="test" element={<Test />}/>
   </Route>
 );
 

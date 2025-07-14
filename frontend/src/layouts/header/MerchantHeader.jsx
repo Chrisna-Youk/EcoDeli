@@ -7,76 +7,59 @@ const MerchantHeader = () => {
         </div>
         <hr className=""></hr>
 
+        <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
+          <details>
+            <summary className="list-none flex flex-row items-center">
+              Annonce
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="size-4 ml-1"
+              >
+              <path
+                fillRule="evenodd"
+                d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                clipRule="evenodd"
+              />
+              </svg>
+            </summary>
+            <div className="ml-4 mt-2 space-y-1 flex flex-col">
+              <a
+                href="merchant/Test"
+                className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
+              >
+                Ajouter une annonce
+              </a>
+              <a
+                href="/"
+                className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
+              >
+                Voir mes annonces
+              </a>
+            </div>
+          </details>
+        </div>
+
         <div className="flex-1 space-y-2 mt-4">
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="/Dashboard">
-              <span>Dashboard</span>
+            <a href="">
+              <span>Facturation</span>
             </a>
           </div>
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="Dashboard/Users">
-              <span>Merchant</span>
+            <a href="">
+              <span>Paiement</span>
             </a>
           </div>
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="/">
-              <span>Annonces</span>
+            <a href="">
+              <span>Contrat</span>
             </a>
           </div>
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="/">
-              <span>Users</span>
-            </a>
-          </div>
-          <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="/">
-              <span>Products</span>
-            </a>
-          </div>
-
-          <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <details>
-              <summary className="list-none flex flex-row items-center">
-                Autres
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="size-4 ml-1"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </summary>
-              <div className="ml-4 mt-2 space-y-1 flex flex-col">
-                <a
-                  href="/"
-                  className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
-                >
-                  Statistiques
-                </a>
-                <a
-                  href="/"
-                  className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
-                >
-                  Paramètres
-                </a>
-                <a
-                  href="/"
-                  className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
-                >
-                  Logs
-                </a>
-              </div>
-            </details>
-          </div>
-
-          <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="/products">
-              <span>Products</span>
+            <a href="">
+              <span>Paramètre</span>
             </a>
           </div>
         </div>
