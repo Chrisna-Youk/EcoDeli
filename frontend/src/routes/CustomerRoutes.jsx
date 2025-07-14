@@ -45,7 +45,7 @@ const CustomerRoutes = (
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
       <Route path="transport/:transportId" element={<TransportDetailsPage />} />
       <Route path="chat/" element={<ChatListCustomer />} />
-      <Route path="chat/:customerId/:providerId" element={<ChatCustomer />} />
+      <Route path="chat/:customerId/:providerId/:serviceId" element={<ChatCustomer />} />
       <Route path="Transport" element={<TransportPageCustomer />} />
       <Route path="create/delivery" element={<CreateDeliveryCustomer />} />
       <Route path="create/service" element={<CreateServiceCustomer />} />

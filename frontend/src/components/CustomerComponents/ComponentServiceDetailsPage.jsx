@@ -13,6 +13,7 @@ const ComponentServiceDetailsPage = ({
   lastname_provider,
   status_provider,
   photo_provider,
+  serviceId,
 }) => (
   <div className="min-h-screen w-full px-4 py-6 flex flex-col lg:flex-row lg:justify-around font-[Poppins] lg:px-20 mt-10">
     <div className="w-full lg:w-1/2 lg:max-w-[800px]">
@@ -57,7 +58,7 @@ const ComponentServiceDetailsPage = ({
       <div className="w-full bg-yellow-400 text-center py-4 transition hover:scale-105 rounded-md cursor-pointer">
         <Link
           className="font-semibold text-black"
-          to={`/customer/chat/${customerId}/${providerId}`}
+          to={`/customer/chat/${customerId}/${providerId}/${serviceId}`}
         >
           Contacter le prestataire
         </Link>

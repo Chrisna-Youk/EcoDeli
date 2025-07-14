@@ -82,7 +82,7 @@ const ChatProvider = () => {
     <div className="w-2xl mx-auto p-4 h-150 flex flex-col">
       <div className="text-lg font-semibold mb-4">Chat</div>
 
-      <div className="flex-1 overflow-y-auto space-y-4 p-4 bg-gray-100 rounded-md">
+      <div className="flex-1 overflow-y-auto space-y-4 p-4 bg-yellow-50 rounded-md border border-yellow-300">
         {allMessages.map((msg, idx) => (
           <div
             key={idx}
@@ -96,7 +96,7 @@ const ChatProvider = () => {
                   ? "bg-yellow-100 text-yellow-800"
                   : msg.userId == providerId
                   ? "bg-blue-100 text-blue-700"
-                  : "bg-white text-gray-700"
+                  : "bg-orange-200 text-gray-700"
               }`}
             >
               {msg.content}
