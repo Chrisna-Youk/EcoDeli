@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const MerchantHeader = () => {
   return (
     <>
-      <aside className="h-screen md:w-60 max-sm:hidden bg-zinc-800 text-white flex flex-col px-4 py-6 font-medium text-md">
-        <div className="flex justify-center mb-6">
+      <aside className="sticky top-0 h-screen md:w-60 max-sm:hidden bg-zinc-800 text-white flex flex-col px-4 py-6 font-medium text-md">
+        <Link to="/merchant" className="flex justify-center mb-6">
           <img src="/ecodeli-logo.png" alt="ecodeli-logo" className="h-13" />
-        </div>
+        </Link>
         <hr className=""></hr>
 
         <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
@@ -25,42 +27,37 @@ const MerchantHeader = () => {
               </svg>
             </summary>
             <div className="ml-4 mt-2 space-y-1 flex flex-col">
-              <a
-                href="merchant/Test"
-                className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
-              >
+              <Link to="/merchant/CreateDeliveryPageMerchant" className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm">
                 Ajouter une annonce
-              </a>
-              <a
-                href="/"
-                className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm"
-              >
+              </Link>
+              
+              <Link to="/merchant/ViewAnnoucement" className="cursor-pointer px-2 py-1 hover:bg-zinc-800 rounded-md text-sm">
                 Voir mes annonces
-              </a>
+              </Link> 
             </div>
           </details>
         </div>
 
         <div className="flex-1 space-y-2 mt-4">
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="">
+            <Link to="/merchant">
               <span>Facturation</span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="">
+            <Link to="/merchant">
               <span>Paiement</span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="">
+            <Link to="/merchant">
               <span>Contrat</span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center justify-between px-2 py-2 rounded-md hover:bg-zinc-700 cursor-pointer font-[Poppins]">
-            <a href="">
+            <Link to="/merchant">
               <span>Paramètre</span>
-            </a>
+            </Link>
           </div>
         </div>
 
