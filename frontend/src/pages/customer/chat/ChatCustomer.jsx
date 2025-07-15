@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useSocket } from "../../../utils/io";
+import { useQuery } from "@tanstack/react-query";
 
 const ChatCustomer = () => {
   const { customerId, providerId, serviceId } = useParams();
@@ -12,6 +13,30 @@ const ChatCustomer = () => {
   const [messages, setMessages] = useState([]);
   const [localMessages, setLocalMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+
+  const { data: customerInfos } = useQuery({
+    queryKey: ["customerInfos", customerId],
+    queryFn: async () => {
+      const response = await http.get(`/user/read/${customerId}`);
+      return response.data.data;
+    },
+  });
+
+  const { data: providerInfos } = useQuery({
+    queryKey: ["providerInfos", customerId],
+    queryFn: async () => {
+      const response = await http.get(`/user/read/${providerId}`);
+      return response.data.data;
+    },
+  });
+
+  const { data: serviceInfos } = useQuery({
+    queryKey: ["serviceInfos", serviceId],
+    queryFn: async () => {
+      const response = await http.get(`/service/read/${serviceId}`);
+      return response.data.data;
+    },
+  });
 
   useEffect(() => {
     const fetchOrCreateChat = async () => {
@@ -73,6 +98,34 @@ const ChatCustomer = () => {
     socket.emit("sendMessage", messagePayload);
     setNewMessage("");
   };
+  
+
+  const handleAcceptOffer = async (msg) => {
+    try {
+    const payload = {
+      price: msg.price,
+      date: msg.dueDate,
+      serviceId,
+      customerId,
+      providerId,
+      customerfirstName: customerInfos?.firstName,
+      customerlastName: customerInfos?.lastName,
+      providerfirstName: providerInfos?.firstName,
+      providerlastName: providerInfos?.lastName,
+      serviceTitle: serviceInfos?.title,
+    };
+
+    await http.post(`/order/create/`, payload);
+
+    alert("Order prise en compte !");
+  } catch (error) {
+    console.error("❌ Erreur lors de la création de l'order :", error);
+    alert("Erreur lors de la mise en place de l'order");
+  }
+};
+
+
+
 
   const allMessages = [...messages, ...localMessages];
 

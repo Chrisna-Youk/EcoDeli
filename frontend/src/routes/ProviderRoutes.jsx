@@ -13,7 +13,7 @@ import ProviderAnnouncements from "../pages/provider/ProviderAnnoucments";
 import EditServiceProvider from "../pages/provider/EditServiceProvider";
 import ProviderPaymentsHistory from "../pages/provider/ProviderPaymentsHistory";
 import ProviderProvidingHistory from "../pages/provider/ProviderProvidingHistory";
-import ProviderUpComingProviding from "../pages/provider/DelivrerUpComingServices";
+import ProviderUpComingProviding from "../pages/provider/ProviderUpComingServices";
 import CreateServiceProvider from "../pages/provider/CreateServiceProvider";
 import ChatProvider from "../pages/provider/chat/ChatProvider";
 import ChatListProvider from "../pages/provider/chat/ChatListProvider";

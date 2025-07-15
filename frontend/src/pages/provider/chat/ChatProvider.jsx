@@ -140,7 +140,7 @@ const ChatProvider = () => {
             onChange={(e) => setOfferPrice(e.target.value)}
           />
           <input
-            type="date"
+            type="datetime-local"
             className="px-2 py-1 border border-gray-300 rounded"
             value={offerDueDate}
             onChange={(e) => setOfferDueDate(e.target.value)}

@@ -28,6 +28,7 @@ import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
 import RequestBecomeProvider from "../pages/customer/RequestBecomeProvider";
 import TransportDetailsPage from "../pages/customer/TransportDetailsPage";
 import CreateReview from "../pages/customer/CreateReview";
+import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
 
 const CustomerRoutes = (
   <>
@@ -57,6 +58,7 @@ const CustomerRoutes = (
       <Route path="payements" element={<PaymentTrackingPage />} />
       <Route path="profile/:profileId" element={<ProfileDetails />} />
       <Route path="profile" element={<CustomerProfilePage />} />
+      <Route path="upcomingservices" element={<CustomerUpComingProviding />} />
       <Route
         path="profile/request/delivrer"
         element={<RequestBecomeDeliverer />}

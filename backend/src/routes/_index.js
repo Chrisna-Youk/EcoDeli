@@ -71,6 +71,9 @@ import deleteTransportController from "../controllers/transport/delete/delete.co
 import readTransportByIdController from "../controllers/transport/read/readById.controller.js";
 import createReviewController from "../controllers/review/create/create.controller.js";
 import createChatController from "../controllers/chat/create/createChat.controller.js";
+import createOrderController from "../controllers/order/create/createOrder.controller.js";
+import readByIdProviderController from "../controllers/order/read/readByIdProvider.controler.js";
+import readByIdCustomerController from "../controllers/order/read/readByIdCustomer.controler.js";
 
 
 const router = Router({ mergeParams: true });
@@ -150,7 +153,13 @@ const routes = [
   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/read", readTransportController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/delete", deleteTransportController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-    route(router, "/transport/read/:transportId", readTransportByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/transport/read/:transportId", readTransportByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+  //Controllers/Order
+  route(router, "/order/create", createOrderController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/read/:providerId", readByIdProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/customer/read/:customerId", readByIdCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
 
 ];
 
