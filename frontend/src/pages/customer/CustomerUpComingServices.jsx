@@ -22,7 +22,7 @@ const CustomerUpComingProviding = () => {
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div className="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Vos prestations à venir
+          Vos rendez-vous à venir
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full">
