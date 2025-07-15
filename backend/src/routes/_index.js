@@ -74,6 +74,7 @@ import createChatController from "../controllers/chat/create/createChat.controll
 import createOrderController from "../controllers/order/create/createOrder.controller.js";
 import readByIdProviderController from "../controllers/order/read/readByIdProvider.controler.js";
 import readByIdCustomerController from "../controllers/order/read/readByIdCustomer.controler.js";
+import updateOrdersController from "../controllers/order/update/updateOrder.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -159,6 +160,8 @@ const routes = [
   route(router, "/order/create", createOrderController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/read/:providerId", readByIdProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/customer/read/:customerId", readByIdCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/update/:id", updateOrdersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
 
 
 ];

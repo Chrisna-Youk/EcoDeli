@@ -18,6 +18,19 @@ const ProviderUpComingProviding = () => {
     },
   });
 
+  const handleConfirm = async (orderId) => {
+    try {
+        await http.put(`/order/update/${orderId}`, {
+        confirm_provider: 1,
+        });
+        alert("Rendez-vous complété !");
+    } catch (error) {
+        console.error(error);
+        alert("Le rendez-vous n'a pas pu être complété");
+    }
+    };
+
+
 
   return (
     <div className="bg-white pt-0 h-screen 2xl:ml-150 py-10 w-full overflow-x-hidden flex items-center flex-col">
@@ -68,8 +81,8 @@ const ProviderUpComingProviding = () => {
                           minute: "2-digit",
                         })}
                       </td>
-                      <td className="px-4 py-2 text-sm text-blue-600 cursor-pointer hover:underline">
-                        Voir détails
+                      <td className="px-4 py-2 text-sm text-green-600 cursor-pointer hover:underline">
+                        <button onClick={() => handleConfirm(order.id)}>Confirmer</button>
                       </td>
                     </tr>
                   );

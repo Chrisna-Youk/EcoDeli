@@ -65,6 +65,18 @@ const Order = db.define(
       unique: false,
       defaultValue: 1,
     },
+    confirm_customer: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      unique: false,
+      defaultValue: 0,
+    },
+    confirm_provider: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      unique: false,
+      defaultValue: 0,
+    },
   },
   {
     freezeTableName: true,

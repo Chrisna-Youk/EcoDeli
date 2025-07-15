@@ -17,6 +17,18 @@ const CustomerUpComingProviding = () => {
     },
   });
 
+  const handleConfirm = async (orderId) => {
+    try {
+        await http.put(`/order/update/${orderId}`, {
+        confirm_customer: 1,
+        });
+        alert("Rendez-vous complété !");
+    } catch (error) {
+        console.error(error);
+        alert("Le rendez-vous n'a pas pu être complété");
+    }
+    };
+
   return (
     <div className="bg-white pt-0 h-screen py-10 w-full overflow-x-hidden flex items-center flex-col">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
@@ -50,7 +62,7 @@ const CustomerUpComingProviding = () => {
                         {orderDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                       </td>
                       <td className="px-4 py-2 text-sm text-blue-600 cursor-pointer hover:underline">
-                        Voir détails
+                        <button onClick={() => handleConfirm(order.id)}>Confirmer</button>
                       </td>
                     </tr>
                   );
