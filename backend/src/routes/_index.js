@@ -90,6 +90,7 @@ import createPayementController from "../controllers/payement/create/create.cont
 
 // controller/step
 import createStepController from "../controllers/step/create/create.controller.js";
+import createOfferPaymentController from "../controllers/payement/create/createservice.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -175,6 +176,7 @@ const routes = [
 
   // conroller/payement
   route(router, "/payement/create", createPayementController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
+  route(router, "/payement/service/create", createOfferPaymentController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   // controller/step
   route(router, "/step/create", createStepController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),

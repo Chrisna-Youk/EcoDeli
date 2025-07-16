@@ -32,6 +32,8 @@ import PaymentSuccess from "../pages/customer/payement/PayementSuccess";
 import PayementCancel from "../pages/customer/payement/PayementCancel";
 import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
 import CustomerOldServices from "../pages/customer/CustomerOldServices";
+import PaymentSuccessServices from "../pages/customer/payement/PayementSuccessServices";
+import PayementFailedServices from "../pages/customer/payement/PayementFailedServices";
 
 const CustomerRoutes = (
   <>
@@ -46,6 +48,8 @@ const CustomerRoutes = (
       <Route index element={<HomeCustomer />} />
       {/* Deliveries */}
       <Route path="deliveries" element={<DeliveriesPageCustomer />} />
+      <Route path="/customer/payement/service/success" element={<PaymentSuccessServices />} />
+      <Route path="/customer/payement/service/failed" element={<PayementFailedServices />} />
       <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
       <Route path="transport/:transportId" element={<TransportDetailsPage />} />
