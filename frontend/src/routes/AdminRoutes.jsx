@@ -27,6 +27,10 @@ import RegisterMerchant from "../pages/admin/merchants/RegisterMerchant";
 import AdminOldServices from "../pages/admin/AdminOldServices";
 import AdminUpcomingServices from "../pages/admin/AdminUpcomingServices";
 
+// Checkpoints
+import CheckpointList from "../pages/admin/checkpoints/CheckpointList";
+import CheckpointDetails from "../pages/admin/checkpoints/CheckpointDetails";
+import CheckpointCreate from "../pages/admin/checkpoints/CheckpointCreate";
 
 const AdminRoutes = (
   <>
@@ -55,6 +59,10 @@ const AdminRoutes = (
       <Route path="DelivrersAnnouncements" element={<AdminDelivrersAnnouncements />} />
       <Route path="/admin/services/old" element={<AdminOldServices />} />
       <Route path="/admin/services/upcoming" element={<AdminUpcomingServices />} />
+      {/* Checkpoints */}
+      <Route path="/admin/checkpoints" element={<CheckpointList />} />
+      <Route path="/admin/checkpoint/:checkpointId" element={<CheckpointDetails />} />
+      <Route path="/admin/create/checkpoint" element={<CheckpointCreate />} />
     </Route>
   </>
 );

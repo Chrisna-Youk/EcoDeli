@@ -14,8 +14,9 @@ const PublicHeader = () => {
   const http = useAuth();
 
   useEffect(() => {
-    setConnected(localStorage.getItem("connected"));
-  }, [connected]);
+    const isConnected = localStorage.getItem("connected") === "true";
+    setConnected(isConnected);
+  }, []);
 
   const handleLanguage = (e) => {
     const newLang = e.target.value;
@@ -30,6 +31,7 @@ const PublicHeader = () => {
       const response = await http.get(`/auth/role`);
       return response.data.data;
     },
+    enabled: connected,
   });
 
   return (
