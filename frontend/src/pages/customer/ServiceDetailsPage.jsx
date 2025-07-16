@@ -46,6 +46,7 @@ const ServiceDetailsPage = () => {
       category={service?.category}
       description={service?.description}
       city={service?.city}
+      city_end={service?.city_end}
       name_provider={user?.firstName}
       lastname_provider={user?.lastName}
       status_provider={user?.status}

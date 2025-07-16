@@ -36,13 +36,14 @@ const TransportDetailsPage = () => {
 
 
   return (
-    <ComponentServiceDetailsPage
+    <ComponentTransportDetailsPage
       title={transport?.title}
       image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${transport?.photo}`}
       price={transport?.price}
       category={transport?.category}
       description={transport?.description}
       city={transport?.city}
+      city_end={transport?.city_end}
       name_provider={user?.firstName}
       lastname_provider={user?.lastName}
       status_provider={user?.status}

@@ -27,28 +27,26 @@ const UpdateMerchantInfos = () => {
   });
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const formData = new FormData(event.target);
-    formData.append("userId", userId);
+  const formData = new FormData(event.target);
+  formData.append("userId", userId);
 
-    try {
-      await http.put(`/paper/update/${userId}`, formData, {
-      });
-
-      alert("Informations mises à jour !");
-    } catch (error) {
-      console.error(error);
-      alert("Erreur lors de la mise à jour");
-    }
-  };
+  try {
+    await http.put(`/paper/update/contract/${userId}`, formData);
+    alert("Informations mises à jour !");
+  } catch (error) {
+    console.error(error);
+    alert("Erreur lors de la mise à jour");
+  }
+};
 
   return (
     <div className="bg-white min-h-screen py-10 px-4 flex justify-center">
       <div className="w-full max-w-2xl bg-gray-50 p-8 rounded-xl shadow-lg">
         <h1 className="text-2xl font-bold mb-6 text-center">Modifier mes informations commerçant</h1>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-6">
 
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-700">Contrat</label>

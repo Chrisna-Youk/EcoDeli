@@ -91,6 +91,7 @@ import createPayementController from "../controllers/payement/create/create.cont
 // controller/step
 import createStepController from "../controllers/step/create/create.controller.js";
 import createOfferPaymentController from "../controllers/payement/create/createservice.controller.js";
+import updateContractController from "../controllers/papers/update/updateContract.controller.js";
 
 
 const router = Router({ mergeParams: true });
@@ -134,6 +135,8 @@ const routes = [
   route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}, {name: "pricesDocument", maxCount: 1}])),
   route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/paper/read/", readPapersAllController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/paper/update/contract/:userId", updateContractController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "contract", maxCount: 1}])),
+
 
 
   // controllers/checkpoint
