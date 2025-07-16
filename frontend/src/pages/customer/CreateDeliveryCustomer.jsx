@@ -18,13 +18,23 @@ const CreateDeliveryCustomer = ({}) => {
   const userId = jwtDecode(context.auth).id;
   const [error, setError] = useState("");
 
+  // const mutationCreateDelivery = useMutation({
+  //   mutationKey: ["CreateDeliveryCustomer"],
+  //   mutationFn: async (formData) => {
+  //     const response = await http.post(`/announcement/create`, formData, {
+  //       headers: { "Content-Type": "multipart/form-data" },
+  //     });
+  //     return response.data;
+  //   },
+  // });
+
   const mutationCreateDelivery = useMutation({
     mutationKey: ["CreateDeliveryCustomer"],
     mutationFn: async (formData) => {
-      const response = await http.post(`/announcement/create`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await http.post(`/payement/create`, formData, {
+        headers: { "Content-Type": "application/json" },
       });
-      return response.data;
+      return response.data.data;
     },
   });
 
@@ -42,8 +52,18 @@ const CreateDeliveryCustomer = ({}) => {
     formData.append("depth", data.depth || "");
     formData.append("date", data.date);
 
-    formData.append("cityDeparture", inputAddressDeparture.address.city || inputAddressDeparture.address.town || inputAddressDeparture.address.region);
-    formData.append("cityDestination", inputAddressDestination.address.city || inputAddressDestination.address.town || inputAddressDestination.address.region);
+    formData.append(
+      "cityDeparture",
+      inputAddressDeparture.address.city ||
+        inputAddressDeparture.address.town ||
+        inputAddressDeparture.address.region
+    );
+    formData.append(
+      "cityDestination",
+      inputAddressDestination.address.city ||
+        inputAddressDestination.address.town ||
+        inputAddressDestination.address.region
+    );
 
     formData.append("latDeparture", inputAddressDeparture.lat);
     formData.append("lonDeparture", inputAddressDeparture.lon);
@@ -51,21 +71,31 @@ const CreateDeliveryCustomer = ({}) => {
     formData.append("latDestination", inputAddressDestination.lat);
     formData.append("lonDestination", inputAddressDestination.lon);
 
-    console.log(formData);
-    console.log(inputAddressDeparture)
-    if (data.photoDelivery?.[0]) {
-      formData.append("photoDelivery", data.photoDelivery[0]);
-    }
+
+    // if (data.photoDelivery?.[0]) {
+    //   formData.append("photoDelivery", data.photoDelivery[0]);
+    // }
 
     mutationCreateDelivery.mutate(formData, {
       onError: (err) => {
         const msg = err?.response?.data?.message || "Erreur inconnue";
         setError(msg);
       },
-      onSuccess: () => {
-        alert("Annonce de livraison créée avec succès !");
+      onSuccess: (data) => {
+        // console.log(data)
+        window.location.href = data.url
       },
     });
+
+    // mutationCreateDelivery.mutate(formData, {
+    //   onError: (err) => {
+    //     const msg = err?.response?.data?.message || "Erreur inconnue";
+    //     setError(msg);
+    //   },
+    //   onSuccess: () => {
+    //     alert("Annonce de livraison créée avec succès !");
+    //   },
+    // });
   };
 
   const [inputAddressDeparture, setInputAddressDeparture] = useState("");
@@ -252,7 +282,7 @@ const CreateDeliveryCustomer = ({}) => {
             />
           </div>
 
-          {/* Photo */}
+          {/* Photo
           <div>
             <label className="block mb-2 font-semibold">
               Photo (optionnel)
@@ -263,7 +293,7 @@ const CreateDeliveryCustomer = ({}) => {
               accept="image/*"
               className="w-full"
             />
-          </div>
+          </div> */}
 
           {/* Bouton */}
           <button

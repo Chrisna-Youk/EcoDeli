@@ -16,6 +16,11 @@ async function readAnnouncementByIdController(req, res) {
           as: "user",
           attributes: ["id", "photo", "role", "firstName", "lastName"],
         },
+        {
+          model: Category,
+          as: "category",
+          attributes: ["id", "name"],
+        },
       ],
     });
     return res.status(200).json({ data: annoucement });

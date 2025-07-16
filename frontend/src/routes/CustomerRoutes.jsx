@@ -28,6 +28,8 @@ import RequestBecomeDeliverer from "../pages/customer/RequestBecomeDelivrer";
 import RequestBecomeProvider from "../pages/customer/RequestBecomeProvider";
 import TransportDetailsPage from "../pages/customer/TransportDetailsPage";
 import CreateReview from "../pages/customer/CreateReview";
+import PaymentSuccess from "../pages/customer/payement/PayementSuccess";
+import PayementCancel from "../pages/customer/payement/PayementCancel";
 import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
 
 const CustomerRoutes = (
@@ -58,6 +60,10 @@ const CustomerRoutes = (
       <Route path="payements" element={<PaymentTrackingPage />} />
       <Route path="profile/:profileId" element={<ProfileDetails />} />
       <Route path="profile" element={<CustomerProfilePage />} />
+      {/* Payements */}
+      <Route path="payement/success" element={<PaymentSuccess />} />
+      <Route path="payement/cancel" element={<PayementCancel />} />
+
       <Route path="upcomingservices" element={<CustomerUpComingProviding />} />
       <Route
         path="profile/request/delivrer"
@@ -67,11 +73,17 @@ const CustomerRoutes = (
         path="profile/request/provider"
         element={<RequestBecomeProvider />}
       />
-      <Route path="profile/:profileId" element={<ProfileDetails />}/>
-      <Route path="profile" element={<CustomerProfilePage />}/>
-      <Route path="profile/request/delivrer" element={<RequestBecomeDeliverer />}/>
-      <Route path="profile/request/provider" element={<RequestBecomeProvider />}/>
-      <Route path="create/review/:userId" element={<CreateReview />}/>
+      <Route path="profile/:profileId" element={<ProfileDetails />} />
+      <Route path="profile" element={<CustomerProfilePage />} />
+      <Route
+        path="profile/request/delivrer"
+        element={<RequestBecomeDeliverer />}
+      />
+      <Route
+        path="profile/request/provider"
+        element={<RequestBecomeProvider />}
+      />
+      <Route path="create/review/:userId" element={<CreateReview />} />
     </Route>
   </>
 );

@@ -4,5 +4,5 @@ import Invoice from "../invoice.model.js";
 import Order from "../order.model.js";
 
 Invoice.hasMany(Step, { foreignKey: "invoiceId", as: "invoice" });
-Order.hasMany(Step, { foreignKey: "orderId", as: "order" });
-Checkpoint.hasMany(Step, { foreignKey: "checkpointId", as: "checkpoint" });
+// Order.hasMany(Step, { foreignKey: "orderId", as: "order" });
+// Checkpoint.hasMany(Step, { foreignKey: "checkpointId", as: "checkpoint" });

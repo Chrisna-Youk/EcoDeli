@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context";
 import Axios from "../../utils/axios";
 import { jwtDecode } from "jwt-decode";
+import useAuth from "../../hooks/useAuth";
 
 const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const http = useAuth();
 
   useEffect(() => {
     const newAccessToken = async () => {
@@ -21,13 +24,16 @@ const AuthContextProvider = ({ children }) => {
         // console.log(decoded.exp)
 
         if (decoded.exp < currentTime) {
-          localStorage.removeItem("refreshToken");
+          localStorage.removeItem("connected");
+          http.get(`auth/signout`).then(() => {
+            navigate("/");
+          });
           navigate("/login");
           return;
         }
 
         setAuth(token);
-        // console.log("Token valide jusqu’à :", new Date(decoded.exp * 1000));
+        console.log("Token valide jusqu’à :", new Date(decoded.exp * 1000));
       } catch (error) {
         // console.error("Erreur lors du refresh token :", error);
         navigate("/login");

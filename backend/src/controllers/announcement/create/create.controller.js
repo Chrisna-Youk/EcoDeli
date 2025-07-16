@@ -1,70 +1,53 @@
 import Announcement from "../../../models/announcement.model.js";
+import stripe from "../../../stripe/stripe.js";
 
 async function createAnnouncementController(req, res) {
-  const {
-    type,
-    title,
-    description,
-    cityDeparture,
-    cityDestination,
-    latDeparture,
-    lonDeparture,
-    latDestination,
-    lonDestination,
-    date,
-    weight,
-    length,
-    width,
-    depth,
-    userId,
-    active,
-  } = req.body;
+  const { session_id } = req.body;
 
-  const photoPath = req.files?.photoDelivery
-    ? req.files.photoDelivery[0].filename
-    : null;
+  const session = await stripe.checkout.sessions.retrieve(session_id);
 
-  const announcementAlreadyExists = await Announcement.findOne({
-    where: {
-      type,
-      title,
-      userId,
-      cityDeparture,
-      cityDestination,
-    },
+  const metadata = session.metadata;
+
+  if (session.payment_status === "paid") {
+  const existingAnnouncement = await Announcement.findOne({
+    sessionId: session.id,
   });
 
-  if (announcementAlreadyExists) {
+  if (existingAnnouncement) {
     return res
-      .status(400)
-      .json({ message: "Une annonce identique existe déjà." });
+      .status(403)
+      .json({ data: "Cette session a déjà été traitée." });
   }
+}
 
   try {
-    await Announcement.create({
-      userId: userId,
-      type: type,
-      title: title,
-      description: description,
-      cityDeparture: cityDeparture,
-      cityDestination: cityDestination,
-      latDeparture: latDeparture,
-      lonDeparture: lonDeparture,
-      latDestination: latDestination,
-      lonDestination: lonDestination,
-      date: date,
-      weight: weight || 0.0,
-      length: length || 0,
-      width: width || 0,
-      depth: depth || 0,
-      photo: photoPath,
-      active: active ?? 1,
+    const newAnnouncement = new Announcement({
+      type: metadata.type,
+      title: metadata.title,
+      description: metadata.description,
+      cityDeparture: metadata.cityDeparture,
+      cityDestination: metadata.cityDestination,
+      latDeparture: Number(metadata.latDeparture),
+      lonDeparture: Number(metadata.lonDeparture),
+      latDestination: Number(metadata.latDestination),
+      lonDestination: Number(metadata.lonDestination),
+      date: metadata.date,
+      weight: Number(metadata.weight),
+      length: Number(metadata.length),
+      width: Number(metadata.width),
+      depth: Number(metadata.depth),
+      userId: Number(metadata.userId),
+      active: metadata.active === "true" || metadata.active === true,
     });
 
-    return res.status(200).json({ message: "Annonce créée avec succès." });
+    await newAnnouncement.save();
+
+    return res
+      .status(201)
+      .json({ message: "Annonce créée avec succès", data: newAnnouncement });
   } catch (error) {
-    console.error("Erreur lors de la création d'annonce:", error);
-    return res.status(500).json({ message: "Erreur serveur." });
+    console.error("Erreur création annonce:", error);
+    return res.status(500).json({ error: "Erreur serveur" });
   }
 }
 
