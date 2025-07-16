@@ -30,6 +30,7 @@ import TransportDetailsPage from "../pages/customer/TransportDetailsPage";
 import CreateReview from "../pages/customer/CreateReview";
 import PaymentSuccess from "../pages/customer/payement/PayementSuccess";
 import PayementCancel from "../pages/customer/payement/PayementCancel";
+import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
 
 const CustomerRoutes = (
   <>
@@ -48,7 +49,7 @@ const CustomerRoutes = (
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
       <Route path="transport/:transportId" element={<TransportDetailsPage />} />
       <Route path="chat/" element={<ChatListCustomer />} />
-      <Route path="chat/:customerId/:providerId" element={<ChatCustomer />} />
+      <Route path="chat/:customerId/:providerId/:serviceId" element={<ChatCustomer />} />
       <Route path="Transport" element={<TransportPageCustomer />} />
       <Route path="create/delivery" element={<CreateDeliveryCustomer />} />
       <Route path="create/service" element={<CreateServiceCustomer />} />
@@ -63,6 +64,7 @@ const CustomerRoutes = (
       <Route path="payement/success" element={<PaymentSuccess />} />
       <Route path="payement/cancel" element={<PayementCancel />} />
 
+      <Route path="upcomingservices" element={<CustomerUpComingProviding />} />
       <Route
         path="profile/request/delivrer"
         element={<RequestBecomeDeliverer />}

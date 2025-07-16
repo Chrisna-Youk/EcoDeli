@@ -13,12 +13,15 @@ import ProviderAnnouncements from "../pages/provider/ProviderAnnoucments";
 import EditServiceProvider from "../pages/provider/EditServiceProvider";
 import ProviderPaymentsHistory from "../pages/provider/ProviderPaymentsHistory";
 import ProviderProvidingHistory from "../pages/provider/ProviderProvidingHistory";
-import ProviderUpComingProviding from "../pages/provider/DelivrerUpComingServices";
+import ProviderUpComingProviding from "../pages/provider/ProviderUpComingServices";
 import CreateServiceProvider from "../pages/provider/CreateServiceProvider";
 import ChatProvider from "../pages/provider/chat/ChatProvider";
 import ChatListProvider from "../pages/provider/chat/ChatListProvider";
 import CreateTransportProvider from "../pages/provider/CreateTransportPageProvider";
 import ProviderProfileEdit from "../pages/provider/ProviderProfileEdit";
+import UpdateProviderInfos from "../pages/provider/UpdateProviderInfos";
+import CustomersDemands from "../pages/provider/CustomersDemands";
+import CreateTransportPageProvider from "../pages/provider/CreateTransportPageProvider";
 
 // import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
@@ -36,13 +39,16 @@ const ProviderRoutes = (
     <Route path="services" element={<ProviderAnnouncements />} />
     <Route path="services/:serviceId" element={<EditServiceProvider />} />
     <Route path="create/service" element={<CreateServiceProvider />} />
+    <Route path="create/transport" element={<CreateTransportPageProvider />} />
     <Route path="chat/" element={<ChatListProvider />} />
-    <Route path="chat/:customerId/:providerId" element={<ChatProvider />} />
+    <Route path="chat/:customerId/:providerId/:serviceId" element={<ChatProvider />} />
     <Route path="Payements" element={<ProviderPaymentsHistory />} />
     <Route path="ProvidingHistory" element={<ProviderProvidingHistory />} />
     <Route path="ProvidingUpComing" element={<ProviderUpComingProviding />} />
     <Route path="create/transport" element={<CreateTransportProvider />} />
     <Route path="profile" element={<ProviderProfileEdit />} />
+    <Route path="update/documents" element={<UpdateProviderInfos />} />
+    <Route path="read/demands" element={<CustomersDemands />} />
   </Route>
 );
 

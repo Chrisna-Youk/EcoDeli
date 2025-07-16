@@ -5,7 +5,8 @@ async function createServiceController(req, res) {
     title, 
     description, 
     price, 
-    city, 
+    city,
+    city_end, 
     postalCode, 
     categoryId, 
     type, 
@@ -38,6 +39,7 @@ async function createServiceController(req, res) {
       photo: photoPath,
       userId: userId,
       type: type,
+      city_end: city_end, 
     });
 
     return res.status(200).json({ message: "Service créé avec succès." });

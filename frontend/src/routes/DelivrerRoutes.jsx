@@ -13,6 +13,8 @@ import MyDeliverAccount from "../pages/delivrer/MyDeliveryAccount";
 import DelivrerAnnoucements from "../pages/delivrer/announcement/DelivrerAnnoucements";
 import DelivrerAnnouncementDetails from "../pages/delivrer/announcement/DelivrerAnnouncementDetails";
 import DelivrerAnnouncementConfirmation from "../pages/delivrer/announcement/DelivrerAnnouncementConfirmation";
+import DelivrerAnnoucements from "../pages/delivrer/DelivrerAnnoucements";
+import DelivrerAnnouncementDetails from "../pages/delivrer/DelivrerAnnouncementDetails";
 import DelivrerCreateAnnoucements from "../pages/delivrer/DelivrerCreateAnnoucements";
 import DelivrerUpComingDeliveries from "../pages/delivrer/DelivrerUpComingDeliveries";
 import DelivrerHistoryTodo from "../pages/delivrer/delivery/DelivrerHistoryTodo";
@@ -32,6 +34,8 @@ const DelivrerRoutes = (
       <Route index element={<HomeDelivrer />} />
       <Route path="MyDeliverAccount" element={<MyDeliverAccount />} />
       <Route path="PaymentsHistory" element={<DelivrerPaymentsHistory />} />
+      <Route path="announcements" element={<DelivrerAnnoucements />} />
+      <Route path="announcement/:announcementId" element={<DelivrerAnnouncementDetails />} />
       <Route path="DelivrerCreateAnnoucements" element={<DelivrerCreateAnnoucements />} />
       <Route path="UpComingDeliveries" element={<DelivrerUpComingDeliveries />} />
       {/* announcements */}

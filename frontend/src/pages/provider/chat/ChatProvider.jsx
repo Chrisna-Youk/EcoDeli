@@ -1,32 +1,50 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import { useSocket } from "../../../utils/io";
 
 const ChatProvider = () => {
-  const { customerId, providerId } = useParams();
+  const { customerId, providerId, serviceId } = useParams();
   const http = useAuth();
   const socket = useSocket();
 
+  const [chat, setChat] = useState(null);
   const [localMessages, setLocalMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
   const [offerDueDate, setOfferDueDate] = useState("");
 
-  const { data: chat } = useQuery({
-    queryKey: ["Chat", customerId, providerId],
-    queryFn: async () => {
-      const response = await http.get(`/chat/read/${customerId}/${providerId}`);
-      return response.data.data;
-    },
-  });
+  useEffect(() => {
+    const fetchOrCreateChat = async () => {
+      try {
+        const response = await http.post("/chat/create", {
+          customerId,
+          providerId,
+          serviceId,
+        });
+        setChat(response.data.data);
+      } catch (error) {
+        console.error("Erreur création chat :", error);
+      }
+    };
+
+    fetchOrCreateChat();
+  }, [customerId, providerId, serviceId]);
 
   const { data: messages = [] } = useQuery({
     enabled: !!chat?.id,
     queryKey: ["Messages", chat?.id],
     queryFn: async () => {
-      const response = await http.get(`/message/read/${chat?.id}`);
+      const response = await http.get(`/message/read/${chat.id}`);
+      return response.data.data;
+    },
+  });
+
+  const { data: serviceInfos } = useQuery({
+    queryKey: ["serviceInfos", serviceId],
+    queryFn: async () => {
+      const response = await http.get(`/service/read/${serviceId}`);
       return response.data.data;
     },
   });
@@ -48,7 +66,7 @@ const ChatProvider = () => {
   const allMessages = [...messages, ...localMessages];
 
   const handleSend = () => {
-    if (!newMessage.trim()) return;
+    if (!newMessage.trim() || !chat?.id) return;
 
     const messagePayload = {
       content: newMessage,
@@ -62,14 +80,14 @@ const ChatProvider = () => {
   };
 
   const handleSendOffer = () => {
-    if (!offerPrice || !offerDueDate) return;
+    if (!offerPrice || !offerDueDate || !chat?.id) return;
 
     const offerPayload = {
       content: `Offre : ${offerPrice}€ - à livrer pour ${offerDueDate}`,
       chatId: chat.id,
       userId: providerId,
       type: "offer",
-      price: parseInt(offerPrice),
+      price: offerPrice,
       dueDate: offerDueDate,
     };
 
@@ -81,8 +99,9 @@ const ChatProvider = () => {
   return (
     <div className="w-2xl mx-auto p-4 h-150 flex flex-col">
       <div className="text-lg font-semibold mb-4">Chat</div>
+      <div className="text-md text-yellow-600 mb-4">Annonce : {serviceInfos?.title}</div>
 
-      <div className="flex-1 overflow-y-auto space-y-4 p-4 bg-gray-100 rounded-md">
+      <div className="flex-1 overflow-y-auto space-y-4 p-4 bg-yellow-50 rounded-md border border-yellow-300">
         {allMessages.map((msg, idx) => (
           <div
             key={idx}
@@ -96,13 +115,15 @@ const ChatProvider = () => {
                   ? "bg-yellow-100 text-yellow-800"
                   : msg.userId == providerId
                   ? "bg-blue-100 text-blue-700"
-                  : "bg-white text-gray-700"
+                  : "bg-orange-200 text-gray-700"
               }`}
             >
               {msg.content}
               {msg.type === "offer" && msg.price && (
                 <div className="text-sm mt-1">
-                  💰 {msg.price} € – 📅 {new Date(msg.dueDate).toLocaleDateString()}
+                  💰 {msg.price} € – 📅{" "}
+                  {new Date(msg.dueDate).toLocaleDateString()}
+                  <Link to={"Stripe"} className="ml-2 text-blue-500 hover:underline">Accepter</Link>
                 </div>
               )}
             </div>
@@ -126,7 +147,6 @@ const ChatProvider = () => {
         </button>
       </div>
 
-      {/* Offer form */}
       <div className="mt-6 p-4 bg-gray-50 border rounded-md">
         <div className="text-md font-semibold mb-2">Envoyer une offre</div>
         <div className="flex gap-2">
@@ -138,7 +158,7 @@ const ChatProvider = () => {
             onChange={(e) => setOfferPrice(e.target.value)}
           />
           <input
-            type="date"
+            type="datetime-local"
             className="px-2 py-1 border border-gray-300 rounded"
             value={offerDueDate}
             onChange={(e) => setOfferDueDate(e.target.value)}

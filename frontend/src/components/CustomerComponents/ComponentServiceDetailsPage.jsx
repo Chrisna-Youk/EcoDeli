@@ -13,6 +13,7 @@ const ComponentServiceDetailsPage = ({
   lastname_provider,
   status_provider,
   photo_provider,
+  serviceId,
 }) => (
   <div className="min-h-screen w-full px-4 py-6 flex flex-col lg:flex-row lg:justify-around font-[Poppins] lg:px-20 mt-10">
     <div className="w-full lg:w-1/2 lg:max-w-[800px]">
@@ -37,9 +38,9 @@ const ComponentServiceDetailsPage = ({
     <div className="w-full lg:w-[400px] lg:mt-10 bg-white rounded-md shadow-2xl flex flex-col h-auto lg:h-[50vh]">
       <div className="w-full h-24 px-5 flex items-center justify-between rounded-t-md bg-gray-100">
         <div>
-          <h2 className="font-semibold text-lg">
+          <a href={`/customer/profile/${providerId}`}><h2 className="font-semibold text-lg hover:text-yellow-600">
             {name_provider} {lastname_provider}
-          </h2>
+          </h2></a>
           <h3 className="text-sm text-gray-600">{status_provider}</h3>
         </div>
         <img
@@ -57,7 +58,7 @@ const ComponentServiceDetailsPage = ({
       <div className="w-full bg-yellow-400 text-center py-4 transition hover:scale-105 rounded-md cursor-pointer">
         <Link
           className="font-semibold text-black"
-          to={`/customer/chat/${customerId}/${providerId}`}
+          to={`/customer/chat/${customerId}/${providerId}/${serviceId}`}
         >
           Contacter le prestataire
         </Link>

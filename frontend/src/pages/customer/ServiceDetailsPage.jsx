@@ -13,6 +13,9 @@ const ServiceDetailsPage = () => {
   const [providerId, setProviderId] = useState("");
   const customerId = jwtDecode(useAuthContext().auth)?.id;
 
+  console.log(providerId);
+  console.log(customerId);
+
   const {
     data: service
   } = useQuery({
@@ -46,6 +49,9 @@ const ServiceDetailsPage = () => {
       name_provider={user?.firstName}
       lastname_provider={user?.lastName}
       status_provider={user?.status}
+      customerId={customerId}
+      providerId={providerId}
+      serviceId={serviceId}
       photo_provider={user?.photo || 'https://img.freepik.com/vecteurs-premium/silhouette-noire-homme-anonyme-point-interrogation-illustration-vectorielle-personne-sexe-masculin-incognito_261737-806.jpg?semt=ais_hybrid&w=740'} 
     />
   );

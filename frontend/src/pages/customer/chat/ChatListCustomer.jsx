@@ -21,16 +21,16 @@ const ChatListCustomer = () => {
   return (
     <div className="bg-white pt-0 h-screen py-10 w-full max-w-7xl mx-auto overflow-x-hidden">
       <div className="p-10 bg-white w-full max-w-7xl mx-auto mb-8 shadow-md"></div>
-      <div className="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
+      <div className="bg-white p-6 rounded-2xl shadow-md">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Dernières Prestations
+          Mes discussions
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead className="bg-gray-100">
               <tr>
                 <th className="px-4 py-2 text-left text-sm text-gray-600">
-                  Client
+                  Prestataire
                 </th>
                 <th className="px-4 py-2 text-left text-sm text-gray-600">
                   Service
@@ -73,7 +73,7 @@ const ChatListCustomer = () => {
                     </td>
                     <td className="px-4 py-3 flex gap-3">
                       <Link
-                        to={`/customer/chat/${customerId}/${chat?.provider.id}`}
+                        to={`/customer/chat/${customerId}/${chat?.provider.id}/${chat?.serviceId}`}
                         className="text-blue-600 hover:underline text-sm cursor-pointer"
                       >
                         Consulter

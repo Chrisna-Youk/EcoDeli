@@ -1,13 +1,14 @@
 import Chat from "../../../models/chat.model.js";
 
 async function readChatByUserIdController(req, res) {
-  const { customerId, providerId } = req.params;
+  const { customerId, providerId, serviceId } = req.params;
 
   try {
     const chat = await Chat.findOne({
       where: {
         customerId: customerId,
         providerId: providerId,
+        serviceId: serviceId,
       },
     });
 

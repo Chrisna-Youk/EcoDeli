@@ -68,7 +68,9 @@ const CustomerHeader = () => {
               <a href="/customer/profile"><li className="px-4 py-2 hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon Profil</li></a>
               <a href="/customer/create"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Créer une annonce</li></a>
               <a href="/customer/announcements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes annonces</li></a>
-              <a href="/customer/Payements"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes paiements</li></a>
+              <a href="/customer/chat"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes messages</li></a>
+              <a href="/customer/upcomingservices"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes rendez-vous</li></a>
+              <a href="/customer/"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mes paiements</li></a>
               <a href="/customer/Subscription"><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Mon abonnement</li></a>
               <a href=""><li className="px-4 py-2  hover:bg-yellow-500 duration-300 text-sm cursor-pointer rounded-lg">Déconnexion</li></a>
             </ul>

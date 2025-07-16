@@ -3,16 +3,24 @@ import { io } from "socket.io-client";
 
 const SOCKET_URL = "http://localhost:3000";
 
+// 👇 Instance globale unique
+let socket;
+
 export const useSocket = () => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io(SOCKET_URL, {
-      transports: ["websocket"],
-    });
+    if (!socket) {
+      socket = io(SOCKET_URL, {
+        transports: ["websocket"],
+      });
+    }
+
+    socketRef.current = socket;
 
     return () => {
-      socketRef.current.disconnect();
+      // Pas de disconnect ici !
+      // Car on veut garder la connexion persistente
     };
   }, []);
 

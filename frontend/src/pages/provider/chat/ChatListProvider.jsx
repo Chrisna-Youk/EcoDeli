@@ -19,11 +19,11 @@ const ChatListProvider = () => {
 
   console.log(chats);
   return (
-    <div className="bg-white pt-0 h-screen 2xl:ml-150 py-10 w-full overflow-x-hidden">
+    <div className="bg-white pt-0 h-screen 2xl:ml-80 py-10 w-full overflow-x-hidden">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div className="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Dernières Prestations
+          Mes discussions
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full">
@@ -72,7 +72,7 @@ const ChatListProvider = () => {
                     </td>
                     <td className="px-4 py-3 flex gap-3">
                       <Link
-                        to={`/provider/chat/${chat?.customer.id}/${providerId}`}
+                        to={`/provider/chat/${chat?.customer.id}/${providerId}/${chat?.serviceId}`}
                         className="text-blue-600 hover:underline text-sm cursor-pointer"
                       >
                         Consulter

@@ -277,7 +277,7 @@ const ProviderHeader = () => {
                     d="M12 4v16m8-8H4"
                   />
                 </svg>
-                Créer une annonce de transport
+                Créer une annonce transport
               </Link>
             </div>
           </details>
@@ -341,6 +341,32 @@ const ProviderHeader = () => {
                 </svg>
                 Passées
               </a>
+              <Link
+                to={"/provider/read/demands"}
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                Chercher une prestation
+              </Link>
             </div>
           </details>
 
@@ -411,7 +437,27 @@ const ProviderHeader = () => {
                 Consulter
               </a>
               <a
-                href="/delivrer/account"
+                href="/provider/update/documents"
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 5h10M11 5v14m0-14L3 19"
+                  />
+                </svg>
+                Modifier mes documents
+              </a>
+              <a
+                href="/provider/profile"
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg
