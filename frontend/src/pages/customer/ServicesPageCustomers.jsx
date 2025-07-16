@@ -41,7 +41,6 @@ const ServicesPageCustomers = () => {
     <div className="flex flex-col w-screen mt-10">
       <div className="flex items-center justify-center">
         <div className="flex flex-row mt-2 bg-white rounded-3xl shadow-2xl">
-          {/* Filtre titre annonce */}
           <input
             type="search"
             name="search"
@@ -49,14 +48,12 @@ const ServicesPageCustomers = () => {
             id="search"
             className="min-w-md bg-white rounded-3xl h-13 indent-6 outline-none hover:bg-gray-100 hover:shadow-md duration-300"
           />
-          {/* Filtre emplacement */}
           <input
             type="text"
             placeholder="Où ?"
             className="bg-white outline-none indent-6 hover:bg-gray-100 hover:shadow-md duration-300 rounded-3xl"
           />
 
-          {/* Filtre cateogories */}
           <select
             name="type_delivery"
             id=""
@@ -103,12 +100,12 @@ const ServicesPageCustomers = () => {
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
         <div className="flex flex-row flex-wrap gap-5 p-8">
-          {allServices?.map((service, index) => (
+          {allServices
+          .filter((service) => service.type === "offre" && service.categoryId != 4)
+          .map((service, index) => (
             <CustomersHomeCards
               key={service.id || index}
-              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${
-                service?.photo
-              }`}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
               title={service.title}
               href={`/customer/service/${service?.id}`}
               date={new Date(service.date).toLocaleDateString("fr-FR", {
@@ -120,7 +117,7 @@ const ServicesPageCustomers = () => {
               city_start={service.city_start}
               city_end={service.city_end}
             />
-          ))}
+        ))}
         </div>
       </div>
 

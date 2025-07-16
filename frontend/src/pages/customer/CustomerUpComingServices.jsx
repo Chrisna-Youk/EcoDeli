@@ -54,7 +54,7 @@ const CustomerUpComingProviding = () => {
                   return (
                     <tr key={order.id} className="border-b hover:bg-gray-50">
                       <td className="px-4 py-2 text-sm text-gray-700">
-                        {order.providerfirstName ?? "Utilisateur Inconnu"} {order.providerlastName ?? ""}
+                        <a href={`/customer/profile/${order.providerId}`}>{order.providerfirstName ?? "Utilisateur Inconnu"} {order.providerlastName ?? ""}</a>
                       </td>
                       <td className="px-4 py-2 text-sm text-gray-700">{order.serviceTitle}</td>
                       <td className="px-4 py-2 text-sm text-gray-700">{orderDate.toLocaleDateString()}</td>

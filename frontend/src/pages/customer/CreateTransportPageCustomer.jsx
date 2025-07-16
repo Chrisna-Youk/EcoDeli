@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAuthContext from "../../contexts/auth/useAuthContext";
 import { jwtDecode } from "jwt-decode";
 
-const CreateTransportCustomer = () => {
+const CreateServiceCustomer = () => {
   const {
     register,
     handleSubmit,
@@ -17,11 +17,13 @@ const CreateTransportCustomer = () => {
   const userId = jwtDecode(context.auth).id;
   const [error, setError] = useState("");
 
-  const mutationCreateTransport = useMutation({
-    mutationKey: ["CreateTransportCustomer"],
+  const mutationCreateService = useMutation({
+    mutationKey: ["CreateServiceProvider"],
     mutationFn: async (formData) => {
-      const response = await http.post(`/transport/create`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await http.post(`/service/create`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       return response.data;
     },
@@ -30,99 +32,127 @@ const CreateTransportCustomer = () => {
   const onSubmit = (data) => {
     const formData = new FormData();
 
-    formData.append("type", "demande");
-    formData.append("userId", userId);
     formData.append("title", data.title);
     formData.append("description", data.description);
-    formData.append("cityDeparture", data.cityDeparture);
-    formData.append("cityDestination", data.cityDestination);
-    formData.append("date", data.date || "");
-    formData.append("time", data.time || "");
+    formData.append("price", data.price);
+    formData.append("city", data.city);
+    formData.append("city_end", data.city_end);
+    formData.append("postalCode", data.postalCode);
+    formData.append("categoryId", 4);
+    formData.append("type", "demande");
+    formData.append("userId", userId);
 
-    if (data.photoTransport?.[0]) {
-      formData.append("photoTransport", data.photoTransport[0]);
-    }
+    formData.append("photoService", data.photoService[0]);
 
-    mutationCreateTransport.mutate(formData, {
-      onError: (err) => {
-        const msg = err?.response?.data?.message || "Erreur inconnue";
-        setError(msg);
+    mutationCreateService.mutate(formData, {
+      onError: (error) => {
+        const message = error?.response?.data?.message;
+        setError(message);
       },
       onSuccess: () => {
-        alert("Annonce de covoiturage créée avec succès !");
+        navigate(`/customer/announcements`);
       },
     });
   };
-
   return (
     <div className="bg-white min-h-screen flex flex-col items-center w-screen py-10 px-4 justify-center">
-      <h1 className="text-3xl font-bold mb-2">Créer une annonce de covoiturage</h1>
+      <h1 className="text-3xl font-bold mb-2">Créer une annonce de transport</h1>
 
       <div className="w-full max-w-2xl bg-gray-50 p-8 rounded-xl shadow-md">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-
-          <div className="flex flex-col">
-            <label className="mb-2 font-semibold">Type d'annonce</label>
-            <select
-              className="w-full border border-gray-300 rounded-lg p-3 bg-white"
-              {...register("type")}
-              disabled
-            >
-              <option value="demande">Je cherche un trajet</option>
-            </select>
-          </div>
-
           <input
-            {...register("title", { required: "Le titre est requis" })}
+            {...register("title", {
+              required: "Le titre est requis",
+              minLength: {
+                value: 5,
+                message: "Le titre doit contenir au moins 5 caractères",
+              },
+            })}
             type="text"
-            placeholder="Titre de l'annonce"
-            className="w-full border border-gray-300 rounded-lg p-3"
+            placeholder="Titre de l'annonce (ex: Coiffure à domicile, Aide aux devoirs...)"
+            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
-          {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
-
+          {errors.title && (
+            <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+          )}
+          {error != "" && <p className="text-red-500 text-sm mt-1">{error}</p>}
           <textarea
             {...register("description", {
               required: "La description est requise",
-              minLength: { value: 10, message: "Minimum 10 caractères" },
+              minLength: {
+                value: 10,
+                message: "La description doit contenir au moins 10 caractères",
+              },
             })}
-            placeholder="Description (ex: ambiance, pause prévue, bagages, etc.)"
-            className="w-full border border-gray-300 rounded-lg p-3 h-32 resize-none"
+            placeholder="Description du service (compétences, expérience, horaires, matériel fourni...)"
+            className="w-full border border-gray-300 rounded-lg p-3 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
-          {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+          {errors.description && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.description.message}
+            </p>
+          )}
+          <input
+            {...register("price", {
+              required: "Le tarif est requis",
+              valueAsNumber: true,
+              min: {
+                value: 1,
+                message: "Le tarif doit être au moins de 1€",
+              },
+            })}
+            type="number"
+            placeholder="Tarif (€) / heure ou forfait"
+            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          />
+          {errors.price && (
+            <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>
+          )}
 
           <div className="flex gap-4">
             <input
-              {...register("cityDeparture", { required: "Ville de départ requise" })}
+              {...register("city", {
+                required: "La ville est requise",
+              })}
               type="text"
-              placeholder="Ville de départ"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
+              placeholder="Ville"
+              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
+            {errors.city && (
+              <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
+            )}
+
             <input
-              {...register("cityDestination", { required: "Ville d’arrivée requise" })}
+              {...register("city_end", {
+                required: "La ville d'arrivée est requise",
+              })}
               type="text"
-              placeholder="Ville d’arrivée"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
+              placeholder="Ville d'arrivée"
+              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
-          </div>
-
-          <div className="flex gap-4">
+            {errors.city && (
+              <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
+            )}
             <input
-              {...register("date", { required: "Date requise" })}
-              type="date"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
+              {...register("postalCode", {
+                required: "Le code postale est requis",
+              })}
+              type="text"
+              placeholder="Code postal"
+              className="w-1/2 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
-            <input
-              {...register("time")}
-              type="time"
-              className="w-1/2 border border-gray-300 rounded-lg p-3"
-            />
+            {errors.postalCode && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.postalCode.message}
+              </p>
+            )}
           </div>
-
           <div>
-            <label className="block mb-2 font-semibold">Image du véhicule (optionnel)</label>
+            <label className="block mb-2 font-semibold">
+              Photo (optionnel)
+            </label>
             <input
-              {...register("photoTransport")}
+              {...register("photoService")}
               type="file"
               accept="image/*"
               className="w-full"
@@ -141,4 +171,4 @@ const CreateTransportCustomer = () => {
   );
 };
 
-export default CreateTransportCustomer;
+export default CreateServiceCustomer;
