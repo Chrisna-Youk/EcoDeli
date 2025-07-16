@@ -70,7 +70,7 @@ const HomeCustomer = () => {
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
         {allServices
-          ?.filter(service => service.categoryId === 4)
+          ?.filter(service => service.categoryId === 4 && service.type === "offre")
           .map((service, index) => (
             <CustomersHomeCards
               key={service.id || index}
@@ -95,7 +95,7 @@ const HomeCustomer = () => {
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
         {allServices
-          ?.filter(service => service.categoryId === 1)
+          ?.filter(service => service.categoryId === 1 && service.type === "offre")
           .map((service, index) => (
             <CustomersHomeCards
               key={service.id || index}

@@ -33,7 +33,7 @@ const ProviderUpComingProviding = () => {
 
 
   return (
-    <div className="bg-white pt-0 h-screen 2xl:ml-150 py-10 w-full overflow-x-hidden flex items-center flex-col">
+    <div className="bg-white pt-0 h-screen 2xl:ml-60 py-10 w-full overflow-x-hidden flex items-center flex-col">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div className="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
@@ -67,7 +67,7 @@ const ProviderUpComingProviding = () => {
                   return (
                     <tr key={order.id} className="border-b hover:bg-gray-50">
                       <td className="px-4 py-2 text-sm text-gray-700">
-                        {order.customerfirstName} {order.customerlastName}
+                        <a href={`/customer/profile/${order.customerId}`}>{order.customerfirstName} {order.customerlastName}</a>
                       </td>
                       <td className="px-4 py-2 text-sm text-gray-700">
                         {order.serviceTitle}

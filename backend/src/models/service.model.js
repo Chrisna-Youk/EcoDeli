@@ -29,6 +29,11 @@ const Service = db.define(
       allowNull: false,
       unique: false,
     },
+    city_end: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
     postalCode: {
       type: DataTypes.STRING(128),
       allowNull: false,
