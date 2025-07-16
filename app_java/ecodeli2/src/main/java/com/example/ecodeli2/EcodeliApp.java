@@ -14,8 +14,20 @@ public class EcodeliApp extends Application {
 
     private Stage primaryStage;
 
+    private String authToken;
+
+    void setAuthToken(String token) {
+        this.authToken = token;
+    }
+
+    String getAuthToken() {
+        return authToken;
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println("[DEBUG] EcodeliApp");
+
         this.primaryStage = stage;
         showLogin();
     }
@@ -46,6 +58,28 @@ public class EcodeliApp extends Application {
         );
         primaryStage.getIcons().add(icon);
 
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public void showOtp(String authToken) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                EcodeliApp.class.getResource("otp.fxml")
+        );
+        Parent root = loader.load();
+
+        OtpController ctrl = loader.getController();
+        ctrl.init(this, authToken);
+
+        Scene scene = new Scene(root, 350, 300);
+        scene.getStylesheets().add(
+                Objects.requireNonNull(
+                        EcodeliApp.class.getResource("styles.css"),
+                        "styles.css not found"
+                ).toExternalForm()
+        );
+
+        primaryStage.setTitle("Ecodeli – OTP Authentication");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
