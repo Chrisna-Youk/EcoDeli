@@ -100,12 +100,12 @@ const ServicesPageCustomers = () => {
 
       <div className="flex flex-row flex-wrap gap-5 p-8">
         <div className="flex flex-row flex-wrap gap-5 p-8">
-          {allServices
-          .filter((service) => service.type === "offre" && service.categoryId != 4)
-          .map((service, index) => (
+          {allServices.map((service, index) => (
             <CustomersHomeCards
               key={service.id || index}
-              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${
+                service?.photo
+              }`}
               title={service.title}
               href={`/customer/service/${service?.id}`}
               date={new Date(service.date).toLocaleDateString("fr-FR", {
@@ -117,7 +117,7 @@ const ServicesPageCustomers = () => {
               city_start={service.city_start}
               city_end={service.city_end}
             />
-        ))}
+          ))}
         </div>
       </div>
 

@@ -6,7 +6,9 @@ async function readServiceController(req, res) {
   const offset = Number(req.query.offset) || 0;
 
   try {
-    const services = await Service.findAll({ limit, offset });
+    const services = await Service.findAll({ limit, offset, where: {
+      type: "offre",
+    } });
 
     return res.status(200).json({ data: services });
   } catch (error) {
