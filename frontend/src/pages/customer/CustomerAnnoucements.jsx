@@ -29,7 +29,7 @@ const CustomerAnnouncementsAdmin = () => {
   const { data: deliveries } = useQuery({
     queryKey: ["CustomerDeliveries"],
     queryFn: async () => {
-      const response = await http.get(`/announcement/read`);
+      const response = await http.get(`/announcement/read?limit=100&offset=0`);
       return response.data.data;
     },
   });

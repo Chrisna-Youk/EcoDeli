@@ -23,7 +23,10 @@ import ProviderRequestImages from "../pages/admin/providers/ProviderRequestImage
 import DelivrerRequestsPage from "../pages/admin/delivrers/DelivrerRequests";
 import ProviderAnnouncementsAdmin from "../pages/admin/providers/ProviderAnnouncementsAdmin";
 import CustomerAnnouncementsAdmin from "../pages/admin/customers/CustomerAnnouncementsAdmin";
-
+// Checkpoints
+import CheckpointList from "../pages/admin/checkpoints/CheckpointList";
+import CheckpointDetails from "../pages/admin/checkpoints/CheckpointDetails";
+import CheckpointCreate from "../pages/admin/checkpoints/CheckpointCreate";
 
 const AdminRoutes = (
   <>
@@ -49,6 +52,10 @@ const AdminRoutes = (
       <Route path="/admin/request/provider/image/:image" element={< ProviderRequestImages/>} />
       <Route path="CustomersAnnouncements" element={<AdminCustomersAnnouncements />} />
       <Route path="DelivrersAnnouncements" element={<AdminDelivrersAnnouncements />} />
+      {/* Checkpoints */}
+      <Route path="/admin/checkpoints" element={<CheckpointList />} />
+      <Route path="/admin/checkpoint/:checkpointId" element={<CheckpointDetails />} />
+      <Route path="/admin/create/checkpoint" element={<CheckpointCreate />} />
     </Route>
   </>
 );
