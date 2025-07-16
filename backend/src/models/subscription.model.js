@@ -9,6 +9,11 @@ const Subscription = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    sessionId: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+      unique: true,
+    },
     name: {
       type: DataTypes.STRING(128),
       allowNull: true,

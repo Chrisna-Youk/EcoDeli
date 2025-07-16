@@ -95,6 +95,7 @@ import updateContractController from "../controllers/papers/update/updateContrac
 
 // controller/subscription
 import subscriptionController from "../controllers/subscription/read/read.controller.js"
+import paySubscriptionController from "../controllers/subscription/create/paysubscription.controller.js"
 
 
 const router = Router({ mergeParams: true });
@@ -203,6 +204,7 @@ const routes = [
 
   // controllers/subscription
   route(router, "/subscription/subscribe", subscriptionController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
+  route(router, "/subscription/subscribe/create", paySubscriptionController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
 
 
 ];
