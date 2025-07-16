@@ -93,6 +93,9 @@ import createStepController from "../controllers/step/create/create.controller.j
 import createOfferPaymentController from "../controllers/payement/create/createservice.controller.js";
 import updateContractController from "../controllers/papers/update/updateContract.controller.js";
 
+// controller/subscription
+import subscriptionController from "../controllers/subscription/read/read.controller.js"
+
 
 const router = Router({ mergeParams: true });
 
@@ -198,6 +201,8 @@ const routes = [
 
 
 
+  // controllers/subscription
+  route(router, "/subscription/subscribe", subscriptionController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
 
 
 ];
