@@ -42,10 +42,7 @@ const AdminHeader = () => {
       >
         <div className="flex justify-around items-center mb-6">
           <img src={AdminDasboardLogo} alt="Logo" className="h-16" />
-          <button
-            className="2xl:hidden"
-            onClick={() => setIsSidebarOpen(false)}
-          >
+          <button className="2xl:hidden" onClick={() => setIsSidebarOpen(false)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 text-gray-700"
@@ -74,12 +71,7 @@ const AdminHeader = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3v18h18"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3v18h18" />
             </svg>
             Dashboard
           </Link>
@@ -106,12 +98,7 @@ const AdminHeader = () => {
 
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
-              <svg
-                className="h-5 w-5 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -122,29 +109,14 @@ const AdminHeader = () => {
               Clients
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <Link
-                to="/admin/customers"
-                className="py-1 hover:text-yellow-600"
-              >
-                Utilisateurs
-              </Link>
-              <Link
-                to="/admin/customers/announcements"
-                className="py-1 hover:text-yellow-600"
-              >
-                Annonces
-              </Link>
+              <Link to="/admin/customers" className="py-1 hover:text-yellow-600">Utilisateurs</Link>
+              <Link to="/admin/customers/announcements" className="py-1 hover:text-yellow-600">Annonces</Link>
             </div>
           </details>
 
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
-              <svg
-                className="h-5 w-5 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -155,35 +127,15 @@ const AdminHeader = () => {
               Prestataires
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <Link
-                to="/admin/providers"
-                className="py-1 hover:text-yellow-600"
-              >
-                Utilisateurs
-              </Link>
-              <Link
-                to="/admin/providers/annoucements"
-                className="py-1 hover:text-yellow-600"
-              >
-                Annonces
-              </Link>
-              <Link
-                to="/admin/request/provider"
-                className="py-1 hover:text-yellow-600"
-              >
-                Demandes
-              </Link>
+              <Link to="/admin/providers" className="py-1 hover:text-yellow-600">Utilisateurs</Link>
+              <Link to="/admin/providers/announcements" className="py-1 hover:text-yellow-600">Annonces</Link>
+              <Link to="/admin/request/provider" className="py-1 hover:text-yellow-600">Demandes</Link>
             </div>
           </details>
 
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
-              <svg
-                className="h-5 w-5 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -194,41 +146,16 @@ const AdminHeader = () => {
               Livreurs
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <Link
-                to="/admin/delivrers"
-                className="py-1 hover:text-yellow-600"
-              >
-                Utilisateurs
-              </Link>
-              <Link
-                to="/delivrer/DeliveriesHistory"
-                className="py-1 hover:text-yellow-600"
-              >
-                Livraisons
-              </Link>
-              <Link
-                to="/admin/DelivrersAnnouncements"
-                className="py-1 hover:text-yellow-600"
-              >
-                Annonces
-              </Link>
-              <Link
-                to="/admin/request/delivrer"
-                className="py-1 hover:text-yellow-600"
-              >
-                Demandes
-              </Link>
+              <Link to="/admin/deliverers" className="py-1 hover:text-yellow-600">Utilisateurs</Link>
+              <Link to="/admin/deliveries-history" className="py-1 hover:text-yellow-600">Livraisons</Link>
+              <Link to="/admin/deliverers/announcements" className="py-1 hover:text-yellow-600">Annonces</Link>
+              <Link to="/admin/request/delivrer" className="py-1 hover:text-yellow-600">Demandes</Link>
             </div>
           </details>
 
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
-              <svg
-                className="h-5 w-5 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -239,35 +166,15 @@ const AdminHeader = () => {
               Commerçants
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <Link
-                to="/admin/merchants"
-                className="py-1 hover:text-yellow-600"
-              >
-                Utilisateurs
-              </Link>
-              <Link
-                to="/delivrer/DeliveriesHistory"
-                className="py-1 hover:text-yellow-600"
-              >
-                Contrats
-              </Link>
-              <Link
-                to="/admin/merchant/register"
-                className="py-1 hover:text-yellow-600"
-              >
-                Ajouter
-              </Link>
+              <Link to="/admin/merchants" className="py-1 hover:text-yellow-600">Utilisateurs</Link>
+              <Link to="/admin/deliveries-history" className="py-1 hover:text-yellow-600">Contrats</Link>
+              <Link to="/admin/merchant/register" className="py-1 hover:text-yellow-600">Ajouter</Link>
             </div>
           </details>
+
           <details className="group">
             <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -278,85 +185,50 @@ const AdminHeader = () => {
               Prestation
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <a
-                href="/admin/services/upcoming"
-                className="flex items-center gap-2 py-1 hover:text-yellow-600"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
+              <a href="/admin/services/upcoming" className="flex items-center gap-2 py-1 hover:text-yellow-600">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 A venir
               </a>
-              <a
-                href="/admin/services/old"
-                className="flex items-center gap-2 py-1 hover:text-yellow-600"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
+              <a href="/admin/services/old" className="flex items-center gap-2 py-1 hover:text-yellow-600">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Passées
               </a>
+            </div>
+          </details>
+
+          <details className="group">
+            <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
+              <svg className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
                   d="M3 12l2-2m0 0l7-7 7 7m-9 0v6m4 0v-6m0 6h6v6H6v-6h6"
                 />
               </svg>
               Checkpoint
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
-              <Link
-                to="/admin/checkpoints"
-                className="py-1 hover:text-yellow-600"
-              >
-                Checkpoints
-              </Link>
-              <Link
-                to="/admin/create/checkpoint"
-                className="py-1 hover:text-yellow-600"
-              >
-                Créer un checkpoint
-              </Link>
+              <Link to="/admin/checkpoints" className="py-1 hover:text-yellow-600">Checkpoints</Link>
+              <Link to="/admin/create/checkpoint" className="py-1 hover:text-yellow-600">Créer un checkpoint</Link>
             </div>
           </details>
         </nav>
+
         <div className="mt-auto px-2 pt-4">
           <button
-            onClick={() => deconnectUser()}
-            className="flex items-center justify-center gap-2 w-full bg-red-500 hover:bg-red-800 cursor-pointer text-white py-2 px-4 rounded-md text-sm transition-colors"
+            onClick={deconnectUser}
+            className="flex items-center justify-center gap-2 w-full bg-red-500 hover:bg-red-800 text-white py-2 px-4 rounded-md text-sm transition-colors"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              className="w-4 h-4"
-              aria-hidden="true"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
               />
             </svg>
             Déconnexion
