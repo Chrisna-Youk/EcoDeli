@@ -114,6 +114,7 @@ const ChatCustomer = () => {
       };
       console.log("Payload envoyé à Stripe:", payload);
       const res = await http.post(`/payement/service/create`, payload);
+      await http.post(`/order/create/`, payload);
       window.location.href = res.data.data.url;
     } catch (error) {
       console.error("Erreur lors de la redirection vers Stripe :", error);
