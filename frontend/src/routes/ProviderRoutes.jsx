@@ -22,6 +22,7 @@ import ProviderProfileEdit from "../pages/provider/ProviderProfileEdit";
 import UpdateProviderInfos from "../pages/provider/UpdateProviderInfos";
 import CustomersDemands from "../pages/provider/CustomersDemands";
 import CreateTransportPageProvider from "../pages/provider/CreateTransportPageProvider";
+import ProviderOldServices from "../pages/provider/ProviderOldServices";
 
 // import DisplayPresta from "../pages/TO_IMPLEMENT/DisplayPresta";
 
@@ -49,6 +50,7 @@ const ProviderRoutes = (
     <Route path="profile" element={<ProviderProfileEdit />} />
     <Route path="update/documents" element={<UpdateProviderInfos />} />
     <Route path="read/demands" element={<CustomersDemands />} />
+    <Route path="/provider/oldservices" element={<ProviderOldServices />} />
   </Route>
 );
 

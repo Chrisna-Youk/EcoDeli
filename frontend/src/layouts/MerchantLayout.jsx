@@ -29,7 +29,7 @@
       i18n.changeLanguage("it");
     }, [i18n]);
     return (
-      <div className="flex bg-[#B9D5C5] min-h-screen">
+      <div className="flex bg-white min-h-screen">
         <ThemeContext.Provider value={null}>
           <MerchantHeader />
           <main className="flex-1 p-4">

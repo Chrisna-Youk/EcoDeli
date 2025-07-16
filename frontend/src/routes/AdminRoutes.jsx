@@ -23,6 +23,10 @@ import ProviderRequestImages from "../pages/admin/providers/ProviderRequestImage
 import DelivrerRequestsPage from "../pages/admin/delivrers/DelivrerRequests";
 import ProviderAnnouncementsAdmin from "../pages/admin/providers/ProviderAnnouncementsAdmin";
 import CustomerAnnouncementsAdmin from "../pages/admin/customers/CustomerAnnouncementsAdmin";
+import RegisterMerchant from "../pages/admin/merchants/RegisterMerchant";
+import AdminOldServices from "../pages/admin/AdminOldServices";
+import AdminUpcomingServices from "../pages/admin/AdminUpcomingServices";
+
 // Checkpoints
 import CheckpointList from "../pages/admin/checkpoints/CheckpointList";
 import CheckpointDetails from "../pages/admin/checkpoints/CheckpointDetails";
@@ -49,9 +53,12 @@ const AdminRoutes = (
       <Route path="MerchantRequests" element={<MerchantRequestsPage />} />
       <Route path="/admin/request/provider" element={<ProviderRequestsPage />} />
       <Route path="/admin/request/delivrer" element={<DelivrerRequestsPage />} />
+      <Route path="/admin/merchant/register" element={<RegisterMerchant />} />
       <Route path="/admin/request/provider/image/:image" element={< ProviderRequestImages/>} />
       <Route path="CustomersAnnouncements" element={<AdminCustomersAnnouncements />} />
       <Route path="DelivrersAnnouncements" element={<AdminDelivrersAnnouncements />} />
+      <Route path="/admin/services/old" element={<AdminOldServices />} />
+      <Route path="/admin/services/upcoming" element={<AdminUpcomingServices />} />
       {/* Checkpoints */}
       <Route path="/admin/checkpoints" element={<CheckpointList />} />
       <Route path="/admin/checkpoint/:checkpointId" element={<CheckpointDetails />} />
