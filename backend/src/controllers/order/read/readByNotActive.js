@@ -7,7 +7,6 @@ async function readByNotActiveController(req, res) {
         active: 0,
       },
     });
-
     res.status(200).json({ data: orders });
   } catch (error) {
     console.error(error);

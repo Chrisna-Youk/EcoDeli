@@ -33,7 +33,7 @@ const UpdateMerchantInfos = () => {
   formData.append("userId", userId);
 
   try {
-    await http.put(`/paper/update/contract/${userId}`, formData);
+    await http.put(`/paper/update/contract/${userId}`, formData, {headers: {"Content-Type": "multipart/form-data"}});
     alert("Informations mises à jour !");
   } catch (error) {
     console.error(error);

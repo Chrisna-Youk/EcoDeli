@@ -133,9 +133,9 @@ const routes = [
 
   // controllers/papers
   route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}, {name: "pricesDocument", maxCount: 1}])),
-  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
   route(router, "/paper/read/", readPapersAllController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/paper/update/contract/:userId", updateContractController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "contract", maxCount: 1}])),
+  route(router, "/paper/update/contract/:userId", updateContractController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"]), upload.fields([{name: "contract", maxCount: 1}])),
 
 
 
@@ -193,8 +193,8 @@ const routes = [
   route(router, "/order/provider/read/active/:providerId", readByActiveProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/customer/read/desactive/:customerId", readByNotActiveCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/provider/read/desactive/:providerId", readByNotActiveProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/order/read/desactive", readByNotActiveController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/order/read/active", readByActiveController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/read/all/desactive", readByNotActiveController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/read/all/active", readByActiveController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
 
 

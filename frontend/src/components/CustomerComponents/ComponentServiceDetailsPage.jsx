@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ComponentTransportDetailsPage = ({
+const ComponentServiceDetailsPage = ({
   image,
   title,
   customerId,
@@ -68,4 +68,4 @@ const ComponentTransportDetailsPage = ({
   </div>
 );
 
-export default ComponentTransportDetailsPage;
+export default ComponentServiceDetailsPage;

@@ -9,14 +9,14 @@ const AdminUpcomingServices = () => {
   const { data: orders} = useQuery({
     queryKey: ["Orders"],
     queryFn: async () => {
-      const response = await http.get(`/order/read/active`);
+      const response = await http.get(`/order/read/all/active`);
       console.log(response);
       return response.data.data;
     },
   });
 
   return (
-    <div className="bg-white pt-0 h-screen py-10 w-full overflow-x-hidden flex items-center flex-col xl:ml-35">
+    <div className="bg-white pt-0 h-screen py-10 w-full overflow-x-hidden flex items-center flex-col xl:ml-20">
       <div className="p-10 bg-white w-screen mb-8 shadow-md"></div>
       <div className="bg-white p-6 rounded-2xl shadow-md xl:w-[80vw] md:w-full">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">

@@ -31,6 +31,7 @@ import AdminUpcomingServices from "../pages/admin/AdminUpcomingServices";
 import CheckpointList from "../pages/admin/checkpoints/CheckpointList";
 import CheckpointDetails from "../pages/admin/checkpoints/CheckpointDetails";
 import CheckpointCreate from "../pages/admin/checkpoints/CheckpointCreate";
+import AdminPayementsDetails from "../pages/admin/AdminPayementsDetails";
 
 const AdminRoutes = (
   <>
@@ -46,7 +47,7 @@ const AdminRoutes = (
       <Route path="users" element={<UserManagementPage />} />
       <Route path="customers" element={<CustomersManagementPage />} />
       <Route path="providers" element={<ProviderManagementPage />} />
-      <Route path="/admin/providers/annoucements" element={<ProviderAnnouncementsAdmin />} />
+      <Route path="/admin/providers/announcements" element={<ProviderAnnouncementsAdmin />} />
       <Route path="/admin/customers/announcements" element={<CustomerAnnouncementsAdmin />} />
       <Route path="delivrers" element={<DelivrerManagementPage />} />
       <Route path="merchants" element={<MerchantsManagementPage />} />
@@ -56,6 +57,7 @@ const AdminRoutes = (
       <Route path="/admin/merchant/register" element={<RegisterMerchant />} />
       <Route path="/admin/request/provider/image/:image" element={< ProviderRequestImages/>} />
       <Route path="CustomersAnnouncements" element={<AdminCustomersAnnouncements />} />
+      <Route path="/admin/payements" element={<AdminPayementsDetails />} />
       <Route path="DelivrersAnnouncements" element={<AdminDelivrersAnnouncements />} />
       <Route path="/admin/services/old" element={<AdminOldServices />} />
       <Route path="/admin/services/upcoming" element={<AdminUpcomingServices />} />

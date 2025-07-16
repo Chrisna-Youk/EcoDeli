@@ -217,6 +217,26 @@ const AdminHeader = () => {
               <Link to="/admin/create/checkpoint" className="py-1 hover:text-yellow-600">Créer un checkpoint</Link>
             </div>
           </details>
+          <Link
+            to={"/admin/payements"}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M2 7h20M2 11h20m-2 4h-4m6 0a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2h16a2 2 0 012 2v8z"
+              />
+            </svg>
+            Chiffres
+          </Link>
         </nav>
 
         <div className="mt-auto px-2 pt-4">
