@@ -1,12 +1,11 @@
 package com.example.ecodeli2;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
+
+import javafx.application.Platform;
+
 
 public class LoginController {
 
@@ -21,41 +20,32 @@ public class LoginController {
 
     @FXML
     private void onLoginClicked() {
+        System.out.println("[DEBUG] onLoginClicked triggered for : " + emailField.getText());
         String email = emailField.getText().trim();
         String pwd   = passwordField.getText();
 
-        if ("admin@ecodeli.com".equals(email) && "Respons11".equals(pwd)) {
-            try {
-                app.showDashboard();
-            } catch (Exception e) {
-                e.printStackTrace();
-                showError("Loading dashboard failed");
-            }
-        } else {
-            showError("Email or password incorrect");
-        }
-    }
+        AuthService.login(email, pwd)
+                .thenAccept(token -> {
+                    Platform.runLater(() -> {
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        Image logo = new Image(
-                EcodeliApp.class.getResourceAsStream("ecodeli-logo.png")
-        );
-
-        Stage dialogStage = (Stage) alert.getDialogPane().getScene().getWindow();
-        dialogStage.getIcons().clear();
-        dialogStage.getIcons().add(logo);
-
-        DialogPane pane = alert.getDialogPane();
-        pane.getStylesheets().add(
-                EcodeliApp.class.getResource("styles.css").toExternalForm()
-        );
-        pane.getStyleClass().add("alert-error");
-
-        alert.showAndWait();
+                        if (token != null) {
+                            app.setAuthToken(token);
+                            try {
+                                app.showOtp(token);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                AlertHelper.showError("Impossible d’ouvrir le dashboard");
+                            }
+                        } else {
+                            AlertHelper.showError("Email ou mot de passe incorrect");
+                        }
+                    });
+                })
+                .exceptionally(ex -> {
+                    Platform.runLater(() -> {
+                        AlertHelper.showError("Erreur réseau : " + ex.getMessage());
+                    });
+                    return null;
+                });
     }
 }
