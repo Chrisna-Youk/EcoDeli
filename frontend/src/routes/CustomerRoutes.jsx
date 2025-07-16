@@ -29,6 +29,7 @@ import RequestBecomeProvider from "../pages/customer/RequestBecomeProvider";
 import TransportDetailsPage from "../pages/customer/TransportDetailsPage";
 import CreateReview from "../pages/customer/CreateReview";
 import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
+import CustomerOldServices from "../pages/customer/CustomerOldServices";
 
 const CustomerRoutes = (
   <>
@@ -59,6 +60,7 @@ const CustomerRoutes = (
       <Route path="profile/:profileId" element={<ProfileDetails />} />
       <Route path="profile" element={<CustomerProfilePage />} />
       <Route path="upcomingservices" element={<CustomerUpComingProviding />} />
+      <Route path="oldservices" element={<CustomerOldServices />} />
       <Route
         path="profile/request/delivrer"
         element={<RequestBecomeDeliverer />}

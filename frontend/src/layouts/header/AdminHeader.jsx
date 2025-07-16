@@ -108,7 +108,69 @@ const AdminHeader = () => {
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <a href="/admin/merchants" className="py-1 hover:text-yellow-600">Utilisateurs</a>
               <a href="/delivrer/DeliveriesHistory" className="py-1 hover:text-yellow-600">Contrats</a>
-              <a href="/admin/MerchantRequests" className="py-1 hover:text-yellow-600">Demandes</a>
+              <a href="/admin/merchant/register" className="py-1 hover:text-yellow-600">Ajouter</a>
+            </div>
+          </details>
+
+          <details className="group">
+            <summary className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer list-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7m16 0V5a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0H4"
+                />
+              </svg>
+              Prestation
+            </summary>
+            <div className="pl-8 mt-2 space-y-1 flex flex-col">
+              <a
+                href="/admin/services/upcoming"
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                A venir
+              </a>
+              <a
+                href="/admin/services/old"
+                className="flex items-center gap-2 py-1 hover:text-yellow-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Passées
+              </a>
             </div>
           </details>
         </nav>

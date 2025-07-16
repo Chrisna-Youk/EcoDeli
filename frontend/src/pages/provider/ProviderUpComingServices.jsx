@@ -13,23 +13,10 @@ const ProviderUpComingProviding = () => {
   const { data: orders} = useQuery({
     queryKey: ["Orders", providerId],
     queryFn: async () => {
-      const response = await http.get(`/order/read/${providerId}`);
+      const response = await http.get(`/order/provider/read/active/${providerId}`);
       return response.data.data;
     },
   });
-
-  const handleConfirm = async (orderId) => {
-    try {
-        await http.put(`/order/update/${orderId}`, {
-        confirm_provider: 1,
-        });
-        alert("Rendez-vous complété !");
-    } catch (error) {
-        console.error(error);
-        alert("Le rendez-vous n'a pas pu être complété");
-    }
-    };
-
 
 
   return (
@@ -55,9 +42,6 @@ const ProviderUpComingProviding = () => {
                 <th className="px-4 py-2 text-left text-sm text-gray-600">
                   Heure
                 </th>
-                <th className="px-4 py-2 text-left text-sm text-gray-600">
-                  Action
-                </th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -80,9 +64,6 @@ const ProviderUpComingProviding = () => {
                           hour: "2-digit",
                           minute: "2-digit",
                         })}
-                      </td>
-                      <td className="px-4 py-2 text-sm text-green-600 cursor-pointer hover:underline">
-                        <button onClick={() => handleConfirm(order.id)}>Confirmer</button>
                       </td>
                     </tr>
                   );
