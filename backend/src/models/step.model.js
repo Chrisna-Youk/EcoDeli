@@ -9,10 +9,35 @@ const Step = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING(128),
-      allowNull: true,
-      unique: false,
+    uuid: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
+    providerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    checkpointId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "checkpoint",
+        key: "id",
+      },
+    },
+    announcementId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "announcement",
+        key: "id",
+      },
     },
   },
   {

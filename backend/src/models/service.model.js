@@ -40,9 +40,9 @@ const Service = db.define(
       unique: false,
     },
     type: {
-    type: DataTypes.STRING(128),
-    allowNull: true,
-    unique: false,
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
     },
     categoryId: {
       type: DataTypes.INTEGER,

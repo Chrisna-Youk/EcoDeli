@@ -16,6 +16,7 @@ import loginController from "../controllers/auth/login/login.controller.js";
 import accessController from "../controllers/auth/access/access.controller.js";
 import refreshController from "../controllers/auth/refresh/refresh.controller.js";
 import roleController from "../controllers/auth/role/role.controller.js";
+import signoutController from "../controllers/auth/signout/signout.controller.js";
 
 // controllers/category
 import readCategoryController from "../controllers/category/read/read.controller.js";
@@ -71,6 +72,12 @@ import deleteTransportController from "../controllers/transport/delete/delete.co
 import readTransportByIdController from "../controllers/transport/read/readById.controller.js";
 import createReviewController from "../controllers/review/create/create.controller.js";
 
+// controller/payement
+import createPayementController from "../controllers/payement/create/create.controller.js";
+
+// controller/step
+import createStepController from "../controllers/step/create/create.controller.js";
+
 
 const router = Router({ mergeParams: true });
 
@@ -89,6 +96,7 @@ const routes = [
   route(router, "/auth/access", accessController, ["post"]),
   route(router, "/auth/refresh", refreshController, ["get"]),
   route(router, "/auth/role", roleController, ["get"]),
+  route(router, "/auth/signout", signoutController, ["get"]),
 
   // controllers/user
   route(router, "/user/read", readUserController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
@@ -101,7 +109,7 @@ const routes = [
 
   // controllers/announcement
   route(router, "/announcement/read", readAnnouncementController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/announcement/read/:userId", readAnnouncementByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/announcement/read/:announcementId", readAnnouncementByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "delivrer", "customer", "provider"])),
   route(router, "/announcement/create", createAnnouncementController, ["post"], upload.fields([{ name: "photoDelivery", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/announcement/delete", deleteAnnouncementController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
@@ -148,7 +156,13 @@ const routes = [
   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/read", readTransportController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/delete", deleteTransportController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-    route(router, "/transport/read/:transportId", readTransportByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/transport/read/:transportId", readTransportByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+
+  // conroller/payement
+  route(router, "/payement/create", createPayementController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
+
+  // controller/step
+  route(router, "/step/create", createStepController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
 
 ];
 
