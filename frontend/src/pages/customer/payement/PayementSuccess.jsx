@@ -12,7 +12,7 @@ export default function PaymentSuccess() {
   const queryParams = new URLSearchParams(location.search);
   const session_id = queryParams.get("session_id");
 
-  const hasExecutedRef = useRef(false); // ✅ empêche l'exécution multiple
+  const hasExecutedRef = useRef(false);
 
   const mutationCreateDelivery = useMutation({
     mutationKey: ["CreateDeliveryCustomer"],
@@ -34,7 +34,6 @@ export default function PaymentSuccess() {
             setError(msg);
           },
           onSuccess: () => {
-            // ✅ redirection après succès
             setTimeout(() => {
               navigate("/customer/announcements");
             }, 5000);

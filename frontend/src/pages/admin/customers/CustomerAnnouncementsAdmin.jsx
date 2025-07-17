@@ -50,16 +50,6 @@ const CustomerAnnouncementsAdmin = () => {
     }
   };
 
-  const handleDeleteDelivery = async (id) => {
-    try {
-      await http.delete("/announcement/delete", { data: { id } });
-      alert("Annonce de livraison supprimée avec succès.");
-    } catch (error) {
-      console.error("Erreur lors de la suppression :", error);
-      alert("Erreur lors de la suppression.");
-    }
-  };
-
   return (
     <div className="bg-white pt-0 h-screen 2xl:ml-80 py-10 w-screen overflow-x-hidden">
       <div className="p-10 bg-white w-screen mb-8 shadow-md">
@@ -77,10 +67,8 @@ const CustomerAnnouncementsAdmin = () => {
               href={`/customer/service/${service.id}`}
               image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
               title={service.title}
-              date="20 juil"
               city_start={service.city}
               price={`${service.price} €`}
-              rating="4,9"
               onDelete={handleDeleteService}
             />
           ))}
@@ -95,29 +83,9 @@ const CustomerAnnouncementsAdmin = () => {
               href={`/customer/transport/${transport.id}`}
               image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${transport?.photo}`}
               title={transport.title}
-              date="20 juil"
               city_start={transport.departure_city}
               price={`${transport.price} €`}
-              rating="4,9"
               onDelete={handleDeleteTransport}
-            />
-          ))}
-
-        {deliveries
-          ?.filter((delivery) => delivery.type === "demande")
-          .map((delivery, index) => (
-            <ProviderAnnoucementAdminComponent
-              key={`delivery-${delivery.id}`}
-              id={delivery.id}
-              index={index}
-              href={`/customer/announcement/${delivery.id}`}
-              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${delivery?.photo}`}
-              title={delivery.title}
-              date="20 juil"
-              city_start={delivery.city}
-              price={`${delivery.price} €`}
-              rating="4,9"
-              onDelete={handleDeleteDelivery}
             />
           ))}
       </div>

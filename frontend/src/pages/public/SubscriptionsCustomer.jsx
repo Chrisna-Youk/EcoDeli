@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom'; // ou 'next/link' si tu es sur Next.js
+
 
 const SubscriptionPlans = () => {
+
+  const [isConnected, setIsConnected] = useState (false)
+  useEffect(() => {
+    const connected = localStorage.getItem("connected") === "true";
+    setIsConnected(connected);
+  }, []);
+
   return (
     <div className="bg-white min-h-screen py-12 px-6 flex flex-col items-center">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Mon abonnement</h1>
@@ -34,9 +43,10 @@ const SubscriptionPlans = () => {
               <li>• 5% de réduction sur les petits colis</li>
             </ul>
           </div>
-          <button className="mt-auto bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer">
-            Passer à Starter
-          </button>
+          <Link to={isConnected ? "/stripe" : "/register"} className="mt-auto block w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition text-center cursor-pointer">
+              Passer à Starter
+          </Link>
+
         </div>
 
         <div className="bg-yellow-50 border-2 border-yellow-500 rounded-xl p-6 shadow-md flex flex-col justify-between">
@@ -51,9 +61,9 @@ const SubscriptionPlans = () => {
               <li>• 5% de réduction sur tous les colis</li>
             </ul>
           </div>
-          <button className="mt-auto bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer">
+          <Link to="/test" className="mt-auto block w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition text-center cursor-pointer">
             Passer à Premium
-          </button>
+          </Link>
         </div>
       </div>
     </div>

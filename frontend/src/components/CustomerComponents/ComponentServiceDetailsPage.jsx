@@ -9,6 +9,7 @@ const ComponentServiceDetailsPage = ({
   category,
   description,
   city,
+  city_end,
   name_provider,
   lastname_provider,
   status_provider,
@@ -31,7 +32,7 @@ const ComponentServiceDetailsPage = ({
           {price}€
         </span>
         <span className="text-md text-gray-600 italic">{category}</span>
-        <span className="text-md text-gray-600 italic">{city}</span>
+        <span className="text-md text-gray-600 italic">{city_end ? `${city} 🚖 ${city_end}` : city}</span>
       </div>
     </div>
 

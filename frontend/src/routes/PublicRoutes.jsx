@@ -18,6 +18,7 @@ import PublicCustomers from "../pages/public/PublicCustomers";
 import PublicProviders from "../pages/public/PublicProviders";
 import PublicDelivrers from "../pages/public/PublicDelivrers";
 import PublicMerchants from "../pages/public/PublicMerchants";
+import SubscriptionPlans from "../pages/public/SubscriptionsCustomer"
 
 const PublicRoutes = (
   <Route
@@ -38,6 +39,7 @@ const PublicRoutes = (
     <Route path="providers" element={<PublicProviders />} />
     <Route path="delivrers" element={<PublicDelivrers />} />
     <Route path="merchants" element={<PublicMerchants />} />
+    <Route path="subscription" element={<SubscriptionPlans />} />
   </Route>
 );
 

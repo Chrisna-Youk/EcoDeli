@@ -41,11 +41,12 @@ const ServiceDetailsPage = () => {
   return (
     <ComponentServiceDetailsPage
       title={service?.title}
-      image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+      image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}` || 'https://image.pngaaa.com/13/1887013-middle.png'}
       price={service?.price}
       category={service?.category}
       description={service?.description}
       city={service?.city}
+      city_end={service?.city_end}
       name_provider={user?.firstName}
       lastname_provider={user?.lastName}
       status_provider={user?.status}

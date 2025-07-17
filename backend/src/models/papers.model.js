@@ -20,6 +20,10 @@ const Papers = db.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    contract: {
+      type: DataTypes.STRING,
+      defaultValue: "contract",
+    },
     profilePhoto: {
       type: DataTypes.STRING,
       allowNull: true,
