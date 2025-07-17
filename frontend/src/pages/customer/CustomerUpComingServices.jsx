@@ -12,7 +12,7 @@ const CustomerUpComingProviding = () => {
   const { data: orders} = useQuery({
     queryKey: ["Orders", customerId],
     queryFn: async () => {
-      const response = await http.get(`/order/customer/read/${customerId}`);
+      const response = await http.get(`/order/customer/read/active/${customerId}`);
       return response.data.data;
     },
   });
@@ -21,6 +21,7 @@ const CustomerUpComingProviding = () => {
     try {
         await http.put(`/order/update/${orderId}`, {
         confirm_customer: 1,
+        active : 0,
         });
         alert("Rendez-vous complété !");
     } catch (error) {
@@ -62,7 +63,7 @@ const CustomerUpComingProviding = () => {
                         {orderDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                       </td>
                       <td className="px-4 py-2 text-sm text-blue-600 cursor-pointer hover:underline">
-                        <button onClick={() => handleConfirm(order.id)}>Confirmer</button>
+                        <button onClick={() => handleConfirm(order.id)}>Prestation reçue</button>
                       </td>
                     </tr>
                   );

@@ -1,7 +1,7 @@
 import Order from "../../../models/order.model.js";
 
 async function updateOrdersController(req, res) {
-  const { confirm_customer, confirm_provider } = req.body;
+  const { confirm_customer, confirm_provider, active } = req.body;
   const { id } = req.params;
 
   try {
@@ -14,6 +14,7 @@ async function updateOrdersController(req, res) {
     await order.update({
       confirm_customer,
       confirm_provider,
+      active,
     });
 
     return res.status(200).json({

@@ -5,12 +5,12 @@ async function createChatController(req, res) {
 
   try {
     const existingChat = await Chat.findOne({
-  where: {
-    customerId,
-    providerId,
-    serviceId,
-  },
-});
+      where: {
+        customerId,
+        providerId,
+        serviceId,
+      },
+    });
 
     if (existingChat) {
       return res.status(200).json({ data: existingChat });
@@ -24,7 +24,7 @@ async function createChatController(req, res) {
 
     return res.status(200).json({ data: newChat });
   } catch (error) {
-    console.error("Erreur lors de la création du chat:", error);
+    console.error("Erreur création chat :", error);
     return res.status(400).json({ data: "Bad request" });
   }
 }

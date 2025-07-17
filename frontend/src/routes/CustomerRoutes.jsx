@@ -17,7 +17,7 @@ import CreateServiceCustomer from "../pages/customer/CreateServiceCustomer";
 import CreateDeliveryCustomer from "../pages/customer/CreateDeliveryCustomer";
 import CreateTransportCustomer from "../pages/customer/CreateTransportPageCustomer";
 import CustomerAnnouncements from "../pages/customer/CustomerAnnoucements";
-import SubscriptionPlans from "../pages/customer/SubscriptionsCustomer";
+import SubscriptionPlans from "../pages/public/SubscriptionsCustomer";
 import CustomerProfilePage from "../pages/customer/CustomerProfile";
 import PaymentTrackingPage from "../pages/customer/CustomerPayementsTracking";
 import ChatCustomer from "../pages/customer/chat/ChatCustomer";
@@ -32,6 +32,9 @@ import PaymentSuccess from "../pages/customer/payement/PayementSuccess";
 import PayementCancel from "../pages/customer/payement/PayementCancel";
 import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
 import CustromerStep from "../pages/customer/step/CustromerStep";
+import CustomerOldServices from "../pages/customer/CustomerOldServices";
+import PaymentSuccessServices from "../pages/customer/payement/PayementSuccessServices";
+import PayementFailedServices from "../pages/customer/payement/PayementFailedServices";
 
 const CustomerRoutes = (
   <>
@@ -46,6 +49,8 @@ const CustomerRoutes = (
       <Route index element={<HomeCustomer />} />
       {/* Deliveries */}
       <Route path="deliveries" element={<DeliveriesPageCustomer />} />
+      <Route path="/customer/payement/service/success" element={<PaymentSuccessServices />} />
+      <Route path="/customer/payement/service/failed" element={<PayementFailedServices />} />
       <Route path="services" element={<ServicesPageCustomers />} />
       <Route path="service/:serviceId" element={<ServiceDetailsPage />} />
       <Route path="transport/:transportId" element={<TransportDetailsPage />} />
@@ -57,7 +62,7 @@ const CustomerRoutes = (
       <Route path="create" element={<CreatePageCustomer />} />
       <Route path="create/transport" element={<CreateTransportCustomer />} />
       <Route path="announcements" element={<CustomerAnnouncements />} />
-      <Route path="Subscription" element={<SubscriptionPlans />} />
+      <Route path="subscription" element={<SubscriptionPlans />} />
       <Route path="payements" element={<PaymentTrackingPage />} />
       <Route path="profile/:profileId" element={<ProfileDetails />} />
       <Route path="profile" element={<CustomerProfilePage />} />
@@ -68,6 +73,7 @@ const CustomerRoutes = (
       <Route path="steps" element={<CustromerStep />} />
 
       <Route path="upcomingservices" element={<CustomerUpComingProviding />} />
+      <Route path="oldservices" element={<CustomerOldServices />} />
       <Route
         path="profile/request/delivrer"
         element={<RequestBecomeDeliverer />}

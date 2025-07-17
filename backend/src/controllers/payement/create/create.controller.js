@@ -42,7 +42,7 @@ async function createPayementController(req, res) {
             product_data: {
               name: "Trajet personnalisé",
             },
-            unit_amount: Math.round(price * 100), // en centime
+            unit_amount: Math.round(price * 100),
           },
           quantity: 1,
         },

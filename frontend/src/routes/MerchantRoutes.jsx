@@ -10,7 +10,10 @@ import AuthContextProvider from "../contexts/auth/AuthContextProvider";
 // Pages
 import HomeMerchant from "../pages/merchant/HomeMerchant";
 import ViewAnnoucement from "../pages/merchant/ViewAnnoucement";
-import CreateDeliveryPageMerchant from "../pages/merchant/CreateDeliveryPageMerchant"
+import MerchantProfileEdit from "../pages/merchant/ProviderProfileEdit";
+import UpdateMerchantInfos from "../pages/merchant/UpdateMerchantInfos";
+import CreateTransportPageMerchant from "../pages/merchant/CreateTransportPageMerchant";
+import MerchantAnnouncements from "../pages/merchant/MerchantAnnouncements";
 
 const MerchantRoutes = (
   <Route
@@ -23,7 +26,10 @@ const MerchantRoutes = (
   >
     <Route index element={<HomeMerchant />} />
     <Route path="ViewAnnoucement" element={<ViewAnnoucement />}/>
-    <Route path="CreateDeliveryPageMerchant" element={<CreateDeliveryPageMerchant />}/>
+    <Route path="/merchant/profile" element={<MerchantProfileEdit />}/>
+    <Route path="/merchant/update/documents" element={<UpdateMerchantInfos />}/>
+    <Route path="/merchant/create/service" element={<CreateTransportPageMerchant />}/>
+    <Route path="/merchant/announcements" element={<MerchantAnnouncements />}/>
   </Route>
 );
 

@@ -123,7 +123,6 @@ const ChatProvider = () => {
                 <div className="text-sm mt-1">
                   💰 {msg.price} € – 📅{" "}
                   {new Date(msg.dueDate).toLocaleDateString()}
-                  <Link to={"Stripe"} className="ml-2 text-blue-500 hover:underline">Accepter</Link>
                 </div>
               )}
             </div>

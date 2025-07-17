@@ -76,6 +76,14 @@ import createOrderController from "../controllers/order/create/createOrder.contr
 import readByIdProviderController from "../controllers/order/read/readByIdProvider.controler.js";
 import readByIdCustomerController from "../controllers/order/read/readByIdCustomer.controler.js";
 import updateOrdersController from "../controllers/order/update/updateOrder.controller.js";
+import registerMerchantController from "../controllers/auth/register/registerMerchant.js";
+import readByIdOrder from "../controllers/order/read/readByIdOrder.controller.js";
+import readByActiveCustomerController from "../controllers/order/read/readByActiveCustomer.js";
+import readByActiveProviderController from "../controllers/order/read/readByActiveProvider.js";
+import readByNotActiveProviderController from "../controllers/order/read/readByNotActiveProvider.js";
+import readByNotActiveCustomerController from "../controllers/order/read/readByNotActiveCustomer.js";
+import readByNotActiveController from "../controllers/order/read/readByNotActive.js";
+import readByActiveController from "../controllers/order/read/readByActive.js";
 
 // controller/payement
 import createPayementController from "../controllers/payement/create/create.controller.js";
@@ -89,6 +97,11 @@ import readNearestCheckpointsController from "../controllers/step/read/readNeare
 import createStepController from "../controllers/step/create/create.controller.js";
 import refreshStatusController from "../controllers/step/update/refreshStatus.controller.js";
 import cancelStepController from "../controllers/step/delete/delete.controller.js";
+import createOfferPaymentController from "../controllers/payement/create/createservice.controller.js";
+import updateContractController from "../controllers/papers/update/updateContract.controller.js";
+
+// controller/subscription
+import subscriptionController from "../controllers/subscription/read/read.controller.js"
 
 
 const router = Router({ mergeParams: true });
@@ -108,6 +121,7 @@ const routes = [
   route(router, "/auth/access", accessController, ["post"]),
   route(router, "/auth/refresh", refreshController, ["get"]),
   route(router, "/auth/role", roleController, ["get"]),
+  route(router, "/auth/register/merchant", registerMerchantController, ["post"]),
   route(router, "/auth/signout", signoutController, ["get"]),
 
   // controllers/user
@@ -127,8 +141,10 @@ const routes = [
 
   // controllers/papers
   route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}, {name: "pricesDocument", maxCount: 1}])),
-  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
   route(router, "/paper/read/", readPapersAllController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/paper/update/contract/:userId", updateContractController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"]), upload.fields([{name: "contract", maxCount: 1}])),
+
 
 
   // controllers/checkpoint
@@ -136,11 +152,11 @@ const routes = [
   route(router, "/checkpoint/read", readCheckpointController, ["get"], authMiddleware(), permissionMiddleware(["admin", "delivrer"])),
 
   // controllers/service
-  route(router, "/service/create", createServiceController, ["post"], upload.fields([{ name: "photoService", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/service/read", readServiceController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/service/read/:serviceId", readServiceByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/service/read/user/:userId", readServiceByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-  route(router, "/service/delete", deleteServiceController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/service/create", createServiceController, ["post"], upload.fields([{ name: "photoService", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
+  route(router, "/service/read", readServiceController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
+  route(router, "/service/read/:serviceId", readServiceByIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
+  route(router, "/service/read/user/:userId", readServiceByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
+  route(router, "/service/delete", deleteServiceController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
   route(router, "/service/update/:serviceId", updateServiceController, ["put"], upload.fields([{ name: "photoService", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider"])),
 
   // controllers/message
@@ -167,6 +183,7 @@ const routes = [
 
   // conroller/payement
   route(router, "/payement/create", createPayementController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
+  route(router, "/payement/service/create", createOfferPaymentController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   // controller/step
   route(router, "/step/read/provider", readStepsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
@@ -183,7 +200,18 @@ const routes = [
   route(router, "/order/read/:providerId", readByIdProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/customer/read/:customerId", readByIdCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/update/:id", updateOrdersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/read/:orderid", readByIdOrder, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/customer/read/active/:customerId", readByActiveCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/provider/read/active/:providerId", readByActiveProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/customer/read/desactive/:customerId", readByNotActiveCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/provider/read/desactive/:providerId", readByNotActiveProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/read/all/desactive", readByNotActiveController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
+  route(router, "/order/read/all/active", readByActiveController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
+
+
+  // controllers/subscription
+  route(router, "/subscription/subscribe", subscriptionController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer"])),
 
 
 ];

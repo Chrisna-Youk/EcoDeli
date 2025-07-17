@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { data, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useSocket } from "../../../utils/io";
 import { useQuery } from "@tanstack/react-query";
@@ -23,7 +23,7 @@ const ChatCustomer = () => {
   });
 
   const { data: providerInfos } = useQuery({
-    queryKey: ["providerInfos", customerId],
+    queryKey: ["providerInfos", providerId],
     queryFn: async () => {
       const response = await http.get(`/user/read/${providerId}`);
       return response.data.data;
@@ -70,7 +70,6 @@ const ChatCustomer = () => {
     fetchMessages();
   }, [chat]);
 
-
   useEffect(() => {
     if (!socket || !chat?.id) return;
 
@@ -98,41 +97,39 @@ const ChatCustomer = () => {
     socket.emit("sendMessage", messagePayload);
     setNewMessage("");
   };
-  
 
   const handleAcceptOffer = async (msg) => {
     try {
-    const payload = {
-      price: msg.price,
-      date: msg.dueDate,
-      serviceId,
-      customerId,
-      providerId,
-      customerfirstName: customerInfos?.firstName,
-      customerlastName: customerInfos?.lastName,
-      providerfirstName: providerInfos?.firstName,
-      providerlastName: providerInfos?.lastName,
-      serviceTitle: serviceInfos?.title,
-    };
-
-    await http.post(`/order/create/`, payload);
-
-    alert("Order prise en compte !");
-  } catch (error) {
-    console.error("❌ Erreur lors de la création de l'order :", error);
-    alert("Erreur lors de la mise en place de l'order");
-  }
-};
-
-
-
+      const payload = {
+        price: msg.price,
+        date: msg.dueDate,
+        serviceId,
+        customerId,
+        providerId,
+        customerfirstName: customerInfos?.firstName,
+        customerlastName: customerInfos?.lastName,
+        providerfirstName: providerInfos?.firstName,
+        providerlastName: providerInfos?.lastName,
+        serviceTitle: serviceInfos?.title,
+      };
+      console.log("Payload envoyé à Stripe:", payload);
+      const res = await http.post(`/payement/service/create`, payload);
+      await http.post(`/order/create/`, payload);
+      window.location.href = res.data.data.url;
+    } catch (error) {
+      console.error("Erreur lors de la redirection vers Stripe :", error);
+      alert("Erreur lors de la mise en place du paiement.");
+    }
+  };
 
   const allMessages = [...messages, ...localMessages];
 
   return (
     <div className="max-w-2xl mx-auto p-4 h-150 flex flex-col">
       <div className="text-lg font-semibold mb-4">Chat</div>
-      <div className="text-md text-yellow-600 mb-4">Annonce : {serviceInfos?.title}</div>
+      <div className="text-md text-yellow-600 mb-4">
+        Annonce : {serviceInfos?.title}
+      </div>
 
       <div className="flex-1 overflow-y-auto space-y-4 p-4 bg-yellow-50 rounded-md border border-yellow-300">
         {allMessages.map((msg, idx) => (
@@ -148,7 +145,7 @@ const ChatCustomer = () => {
                 {msg.price && (
                   <div>
                     <div className="text-sm mt-1">
-                      💰 {msg.price} € – 📅
+                      💰 {msg.price} € – 📅{" "}
                       {new Date(msg.dueDate).toLocaleDateString()}
                     </div>
                     <button
