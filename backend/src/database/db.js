@@ -26,12 +26,14 @@ export async function dbConnection() {
     await import("../models/service.model.js");
     await import("../models/chat.model.js");
     await import("../models/message.model.js");
+    await import("../models/offer.model.js");
+    await import("../models/payement.model.js");
     await import("../models/relations/announcement.relation.js");
     await import("../models/relations/user.relation.js");
     await import("../models/relations/step.relation.js");
     await import("../models/relations/service.relation.js");
     await import("../models/relations/chat.relation.js");
-    
+
     console.log("Connection has been established successfully.");
     // force: create models from scratch
     // alter: allow alter the db

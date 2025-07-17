@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Polyline } from "react-leaflet";
 
-
 const ComponentDeliveryDetailsPage = ({
   announcementId,
   title,
   price,
   description,
   city,
+  category,
   cityDeparture,
   cityDestination,
   name_delivrer,
@@ -55,7 +55,7 @@ const ComponentDeliveryDetailsPage = ({
             <span className="text-md text-gray-600 italic">Prix : </span>
             {price}€
           </span>
-          <span className="text-md text-gray-600 italic">{category}</span>
+          <span className="text-md text-gray-600 italic">{category || ""}</span>
           <span className="text-md text-gray-600 italic">{city}</span>
         </div>
       </div>
@@ -76,20 +76,22 @@ const ComponentDeliveryDetailsPage = ({
         </div>
 
         <div className="flex-1 p-5 overflow-y-auto">
-          <p className="text-sm text-gray-800 mb-4">Description de l'annonce</p>
-          <p>{description}</p>
+          <p className="text-sm text-gray-800 mb-4">
+            Description de l'annonce
+          </p>
+          <p className="max-w-2xl">{description}</p>
         </div>
 
         <div className="w-full px-4 pb-4 flex flex-col gap-3">
           <Link
-            to={``}
+            to={`/delivrer/announcement/partial/${announcementId}`}
             className="w-full bg-yellow-400 text-center py-3 transition hover:scale-105 rounded-md font-semibold text-black"
           >
             Livraison partielle
           </Link>
 
           <Link
-            to={`/delivrer/announcement/confirmation/${announcementId}`}
+            to={`/delivrer/announcement/complete/${announcementId}`}
             className="w-full bg-yellow-400 text-center py-3 transition hover:scale-105 rounded-md font-semibold text-black"
           >
             Livraison complète

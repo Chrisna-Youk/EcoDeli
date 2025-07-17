@@ -7,10 +7,11 @@ async function readAnnouncementController(req, res) {
     const annoucements = await Announcement.findAll({
       limit: Number(limit),
       offset: Number(offset),
+      where: { active: true },
     });
     return res.status(200).json({ data: annoucements });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(400).json({ message: "Bad request" });
   }
 }

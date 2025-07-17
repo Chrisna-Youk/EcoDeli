@@ -13,6 +13,10 @@ const Checkpoint = db.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    city: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
     latitude: {
       type: DataTypes.FLOAT,
       allowNull: false,

@@ -40,6 +40,8 @@ async function migrate() {
     await import("../models/service.model.js");
     await import("../models/chat.model.js");
     await import("../models/message.model.js");
+    await import("../models/offer.model.js");
+    await import("../models/payement.model.js");
     await import("../models/relations/announcement.relation.js");
     await import("../models/relations/user.relation.js");
     await import("../models/relations/step.relation.js");

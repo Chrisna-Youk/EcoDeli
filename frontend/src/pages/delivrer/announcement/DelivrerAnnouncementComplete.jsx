@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-const DelivrerAnnouncementConfirmation = () => {
+const DelivrerAnnouncementComplete = () => {
   const { announcementId } = useParams();
   const http = useAuth();
   const navigate = useNavigate();
@@ -18,6 +18,12 @@ const DelivrerAnnouncementConfirmation = () => {
       return response.data.data;
     },
   });
+
+  useEffect(() => {
+    if (announcement && announcement.active === false) {
+      navigate("/delivrer/announcement/done");
+    }
+  }, [announcement, navigate]);
 
   //   Map handler
   useEffect(() => {
@@ -78,21 +84,24 @@ const DelivrerAnnouncementConfirmation = () => {
     mutationKey: ["AcceptedDelivery", announcementId],
     mutationFn: async (formData) => {
       const response = await http.post(`/step/create`, formData);
-      return response.data.data ;
+      return response.data.data;
     },
   });
 
   const handleAcceptedDelivery = () => {
-    mutationAcceptedDelivery.mutate(announcement, {
-      onError: (error) => {
-        console.log(error);
-        alert("Votre demande ne peut pas être pris en compte");
-      },
-      onSuccess: (data) => {
-        console.log(data);
-        alert("Livraison acceptée");
-      },
-    });
+    mutationAcceptedDelivery.mutate(
+      { type: "complete", announcement: announcement },
+      {
+        onError: (error) => {
+          console.log(error);
+          alert("Votre demande ne peut pas être pris en compte");
+        },
+        onSuccess: (data) => {
+          console.log(data);
+          alert("Livraison acceptée");
+        },
+      }
+    );
   };
 
   if (isLoading) {
@@ -166,4 +175,4 @@ const DelivrerAnnouncementConfirmation = () => {
   );
 };
 
-export default DelivrerAnnouncementConfirmation;
+export default DelivrerAnnouncementComplete;

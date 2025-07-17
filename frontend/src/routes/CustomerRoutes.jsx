@@ -31,6 +31,7 @@ import CreateReview from "../pages/customer/CreateReview";
 import PaymentSuccess from "../pages/customer/payement/PayementSuccess";
 import PayementCancel from "../pages/customer/payement/PayementCancel";
 import CustomerUpComingProviding from "../pages/customer/CustomerUpComingServices";
+import CustromerStep from "../pages/customer/step/CustromerStep";
 
 const CustomerRoutes = (
   <>
@@ -63,6 +64,8 @@ const CustomerRoutes = (
       {/* Payements */}
       <Route path="payement/success" element={<PaymentSuccess />} />
       <Route path="payement/cancel" element={<PayementCancel />} />
+      {/* Steps */}
+      <Route path="steps" element={<CustromerStep />} />
 
       <Route path="upcomingservices" element={<CustomerUpComingProviding />} />
       <Route
