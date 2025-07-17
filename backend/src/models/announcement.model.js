@@ -9,6 +9,11 @@ const Announcement = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    sessionId: {
+      type: DataTypes.STRING(256),
+      allowNull: true,
+      unique: true,
+    },
     title: {
       type: DataTypes.STRING(128),
       allowNull: true,

@@ -99,7 +99,7 @@ const DelivrerHeader = () => {
 
         <nav className="flex-1 space-y-2 mt-6">
           <Link
-            href="/delivrer"
+            to="/delivrer"
             className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
             <svg
@@ -139,7 +139,7 @@ const DelivrerHeader = () => {
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <Link
-                href="/delivrer/DelivrerAnnouncements"
+                to="/delivrer/announcements"
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg
@@ -162,10 +162,10 @@ const DelivrerHeader = () => {
                     d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"
                   />
                 </svg>
-                Mes annonces
+                Annonces clients
               </Link>
               <Link
-                href="/delivrer/DelivrerCreateAnnoucements"
+                to="/delivrer/DelivrerCreateAnnoucements"
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg
@@ -250,7 +250,7 @@ const DelivrerHeader = () => {
           </details>
 
           <Link
-            href="/delivrer/PaymentsHistory"
+            to="/delivrer/PaymentsHistory"
             className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
             <svg
@@ -290,7 +290,7 @@ const DelivrerHeader = () => {
             </summary>
             <div className="pl-8 mt-2 space-y-1 flex flex-col">
               <Link
-                href="/delivrer/profile"
+                to="/delivrer/profile"
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg
@@ -316,7 +316,7 @@ const DelivrerHeader = () => {
                 Consulter
               </Link>
               <Link
-                href="/delivrer/account"
+                to="/delivrer/account"
                 className="flex items-center gap-2 py-1 hover:text-yellow-600"
               >
                 <svg

@@ -15,6 +15,55 @@ const Step = db.define(
       unique: true,
       defaultValue: DataTypes.UUIDV4,
     },
+    type: {
+      type: DataTypes.ENUM("complete", "partial"),
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.ENUM("En attente", "Livré", "En cours"),
+      allowNull: false,
+      defaultValue: "En attente",
+    },
+    count: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: false,
+    },
+    code: {
+      type: DataTypes.STRING(32),
+      allowNull: true,
+      unique: false,
+    },
+    kmDistance: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      unique: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      unique: false,
+    },
+    latDeparture: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    lonDeparture: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    latDestination: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
+    lonDestination: {
+      type: DataTypes.STRING(128),
+      allowNull: true,
+      unique: false,
+    },
     providerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -25,7 +74,7 @@ const Step = db.define(
     },
     checkpointId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "checkpoint",
         key: "id",

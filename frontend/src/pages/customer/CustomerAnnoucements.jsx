@@ -65,66 +65,94 @@ const CustomerAnnouncementsAdmin = () => {
   };
 
   return (
-    <div className="bg-white pt-0 h-screen py-10 w-screen overflow-x-hidden">
+    <div className="bg-white pt-0 h-full py-10 w-screen overflow-x-hidden">
       <div className="p-10 bg-white w-screen mb-8 shadow-md">
         <h1 className="text-xl font-bold">Toutes vos annonces</h1>
       </div>
 
-      <div className="flex flex-row flex-wrap mt-8 gap-5 p-8 2xl:mr-72 ml-10">
-        {services
-          ?.filter((service) => service.userId === userId)
-          .map((service, index) => (
-            <ProviderAnnoucementAdminComponent
-              key={`service-${service.id}`}
-              id={service.id}
-              index={index}
-              href={`/customer/service/${service.id}`}
-              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
-              title={service.title}
-              date="20 juil"
-              city_start={service.city}
-              price={`${service.price} €`}
-              rating="4,9"
-              onDelete={handleDeleteService}
-            />
-          ))}
+      {/* Services */}
+      {services?.filter((service) => service.userId === userId).length > 0 && (
+        <>
+          <h3 className="mt-12 ml-12 text-lg font-semibold">
+            Les dernières offres de services publiées
+          </h3>
+          <div className="flex flex-row flex-wrap mt-4 gap-5 p-8 2xl:mr-72 ml-10">
+            {services
+              ?.filter((service) => service.userId === userId)
+              .map((service, index) => (
+                <ProviderAnnoucementAdminComponent
+                  key={`service-${service.id}`}
+                  id={service.id}
+                  index={index}
+                  href={`/customer/service/${service.id}`}
+                  image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${service?.photo}`}
+                  title={service.title}
+                  date="20 juil"
+                  city_start={service.city}
+                  price={`${service.price} €`}
+                  rating="4,9"
+                  onDelete={handleDeleteService}
+                />
+              ))}
+          </div>
+        </>
+      )}
 
-        {transports
-          ?.filter((transport) => transport.userId === userId)
-          .map((transport, index) => (
-            <ProviderAnnoucementAdminComponent
-              key={`transport-${transport.id}`}
-              id={transport.id}
-              index={index}
-              href={`/customer/transport/${transport.id}`}
-              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${transport?.photo}`}
-              title={transport.title}
-              date="20 juil"
-              city_start={transport.departure_city}
-              price={`${transport.price} €`}
-              rating="4,9"
-              onDelete={handleDeleteTransport}
-            />
-          ))}
+      {/* Transports */}
+      {transports?.filter((transport) => transport.userId === userId).length > 0 && (
+        <>
+          <h3 className="mt-12 ml-12 text-lg font-semibold">
+            Les dernières offres de transports publiées
+          </h3>
+          <div className="flex flex-row flex-wrap mt-4 gap-5 p-8 2xl:mr-72 ml-10">
+            {transports
+              ?.filter((transport) => transport.userId === userId)
+              .map((transport, index) => (
+                <ProviderAnnoucementAdminComponent
+                  key={`transport-${transport.id}`}
+                  id={transport.id}
+                  index={index}
+                  href={`/customer/transport/${transport.id}`}
+                  image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${transport?.photo}`}
+                  title={transport.title}
+                  date="20 juil"
+                  city_start={transport.departure_city}
+                  price={`${transport.price} €`}
+                  rating="4,9"
+                  onDelete={handleDeleteTransport}
+                />
+              ))}
+          </div>
+        </>
+      )}
 
-        {deliveries
-          ?.filter((delivery) => delivery.userId === userId)
-          .map((delivery, index) => (
-            <ProviderAnnoucementAdminComponent
-              key={`delivery-${delivery.id}`}
-              id={delivery.id}
-              index={index}
-              href={`/customer/announcement/${delivery.id}`}
-              image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${delivery?.photo}`}
-              title={delivery.title}
-              date="20 juil"
-              city_start={delivery.city}
-              price={`${delivery.price} €`}
-              rating="4,9"
-              onDelete={handleDeleteDelivery}
-            />
-          ))}
-      </div>
+      {/* Deliveries */}
+      {deliveries?.filter((delivery) => delivery.userId === userId).length > 0 && (
+        <>
+          <h3 className="mt-12 ml-12 text-lg font-semibold">
+            Les dernières offres de livraisons publiées
+          </h3>
+          <div className="flex flex-row flex-wrap mt-4 gap-5 p-8 2xl:mr-72 ml-10">
+            {deliveries
+              ?.filter((delivery) => delivery.userId === userId)
+              .map((delivery, index) => (
+                <ProviderAnnoucementAdminComponent
+                  key={`delivery-${delivery.id}`}
+                  id={delivery.id}
+                  index={index}
+                  href={`/customer/announcement/${delivery.id}`}
+                  image={`${import.meta.env.VITE_BASE_URL_STATIC}uploads/files/${delivery?.photo}`}
+                  title={delivery.title}
+                  date="20 juil"
+                  city_start={delivery.city}
+                  price={`${delivery.price} €`}
+                  rating="4,9"
+                  onDelete={handleDeleteDelivery}
+                />
+              ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

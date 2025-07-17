@@ -6,7 +6,7 @@ async function createCheckpointController(req, res) {
   const { address } = req.body;
 
   if (!address) {
-    return res.status(400).json({ message: "Adresse requise." });
+    return res.status(400).json({ data: { message: "Adresse requise" } });
   }
 
   try {
@@ -16,6 +16,7 @@ async function createCheckpointController(req, res) {
         params: {
           q: address,
           format: "json",
+          addressdetails: 1,
           limit: 1,
         },
         headers: {
@@ -25,27 +26,41 @@ async function createCheckpointController(req, res) {
     );
 
     const data = response.data;
-
+    console.log(data);
     if (!data || data.length === 0) {
-      return res.status(404).json({ message: "Adresse introuvable." });
+      return res
+        .status(404)
+        .json({ data: { message: "Adresse introuvable." } });
     }
 
     const latitude = parseFloat(data[0].lat);
     const longitude = parseFloat(data[0].lon);
+    console.log(data[0].address);
 
-    const [alreadyExists, created] = await Checkpoint.findOrCreate({
-      where: { longitude: longitude, latitude: latitude },
-      default: { address: address, longitude: longitude, latitude: latitude },
+    const checkpoint = await Checkpoint.findOne({
+      where: { address: address },
     });
 
-    if (alreadyExists) {
-      return res.status(400).json({ message: "Checkpoint déjà existant" });
-    }
-
-    if (created) {
+    if (checkpoint) {
+      console.log(checkpoint);
       return res
-        .status(201)
-        .json({ message: "Checkpoint créé avec succès.", checkpoint });
+        .status(400)
+        .json({ data: { message: "Checkpoint déjà existant" } });
+    } else {
+      console.log(checkpoint);
+      await Checkpoint.create({
+        address: address,
+        city:
+          data[0].address.city ||
+          data[0].address.town ||
+          data[0].address.municipality ||
+          data[0].address.county,
+        longitude: Number(longitude),
+        latitude: Number(latitude),
+      });
+      return res.status(201).json({
+        data: { message: "Checkpoint créé avec succès.", data: checkpoint },
+      });
     }
   } catch (error) {
     console.error("Erreur de géocodage :", error.message);

@@ -89,7 +89,14 @@ import readByActiveController from "../controllers/order/read/readByActive.js";
 import createPayementController from "../controllers/payement/create/create.controller.js";
 
 // controller/step
+import readStepsByProviderIdController from "../controllers/step/read/readByProviderId.controller.js";
+import readStepsByAnnouncementIdController from "../controllers/step/read/readByAnnouncementId.controller.js"
+import readStepsByCheckpointIdController from "../controllers/step/read/readByCheckpointId.controller.js";
+import readNearestCheckpointController from "../controllers/step/read/readNearestCheckpoint.controller.js";
+import readNearestCheckpointsController from "../controllers/step/read/readNearestCheckpoints.controller.js";
 import createStepController from "../controllers/step/create/create.controller.js";
+import refreshStatusController from "../controllers/step/update/refreshStatus.controller.js";
+import cancelStepController from "../controllers/step/delete/delete.controller.js";
 import createOfferPaymentController from "../controllers/payement/create/createservice.controller.js";
 import updateContractController from "../controllers/papers/update/updateContract.controller.js";
 
@@ -132,8 +139,6 @@ const routes = [
   route(router, "/announcement/create", createAnnouncementController, ["post"], upload.fields([{ name: "photoDelivery", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/announcement/delete", deleteAnnouncementController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
-  
-
   // controllers/papers
   route(router, "/paper/update/:userId", updatePapersController, ["put"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"]), upload.fields([{name: "idCard", maxCount: 1}, {name: "driverLicense", maxCount: 1}, {name: "profilePhoto", maxCount: 1}, {name: "pricesDocument", maxCount: 1}])),
   route(router, "/paper/read/:userId", readPapersController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer", "merchant"])),
@@ -166,15 +171,11 @@ const routes = [
   // controllers/category
   route(router, "/category/read", readCategoryController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
-  //controller/review
+  // controller/review
   route(router, "/review/read/:userId", readReviewByUserIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/review/create", createReviewController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
-
-   //controller/transport
-   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
-
-  //controller/transport
+  // controller/transport
   route(router, "/transport/create", createTransportController, ["post"], upload.fields([{ name: "photoTransport", maxCount: 1 }]), authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/read", readTransportController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/transport/delete", deleteTransportController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
@@ -185,8 +186,16 @@ const routes = [
   route(router, "/payement/service/create", createOfferPaymentController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
 
   // controller/step
+  route(router, "/step/read/provider", readStepsByProviderIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
+  route(router, "/step/read/announcement/:announcementId", readStepsByAnnouncementIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
+  route(router, "/step/read/checkpoint/:checkpointId", readStepsByCheckpointIdController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
+  route(router, "/step/read/checkpoint/nearest", readNearestCheckpointController, ["get"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
+  route(router, "/step/read/checkpoints/nearest", readNearestCheckpointsController, ["get", "post"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
   route(router, "/step/create", createStepController, ["post"], authMiddleware(), permissionMiddleware(["admin", "customer", "delivrer"])),
-  //Controllers/Order
+  route(router, "/step/status/update", refreshStatusController, ["put"], authMiddleware(), permissionMiddleware(["admin"])),
+  route(router, "/step/cancel/:stepUuid", cancelStepController, ["delete"], authMiddleware(), permissionMiddleware(["admin", "delivrer"])),
+
+  // controller/order
   route(router, "/order/create", createOrderController, ["post"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/read/:providerId", readByIdProviderController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),
   route(router, "/order/customer/read/:customerId", readByIdCustomerController, ["get"], authMiddleware(), permissionMiddleware(["admin", "provider", "delivrer", "customer"])),

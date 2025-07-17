@@ -1,15 +1,26 @@
 import { db } from "../database/db.js";
 import { DataTypes } from "sequelize";
 
-const Offer = db.define(
-  "offer",
+const Payement = db.define(
+  "payement",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
+    uuid: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
     kmDistance: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      unique: false,
+    },
+    hourlyDuration: {
       type: DataTypes.FLOAT,
       allowNull: true,
       unique: false,
@@ -19,19 +30,11 @@ const Offer = db.define(
       allowNull: true,
       unique: false,
     },
-    providerId: {
+    customerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: "user",
-        key: "id",
-      },
-    },
-    checkpointId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "checkpoint",
         key: "id",
       },
     },
@@ -50,4 +53,4 @@ const Offer = db.define(
   }
 );
 
-export default Offer;
+export default Payement;
