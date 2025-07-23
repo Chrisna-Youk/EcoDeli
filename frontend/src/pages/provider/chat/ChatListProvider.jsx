@@ -58,8 +58,9 @@ const ChatListProvider = () => {
                 return (
                   <tr key={chat.id} className="hover:bg-zinc-300">
                     <td className="px-4 py-3 text-sm text-gray-800">
-                      {chat.customer.firstName + " " + chat.customer.lastName ??
-                        "Client inconnu"}
+                      {chat?.customer?.firstName && chat?.customer?.lastName
+                        ? chat.customer.firstName + " " + chat.customer.lastName
+                        : "Client inconnu"}
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-800">
                       {chat.service.title ?? "Service inconnu"}

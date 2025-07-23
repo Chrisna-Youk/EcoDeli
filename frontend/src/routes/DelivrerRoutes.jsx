@@ -16,8 +16,6 @@ import DelivrerAnnouncementDetails from "../pages/delivrer/announcement/Delivrer
 import DelivrerAnnouncementComplete from "../pages/delivrer/announcement/DelivrerAnnouncementComplete";
 import DelivrerAnnouncementPartial from "../pages/delivrer/announcement/DelivrerAnnouncementPartial";
 import DelivrerAnnouncementAlreadyDone from "../pages/delivrer/announcement/DelivrerAnnouncementAlreadyDone";
-import DelivrerAnnouncementConfirmation from "../pages/delivrer/announcement/DelivrerAnnouncementConfirmation";
-import DelivrerAnnouncementDetails from "../pages/delivrer/DelivrerAnnouncementDetails";
 import DelivrerCreateAnnoucements from "../pages/delivrer/DelivrerCreateAnnoucements";
 // Delivery
 import DelivrerHistoryTodo from "../pages/delivrer/delivery/DelivrerHistoryTodo";
