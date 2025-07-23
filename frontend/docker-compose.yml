@@ -1,0 +1,14 @@
+services:
+  ecodeli:
+    build: .
+    container_name: ecodeli-fe
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+    networks:
+      - frontend-network
+
+networks:
+  frontend-network:
+    driver: bridge

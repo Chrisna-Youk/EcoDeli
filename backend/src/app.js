@@ -25,4 +25,4 @@ routes.forEach((route) => {
 });
 
 server.listen(process.env.PORT);
-console.log(`Server listening on http://localhost:${process.env.PORT}`);
+console.log(`Server listening on http://${process.env.URL}:${process.env.PORT}`);

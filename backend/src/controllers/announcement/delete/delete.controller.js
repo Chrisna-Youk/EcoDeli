@@ -1,4 +1,4 @@
-import Announcement from "../../../models/Announcement.model.js";
+import Announcement from "../../../models/announcement.model.js";
 
 async function deleteAnnouncementController(req, res) {
   const { id } = req.body;

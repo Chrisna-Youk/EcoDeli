@@ -9,7 +9,7 @@
   "scripts": {
     "migrate:force": "node ./src/migrate.js --force",
     "migrate:alter": "node ./src/migrate.js --alter",
-    "prod": "node --env-file=.env.production ./src/app.js",
+    "prod": "node ./src/app.js",
     "dev": "nodemon src/main.js",
     "test": "nodemon src/main.js",
     "help": "nodemon --help"

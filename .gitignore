@@ -1,7 +1,6 @@
 # custom
 node_modules
 .env
-docker-compose.yml
 legacy
 backend/uploads/files
 backend/src/database/migration.js
