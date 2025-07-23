@@ -1,0 +1,6 @@
+node_modules
+eslint.config.js
+docker-compose*
+Dockerfile
+.dockerignore
+.git

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prod": "vite --mode production",
+    "prod": "serve -s dist",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -37,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "postcss": "^8.5.3",
+    "serve": "^14.2.4",
     "tailwindcss": "^4.1.3",
     "vite": "^6.2.0"
   }
